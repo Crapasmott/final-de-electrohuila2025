@@ -13,7 +13,9 @@ export const metadata = {
   viewport: 'width=device-width, initial-scale=1.0',
 };
 
-export default function RootLayout({ children }) {
+import { ReactNode } from 'react';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="es">
       <body className={inter.className}>

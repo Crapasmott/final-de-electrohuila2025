@@ -187,12 +187,12 @@ header {
 }
 
 .btn-secondary {
-  background-color: var(--secondary);
-  color: var(--dark);
+  background-color: #ff7210;
+  color: #ffffff;
 }
 
 .btn-secondary:hover {
-  background-color: #658f0c;
+  background-color: #fa812b;
 }
 
 .btn-warning {
