@@ -105,12 +105,12 @@ export default function Home() {
                 buttonText: "Pagar Ahora"
               },
               {
-                icon: "/images/iconos/consulta.png",
-                alt: "Consulta de facturas",
-                title: "Consulta de Facturas",
-                description: "Consulta y descarga tus facturas de los últimos meses.",
-                link: "https://enlinea.electrohuila.com.co/generate-invoice/",
-                buttonText: "Consultar"
+                icon: "/images/iconos/electro.png",
+                alt: "Electrohuila en línea",
+                title: "Electrohuila en Línea",
+                description: "Accede a todos nuestros servicios digitales desde cualquier lugar.",
+                link: "https://enlinea.electrohuila.com.co/",
+                buttonText: "Ingresar"
               },
               {
                 icon: "/images/iconos/solicitud-de-cotizacion.png",
@@ -121,20 +121,20 @@ export default function Home() {
                 buttonText: "Solicitudes AGPE"
               },
               {
-                icon: "/images/iconos/electro.png",
-                alt: "Electrohuila en línea",
-                title: "Electrohuila en Línea",
-                description: "Accede a todos nuestros servicios digitales desde cualquier lugar.",
-                link: "https://enlinea.electrohuila.com.co/",
-                buttonText: "Ingresar"
-              },
-              {
                 icon: "/images/iconos/conversacion.png",
                 alt: "Línea de transparencia",
                 title: "Línea de Transparencia",
                 description: "Canal confidencial para reportar casos de corrupción o conductas indebidas.",
                 link: "#",
                 buttonText: "Reporte AQUÍ"
+              },
+              {
+                icon: "/images/iconos/justicia.png",
+                alt: "Notificaciones Judiciales",
+                title: "Notificaciones Judiciales",
+                description: "Recepción de comunicaciones y notificaciones judiciales oficiales.",
+                link: "https://enlinea.electrohuila.com.co/notificacion-web/#",
+                buttonText: "Consultar"
               },
               {
                 icon: "/images/iconos/identificacion.png",

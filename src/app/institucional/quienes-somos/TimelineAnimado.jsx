@@ -30,7 +30,7 @@ export function TimelineAnimado() {
                     'Se crea el Instituto de Aprovechamiento de Aguas y Fomento Eléctrico ELECTRAGUAS (Ley 80 del 26 dic 1946). Inicia operación en 1947'
                 ],
                 icon: '⚡',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/20210309-165904-scaled-1.jpg'
             },
             {
                 year: '1951',
