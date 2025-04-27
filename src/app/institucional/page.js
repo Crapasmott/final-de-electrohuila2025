@@ -37,7 +37,7 @@ export default function NuestraEmpresaPage() {
             description: 'La estructura de gobierno y los principios éticos que guían nuestra toma de decisiones.',
             items: [
                 { id: 'gobierno-corporativo', title: 'Gobierno Corporativo', url: '/institucional/gobierno-corporativo' },
-                { id: 'etica-cumplimiento', title: 'Ética y Cumplimiento', url: '/institucional/etica-cumplimiento' },
+                { id: 'etica-cumplimiento', title: 'Ética y Cumplimiento', url: '/institucional/etica-y-cumplimiento' },
                 { id: 'transparencia', title: 'Transparencia y Acceso a la Información Pública', url: '/institucional/transparencia' },
                 { id: 'proteccion-datos', title: 'Protección de Datos', url: '/institucional/proteccion-datos' }
             ]
