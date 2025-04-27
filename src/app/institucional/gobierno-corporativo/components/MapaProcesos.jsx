@@ -19,7 +19,7 @@ const MapaProcesos = () => {
           <div className={styles.mapaImg}>
             {/* Aquí debes colocar tu imagen del mapa de procesos */}
             <Image 
-              src="/images/mapa-procesos.png" 
+              src="/images/directivos/mapa-de-procesos-electrohuila.svg" 
               alt="Mapa de Procesos" 
               width={800} 
               height={600} 

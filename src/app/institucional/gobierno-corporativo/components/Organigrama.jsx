@@ -20,7 +20,7 @@ const Organigrama = () => {
           <div className={styles.organigramaImg}>
             {/* Aquí debes colocar tu imagen del organigrama */}
             <Image 
-              src="/images/organigrama.png" 
+              src="/images/directivos/ESTRUCTURA-ORGANIZACIONAL-2024-2048x1259.png.webp" 
               alt="Estructura Organizacional" 
               width={800} 
               height={600} 

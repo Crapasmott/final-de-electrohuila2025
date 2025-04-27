@@ -15,13 +15,13 @@ const Comites = () => {
         <div className={styles.comitesImage}>
           {/* Imagen del equipo de trabajo */}
           <Image 
-            src="/images/comites-equipo.jpg" 
+            src="/images/directivos/comite-768x512.jpg.webp" 
             alt="Equipo de trabajo" 
             width={400} 
             height={300}
             layout="responsive"
             onError={(e) => {
-              e.target.src = '/images/placeholder-team.jpg';
+              e.target.src = 'public/images/directivos/comite-768x512.jpg.webp';
             }}
           />
         </div>

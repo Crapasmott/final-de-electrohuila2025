@@ -7,27 +7,27 @@ const EquipoDirectivo = () => {
     {
       nombre: 'Nika Duniezhka Cuellar Cuenca',
       cargo: 'Gerente General (E)',
-      imagen: '/images/directivos/gerente-general.jpg'
+      imagen: '/images/directivos/Dra-nika-768x768.jpg.webp'
     },
     {
       nombre: 'Luis Alfredo Carballo Gutiérrez',
       cargo: 'Secretario General (E) Y Asesor Legal',
-      imagen: '/images/directivos/secretario-general.jpg'
+      imagen: '/images/directivos/luis-carballo-768x768.jpg.webp'
     },
     {
       nombre: 'Sebastián Andrés Repiso Ramón',
       cargo: 'Subgerente Administrativo y Financiero (E)',
-      imagen: '/images/directivos/subgerente-administrativo.jpg'
+      imagen: '/images/directivos/sebastioa-768x768.jpg.webp'
     },
     {
       nombre: 'Jhonatan Torres Cleves',
       cargo: 'Subgerente Comercial',
-      imagen: '/images/directivos/subgerente-comercial.jpg'
+      imagen: '/images/directivos/jhonatan-torres.png.webp'
     },
     {
       nombre: 'Alberto Bladimir Solis Perdomo',
       cargo: 'Subgerente de Distribución (E)',
-      imagen: '/images/directivos/subgerente-distribucion.jpg'
+      imagen: '/images/directivos/Sin-titulo-2-v3-768x768.jpg.webp'
     }
   ];
 
