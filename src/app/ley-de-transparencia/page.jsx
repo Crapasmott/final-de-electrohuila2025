@@ -513,92 +513,257 @@ export default function TransparenciaPage() {
                                 </div>
                             </div>
                         </RevealElement>
-                        {/* Información adicional */}
+                        {/* Línea de Transparencia actualizada según imagen 2 */}
                         <RevealElement direction="bottom">
-                            <div style={{
-                                backgroundColor: '#e9f7fe',
-                                padding: '30px',
-                                borderRadius: '8px',
-                                marginBottom: '30px'
+                            <div style={{ 
+                                padding: '30px 0 40px 0',
+                                textAlign: 'center'
                             }}>
-                                <h3 style={{ fontSize: '22px', marginBottom: '15px', color: '#0098d9' }}>
-                                    <span style={{ display: 'inline-flex', alignItems: 'center' }}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0098d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '10px' }}>
-                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                        </svg>
-                                        Línea de Transparencia
-                                    </span>
-                                </h3>
-                                <p style={{ marginBottom: '20px', color: '#555', lineHeight: '1.6' }}>
-                                    La Electrificadora del Huila S.A. E.S.P., cuenta con un canal confidencial de reportes en donde sus grupos de interés pueden reportar posibles irregularidades que contraríen los valores y principios institucionales; tales como actos de corrupción, soborno, fraude, comportamientos inapropiados cometidos por nuestros funcionarios y el contratista.
+                                <h2 style={{ 
+                                    fontSize: '28px',
+                                    color: '#333',
+                                    marginBottom: '10px'
+                                }}>Línea de Transparencia</h2>
+                                
+                                <div style={{ 
+                                    width: '150px',
+                                    height: '3px',
+                                    backgroundColor: '#f27b13',
+                                    margin: '0 auto 25px'
+                                }}></div>
+                                
+                                <p style={{ 
+                                    fontSize: '16px',
+                                    lineHeight: '1.6',
+                                    color: '#555',
+                                    marginBottom: '40px',
+                                    maxWidth: '1000px',
+                                    margin: '0 auto 40px',
+                                    textAlign: 'center'
+                                }}>
+                                    La Electrificadora del Huila S.A. E.S.P. cuenta con un canal confidencial de reportes en donde sus grupos de interés pueden reportar posibles irregularidades que contraríen los valores y principios institucionales; tales como actos de corrupción, soborno, fraude, comportamientos inapropiados cometidos por nuestros funcionarios y el contratista.
                                 </p>
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                                    <div>
-                                        <p style={{ 
-                                            fontWeight: 'bold', 
-                                            marginBottom: '5px', 
-                                            color: '#333', 
-                                            display: 'flex', 
-                                            alignItems: 'center' 
+                                
+                                <div style={{ 
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(3, 1fr)',
+                                    gap: '35px',
+                                    marginBottom: '35px'
+                                }}>
+                                    <div style={{ 
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center'
+                                    }}>
+                                        <div style={{ 
+                                            width: '60px',
+                                            height: '60px',
+                                            backgroundColor: '#0099cc',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '15px'
                                         }}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0098d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
-                                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                                             </svg>
-                                            Presencial:
+                                        </div>
+                                        <h3 style={{ margin: '0 0 8px 0', fontSize: '18px', color: '#333', fontWeight: '600' }}>
+                                            Línea Telefónica
+                                        </h3>
+                                        <p style={{ margin: '0', color: '#0099cc', fontWeight: '500' }}>
+                                            018000117766
                                         </p>
-                                        <p style={{ margin: '0 0 5px 26px', color: '#555' }}>Carrera 8 No. 7-69 Neiva, Huila</p>
-                                        <p style={{ margin: '0 0 0 26px', color: '#555' }}>Horario: Lunes a Viernes 7:00 am - 4:00 pm</p>
                                     </div>
-                                    <div>
-                                        <p style={{ 
-                                            fontWeight: 'bold', 
-                                            marginBottom: '5px', 
-                                            color: '#333', 
-                                            display: 'flex', 
-                                            alignItems: 'center' 
+                                    
+                                    <div style={{ 
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center'
+                                    }}>
+                                        <div style={{ 
+                                            width: '60px',
+                                            height: '60px',
+                                            backgroundColor: '#0099cc',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '15px'
                                         }}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0098d9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                                 <polyline points="22,6 12,13 2,6"></polyline>
                                             </svg>
-                                            Correo electrónico:
+                                        </div>
+                                        <h3 style={{ margin: '0 0 8px 0', fontSize: '18px', color: '#333', fontWeight: '600' }}>
+                                            Correo Electrónico
+                                        </h3>
+                                        <p style={{ margin: '0', color: '#0099cc', fontWeight: '500' }}>
+                                            electrohuila@lineatransparencia.com
                                         </p>
-                                        <p style={{ margin: '0 0 5px 26px', color: '#555' }}>
-                                            <a href="mailto:info@electrohuila.com.co" style={{ color: '#0098d9', textDecoration: 'none' }}>
-                                                info@electrohuila.com.co
+                                    </div>
+                                    
+                                    <div style={{ 
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center'
+                                    }}>
+                                        <div style={{ 
+                                            width: '60px',
+                                            height: '60px',
+                                            backgroundColor: '#0099cc',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '15px'
+                                        }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                                <polyline points="10 9 9 9 8 9"></polyline>
+                                            </svg>
+                                        </div>
+                                        <h3 style={{ margin: '0 0 8px 0', fontSize: '18px', color: '#333', fontWeight: '600' }}>
+                                            Formulario Web
+                                        </h3>
+                                        <p style={{ margin: '0', color: '#0099cc', fontWeight: '500' }}>
+                                            <a href="https://reporte.lineatransparencia.co/electrohuila" target="_blank" rel="noopener noreferrer" style={{ color: '#0099cc', textDecoration: 'none' }}>
+                                                reporte.lineatransparencia.co/electrohuila
                                             </a>
                                         </p>
-                                        <p style={{ margin: '0 0 0 26px', color: '#555' }}>
-                                            <a href="mailto:contactenos@electrohuila.com.co" style={{ color: '#0098d9', textDecoration: 'none' }}>
-                                                contactenos@electrohuila.com.co
+                                    </div>
+
+                                    <div style={{ 
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center'
+                                    }}>
+                                        <div style={{ 
+                                            width: '60px',
+                                            height: '60px',
+                                            backgroundColor: '#0099cc',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '15px'
+                                        }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 style={{ margin: '0 0 8px 0', fontSize: '18px', color: '#333', fontWeight: '600' }}>
+                                            Línea Telefónica MinEnergía
+                                        </h3>
+                                        <p style={{ margin: '0', color: '#0099cc', fontWeight: '500' }}>
+                                            018000128522
+                                        </p>
+                                    </div>
+
+                                    <div style={{ 
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center'
+                                    }}>
+                                        <div style={{ 
+                                            width: '60px',
+                                            height: '60px',
+                                            backgroundColor: '#0099cc',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '15px'
+                                        }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                                <polyline points="22,6 12,13 2,6"></polyline>
+                                            </svg>
+                                        </div>
+                                        <h3 style={{ margin: '0 0 8px 0', fontSize: '18px', color: '#333', fontWeight: '600' }}>
+                                            Correo Electrónico MinEnergía
+                                        </h3>
+                                        <p style={{ margin: '0', color: '#0099cc', fontWeight: '500' }}>
+                                            <a href="mailto:lineaetica@minenergia.gov.co" style={{ color: '#0099cc', textDecoration: 'none' }}>
+                                                lineaetica@minenergia.gov.co
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    <div style={{ 
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center'
+                                    }}>
+                                        <div style={{ 
+                                            width: '60px',
+                                            height: '60px',
+                                            backgroundColor: '#0099cc',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '15px'
+                                        }}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 style={{ margin: '0 0 8px 0', fontSize: '18px', color: '#333', fontWeight: '600' }}>
+                                            Sitio web MinEnergía
+                                        </h3>
+                                        <p style={{ margin: '0', color: '#0099cc', fontWeight: '500' }}>
+                                            <a href="https://transparencia.minenergia.gov.co/" target="_blank" rel="noopener noreferrer" style={{ color: '#0099cc', textDecoration: 'none' }}>
+                                                https://transparencia.minenergia.gov.co/
                                             </a>
                                         </p>
                                     </div>
                                 </div>
-                                <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                                    <Link 
-                                        href="/contacto"
-                                        style={{
-                                            display: 'inline-block',
-                                            padding: '12px 25px',
-                                            backgroundColor: '#0098d9',
-                                            color: 'white',
-                                            textDecoration: 'none',
-                                            borderRadius: '5px',
-                                            fontWeight: 'bold',
-                                            transition: 'background-color 0.3s',
-                                            display: 'inline-flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                        }}
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
-                                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                                        </svg>
-                                        Formulario de Solicitud de Información
-                                    </Link>
+                                
+                                <div style={{ 
+                                    backgroundColor: '#0099cc',
+                                    borderRadius: '8px',
+                                    padding: '20px',
+                                    display: 'flex',
+                                    gap: '15px',
+                                    color: 'white',
+                                    textAlign: 'left',
+                                    marginTop: '10px'
+                                }}>
+                                    <div style={{ 
+                                        width: '40px',
+                                        height: '25px',
+                                        borderRadius: '50%',
+                                        backgroundColor: 'white',
+                                        color: '#0099cc',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '22px',
+                                        fontWeight: 'bold',
+                                        marginTop: '5px'
+                                    }}>i</div>
+                                    <div>
+                                        <p style={{ margin: '0 0 15px 0', lineHeight: '1.5' }}>
+                                            Estos canales pueden ser visualizados en nuestras redes sociales y en la página web; los mismos estarán siendo operados por un tercero totalmente independiente para garantizar anonimato, independencia y protección al denunciante.
+                                        </p>
+                                        <p style={{ margin: '0', lineHeight: '1.5' }}>
+                                            Con este mecanismo, queremos fortalecer la ética y el cumplimiento legal que debe enmarcar la actuación de cada trabajador, contratista y trabajadores de éste en el marco del desarrollo de las funciones encomendadas".
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </RevealElement>
@@ -684,7 +849,6 @@ export default function TransparenciaPage() {
                                         </li>
                                     </ul>
                                 </div>
-                                
                                 <div>
                                     <h3 style={{ 
                                         fontSize: '20px', 
@@ -721,6 +885,7 @@ export default function TransparenciaPage() {
                         </div>
                     </RevealElement>
                 )}
+                
                 {/* Sección 3: Participa */}
                 {activeTab === 'participate' && (
                     <RevealElement direction="bottom">
@@ -861,7 +1026,6 @@ export default function TransparenciaPage() {
                                         </li>
                                     </ul>
                                 </div>
-                                
                                 <div>
                                     <h3 style={{ 
                                         fontSize: '20px', 
@@ -999,7 +1163,7 @@ export default function TransparenciaPage() {
                         </div>
                     </RevealElement>
                 )}
-                </div>
+            </div>
             
             {/* CTA Section */}
             <RevealElement direction="bottom">
