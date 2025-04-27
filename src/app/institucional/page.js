@@ -49,7 +49,7 @@ export default function NuestraEmpresaPage() {
             description: 'Nuestro compromiso con el desarrollo sostenible y la responsabilidad con el medio ambiente.',
             items: [
                 { id: 'programas-sostenibilidad', title: 'Gestión Programas de Sostenibilidad', url: '/institucional/gestion-y-programas-de-sostenibilidad' },
-                { id: 'gestion-riesgos', title: 'Plan de Gestión de Riesgos y Desastres', url: '/institucional/gestion-riesgos' }
+                { id: 'gestion-riesgos', title: 'Plan de Gestión de Riesgos y Desastres', url: '/institucional/pgrd' }
             ]
         }
     ];
