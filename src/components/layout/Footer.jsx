@@ -152,7 +152,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li style={{ marginBottom: '10px' }}>
-                <Link href="/institucional/politica-proteccion-datos" style={{ color: 'white', textDecoration: 'none' }}>
+                <Link href="/institucional/proteccion-datos-personales" style={{ color: 'white', textDecoration: 'none' }}>
                   Política de protección de datos
                 </Link>
               </li>

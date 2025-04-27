@@ -67,7 +67,7 @@ export default function EticaCumplimientoPage() {
             <div className={styles.contentSection}>
                 <div className={styles.imageTextSection}>
                     <div className={styles.image}>
-                        <img src="/images/etica-cumplimiento.jpg" alt="Ejecutivo de ElectroHuila" />
+                        <img src="/images/etica-768x512.jpg.webp" alt="Ejecutivo de ElectroHuila" />
                     </div>
                     <div className={styles.text}>
                         <p>
@@ -112,7 +112,7 @@ export default function EticaCumplimientoPage() {
             </div>
 
             <div className={styles.valoresSection}>
-                <h2 className={styles.subtitle}>Valores y Principios</h2>
+                <h2 className={styles.subtitle2}>Valores y Principios</h2>
                 <div className={styles.valoresGrid}>
                     <div className={styles.valorItem}>
                         <div className={styles.valorIcon}>
@@ -176,7 +176,7 @@ export default function EticaCumplimientoPage() {
                     </p>
                 </div>
                 <div className={styles.antiSobornoImage}>
-                    <img src="/images/contra-soborno.jpg" alt="Contra el soborno y la corrupción" />
+                    <img src="/images/anti-soborno-768x512.jpg.webp" alt="Contra el soborno y la corrupción" />
                 </div>
             </div>
 
