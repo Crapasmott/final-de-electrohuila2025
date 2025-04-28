@@ -35,7 +35,7 @@ const Comites = () => {
             ))}
           </ul>
           <div className={styles.codigoBtnContainer}>
-            <a href="/documentos/codigo-buen-gobierno.pdf" className={styles.codigoBtn} target="_blank" rel="noopener noreferrer">
+            <a href="/documentos/gobierne-corporativo/codigo-buen-gobierno.pdf" className={styles.codigoBtn} target="_blank" rel="noopener noreferrer">
               <span className={styles.downloadIcon}></span>
               Código de Buen Gobierno
             </a>

@@ -92,7 +92,7 @@ export default function EticaCumplimientoPage() {
                 </div>
 
                 <div className={styles.buttonSection}>
-                    <a href="/documentos/codigo-etica.pdf" className={styles.downloadButton} target="_blank" rel="noopener noreferrer">
+                    <a href="/documentos/etica/08.-CODIGO-DE-ETICA.pdf" className={styles.downloadButton} target="_blank" rel="noopener noreferrer">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             <polyline points="7 10 12 15 17 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -100,7 +100,7 @@ export default function EticaCumplimientoPage() {
                         </svg>
                         Código de Ética
                     </a>
-                    <a href="/documentos/guia-codigo-etica.pdf" className={styles.downloadButton} target="_blank" rel="noopener noreferrer">
+                    <a href="/documentos/etica/codigo-etica-electrohuila.pdf" className={styles.downloadButton} target="_blank" rel="noopener noreferrer">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             <polyline points="7 10 12 15 17 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

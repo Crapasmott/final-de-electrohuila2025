@@ -56,7 +56,6 @@ export default function Header() {
     { title: 'Inicio', path: '/' },
     { title: 'Nuestra Empresa', path: '/institucional' },
     { title: 'Servicios', path: '/servicios' },
-    { title: 'Usuarios', path: '/usuarios' },
     { title: 'Proveedores', path: '/proveedores-contratistas' },
     { title: 'Transparencia', path: '/ley-de-transparencia' },
     { title: 'Contáctenos', path: '/contactenos' }

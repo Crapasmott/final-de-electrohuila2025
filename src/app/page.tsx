@@ -125,7 +125,7 @@ export default function Home() {
                 alt: "Línea de transparencia",
                 title: "Línea de Transparencia",
                 description: "Canal confidencial para reportar casos de corrupción o conductas indebidas.",
-                link: "#",
+                link: "/ley-de-transparencia",
                 buttonText: "Reporte AQUÍ"
               },
               {

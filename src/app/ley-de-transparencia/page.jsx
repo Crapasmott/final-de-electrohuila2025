@@ -987,7 +987,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/reportes" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/institucional/informes" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Reporte integrado de gestión
                                             </Link>
                                         </li>

@@ -7,11 +7,10 @@ import Breadcrumb from '@/components/Breadcrumb';
 export default function Page() {
     // Estado para navegación
     const [activeCategory, setActiveCategory] = useState('');
-    const [activeTab, setActiveTab] = useState('servicios'); // 'servicios' o 'tramites'
     
     // Define las rutas para la miga de pan
     const breadcrumbItems = [
-        { label: 'Trámites y Servicios', url: '/servicios' }
+        { label: 'Servicios', url: '/servicios' }
     ];
 
     // Lista de servicios
@@ -21,24 +20,24 @@ export default function Page() {
             title: "Paga tu Factura",
             description: "Realiza el pago de tu factura de energía de forma rápida y segura mediante nuestros canales digitales.",
             icon: "💳",
-            link: "/servicios/pagar-factura",
+            link: "https://pagos.electrohuila.com.co/",
             category: "pagos"
         },
         {
             id: 2,
-            title: "ElectroHuila en Línea",
-            description: "Gestiona tus servicios, consulta facturas y realiza solicitudes desde nuestra plataforma digital.",
-            icon: "⚡",
-            link: "/servicios/electrohuila-en-linea",
-            category: "gestion"
+            title: "Descarga de Factura",
+            description: "Descarga tu factura de energía en formato PDF ingresando tu número de cuenta o NIC.",
+            icon: "📄",
+            link: "https://enlinea.electrohuila.com.co/generate-invoice/",
+            category: "pagos"
         },
         {
             id: 3,
-            title: "Contrato de Condiciones Uniformes",
-            description: "Consulta el contrato que regula la prestación del servicio público domiciliario de energía eléctrica.",
+            title: "Conoce tu Factura",
+            description: "Descubre cada detalle de tu factura y aprende a gestionarla de manera sencilla y eficiente.",
             icon: "📄",
-            link: "/servicios/contrato-condiciones",
-            category: "documentos"
+            link: "/servicios/conoce-tu-factura",
+            category: "pagos"
         },
         {
             id: 4,
@@ -74,6 +73,14 @@ export default function Page() {
         },
         {
             id: 8,
+            title: "Contrato de Condiciones Uniformes",
+            description: "Consulta el contrato que regula la prestación del servicio público domiciliario de energía eléctrica.",
+            icon: "📄",
+            link: "/documentos/servicios/Contrato-Condiciones-Uniformes.pdf",
+            category: "documentos"
+        },
+        {
+            id: 9,
             title: "Uso Confiable de Energía Eléctrica",
             description: "Conoce las prácticas recomendadas para el uso eficiente y confiable de la energía eléctrica.",
             icon: "⚡",
@@ -81,7 +88,7 @@ export default function Page() {
             category: "educacion"
         },
         {
-            id: 9,
+            id: 10,
             title: "Uso Seguro de Energía Eléctrica",
             description: "Aprende sobre medidas de seguridad para prevenir accidentes relacionados con la energía eléctrica.",
             icon: "🛡️",
@@ -89,7 +96,7 @@ export default function Page() {
             category: "educacion"
         },
         {
-            id: 10,
+            id: 11,
             title: "Usuarios Contribución por Solidaridad",
             description: "Información sobre el programa de contribución solidaria y cómo beneficia a usuarios de menores recursos.",
             icon: "❤️",
@@ -97,77 +104,6 @@ export default function Page() {
             category: "ayudas"
         }
     ];
-
-    // Lista de trámites
-    const tramites = [
-        {
-            id: 1,
-            title: "Solicitud de Conexión Nueva",
-            description: "Solicita una nueva conexión al servicio de energía eléctrica para tu vivienda o negocio.",
-            icon: "🔌",
-            link: "/tramites/nueva-conexion",
-            category: "instalacion"
-        },
-        {
-            id: 2,
-            title: "Reclamos por Facturación",
-            description: "Presenta un reclamo relacionado con la facturación de tu servicio.",
-            icon: "📝",
-            link: "/tramites/reclamos-facturacion",
-            category: "facturacion"
-        },
-        {
-            id: 3,
-            title: "Cambio de Titular",
-            description: "Solicita el cambio de titular del servicio de energía eléctrica.",
-            icon: "👤",
-            link: "/tramites/cambio-titular",
-            category: "usuarios"
-        },
-        {
-            id: 4,
-            title: "Reporte de Daños",
-            description: "Reporta daños en el servicio o infraestructura de energía eléctrica.",
-            icon: "🔧",
-            link: "/tramites/reporte-danos",
-            category: "mantenimiento"
-        },
-        {
-            id: 5,
-            title: "Solicitud de Reconexión",
-            description: "Solicita la reconexión del servicio después de una suspensión.",
-            icon: "🔄",
-            link: "/tramites/reconexion",
-            category: "instalacion"
-        },
-        {
-            id: 6,
-            title: "Acuerdos de Pago",
-            description: "Solicita facilidades de pago para tu deuda con ElectroHuila.",
-            icon: "📊",
-            link: "/tramites/acuerdo-pago",
-            category: "facturacion"
-        },
-        {
-            id: 7,
-            title: "Actualización de Datos",
-            description: "Actualiza tus datos personales y de contacto en nuestro sistema.",
-            icon: "📋",
-            link: "/tramites/actualizacion-datos",
-            category: "usuarios"
-        },
-        {
-            id: 8,
-            title: "Solicitud de Independización",
-            description: "Solicita la independización de tu servicio de energía.",
-            icon: "🏠",
-            link: "/tramites/independizacion",
-            category: "instalacion"
-        }
-    ];
-
-    // Seleccionar lista activa según la pestaña
-    const listaActiva = activeTab === 'servicios' ? servicios : tramites;
 
     // Categorías para filtros rápidos (servicios)
     const categoriesServicios = [
@@ -178,22 +114,10 @@ export default function Page() {
         { name: "Educación", value: "educacion" }
     ];
 
-    // Categorías para filtros rápidos (trámites)
-    const categoriesTramites = [
-        { name: "Todos", value: "" },
-        { name: "Facturación", value: "facturacion" },
-        { name: "Instalación", value: "instalacion" },
-        { name: "Usuarios", value: "usuarios" },
-        { name: "Mantenimiento", value: "mantenimiento" }
-    ];
-
-    // Seleccionar categorías según la pestaña activa
-    const categoriesActivas = activeTab === 'servicios' ? categoriesServicios : categoriesTramites;
-
     // Filtrar por categoría
-    const itemsFiltrados = activeCategory
-        ? listaActiva.filter(item => item.category === activeCategory)
-        : listaActiva;
+    const serviciosFiltrados = activeCategory
+        ? servicios.filter(item => item.category === activeCategory)
+        : servicios;
 
     return (
         <div>
@@ -203,8 +127,8 @@ export default function Page() {
                 backgroundSize: "cover"
             }}>
                 <div className="container">
-                    <h1>Trámites y Servicios</h1>
-                    <p>Encuentra toda la información sobre nuestros servicios y realiza tus trámites de manera rápida y sencilla.</p>
+                    <h1>Nuestros Servicios</h1>
+                    <p>Encuentra toda la información sobre nuestros servicios de manera rápida y sencilla.</p>
                 </div>
             </div>
 
@@ -218,33 +142,23 @@ export default function Page() {
                         <i className="fas fa-file-invoice-dollar">{servicios[0].icon}</i>
                         <h3>Pagar Factura</h3>
                         <p>Paga tu factura en línea de manera rápida y segura.</p>
-                        <a href="/servicios/pagar-factura" className="btn btn-primary">Pagar ahora</a>
+                        <a href="https://pagos.electrohuila.com.co/" className="btn btn-primary">Pagar ahora</a>
                     </div>
 
                     <div className="quick-card">
                         <i className="fas fa-bolt">{servicios[1].icon}</i>
                         <h3>ElectroHuila en Línea</h3>
                         <p>Accede a tu cuenta para gestionar tus servicios.</p>
-                        <a href="/servicios/electrohuila-en-linea" className="btn btn-secondary">Acceder</a>
+                        <a href="https://enlinea.electrohuila.com.co/home/" className="btn btn-secondary">Acceder</a>
                     </div>
 
                     <div className="quick-card">
-                        <i className="fas fa-exclamation-triangle">{tramites[0].icon}</i>
+                        <i className="fas fa-exclamation-triangle">🔌</i>
                         <h3>Trámites de Usuario</h3>
                         <p>Accede a todos los trámites disponibles para nuestros usuarios.</p>
-                        <button
-                            className="btn btn-warning"
-                            onClick={() => {
-                                setActiveTab('tramites');
-                                setActiveCategory('');
-                                window.scrollTo({
-                                    top: document.querySelector('.main-content').offsetTop - 50,
-                                    behavior: 'smooth'
-                                });
-                            }}
-                        >
+                        <a href="/tramites-usuario" className="btn btn-warning">
                             Ver trámites
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -253,65 +167,14 @@ export default function Page() {
             <div className="main-content">
                 <div className="container">
                     <div className="section-title">
-                        <h2>Nuestros {activeTab === 'servicios' ? 'Servicios' : 'Trámites'}</h2>
-                        <p>
-                            {activeTab === 'servicios'
-                                ? 'Encuentra todos los servicios que ElectroHuila tiene disponibles para ti.'
-                                : 'Realiza todos tus trámites con ElectroHuila de manera rápida y sencilla.'}
-                        </p>
-                    </div>
-
-                    {/* Tabs de navegación */}
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        marginBottom: '30px',
-                        borderBottom: '1px solid #ddd'
-                    }}>
-                        <button
-                            style={{
-                                padding: '10px 20px',
-                                margin: '0 10px',
-                                background: 'transparent',
-                                border: 'none',
-                                borderBottom: activeTab === 'servicios' ? '3px solid var(--primary)' : '3px solid transparent',
-                                color: activeTab === 'servicios' ? 'var(--primary)' : '#666',
-                                fontWeight: activeTab === 'servicios' ? 'bold' : 'normal',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s'
-                            }}
-                            onClick={() => {
-                                setActiveTab('servicios');
-                                setActiveCategory('');
-                            }}
-                        >
-                            Servicios
-                        </button>
-                        <button
-                            style={{
-                                padding: '10px 20px',
-                                margin: '0 10px',
-                                background: 'transparent',
-                                border: 'none',
-                                borderBottom: activeTab === 'tramites' ? '3px solid var(--primary)' : '3px solid transparent',
-                                color: activeTab === 'tramites' ? 'var(--primary)' : '#666',
-                                fontWeight: activeTab === 'tramites' ? 'bold' : 'normal',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s'
-                            }}
-                            onClick={() => {
-                                setActiveTab('tramites');
-                                setActiveCategory('');
-                            }}
-                        >
-                            Trámites de Usuario
-                        </button>
+                        <h2>Nuestros Servicios</h2>
+                        <p>Encuentra todos los servicios que ElectroHuila tiene disponibles para ti.</p>
                     </div>
 
                     {/* Filtros por categoría */}
                     <div style={{ marginBottom: "30px" }}>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center" }}>
-                            {categoriesActivas.map((category) => (
+                            {categoriesServicios.map((category) => (
                                 <button
                                     key={category.value}
                                     style={{
@@ -332,9 +195,9 @@ export default function Page() {
                         </div>
                     </div>
 
-                    {/* Services/Trámites Grid */}
+                    {/* Services Grid */}
                     <div className="services">
-                        {itemsFiltrados.map((item) => (
+                        {serviciosFiltrados.map((item) => (
                             <div key={item.id} className="service-card">
                                 <div className="service-content">
                                     <div style={{ fontSize: "30px", marginBottom: "15px" }}>{item.icon}</div>
@@ -351,7 +214,7 @@ export default function Page() {
             {/* CTA Section */}
             <div className="cta">
                 <div className="container">
-                    <h2>¿Necesitas ayuda con algún trámite?</h2>
+                    <h2>¿Necesitas ayuda con algún servicio?</h2>
                     <p>Nuestro equipo de atención al cliente está disponible para asistirte con cualquier consulta o solicitud que tengas.</p>
                     <a href="/contacto" className="btn btn-secondary">Contáctanos</a>
                 </div>
