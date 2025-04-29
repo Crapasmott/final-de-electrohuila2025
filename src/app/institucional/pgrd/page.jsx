@@ -49,7 +49,7 @@ export default function PGRDPage() {
       <div className={styles.mainContent}>
         <div className={styles.imageSection}>
           <img 
-            src="/images/pgrd-team.jpg" 
+            src="/images/img-gestion.webp" 
             alt="Equipo de Gestión de Riesgos y Desastres" 
             className={styles.teamImage}
           />

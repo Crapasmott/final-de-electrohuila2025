@@ -84,7 +84,7 @@ export default function Page() {
             title: "Uso Confiable de Energía Eléctrica",
             description: "Conoce las prácticas recomendadas para el uso eficiente y confiable de la energía eléctrica.",
             icon: "⚡",
-            link: "/servicios/uso-confiable",
+            link: "/uso-confiable-energia-electrica",
             category: "educacion"
         },
         {

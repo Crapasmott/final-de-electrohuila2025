@@ -6,18 +6,18 @@ import Image from 'next/image';
 const ChatOption = () => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open('https://chat.electrohuila.com.co', '_blank');
+    window.open('https://reporte.lineatransparencia.co/electrohuila', '_blank');
   };
 
   return (
     <a href="#" onClick={handleClick} className="service-option">
       <Image 
-        src="/images/iconos/chats.png" 
+        src="/images/iconos/soborno.png" 
         alt="Chat" 
         width={20} 
         height={20}
       />
-      <span>Chat</span>
+      <span>Denuncia actos de Corrupción</span>
     </a>
   );
 };

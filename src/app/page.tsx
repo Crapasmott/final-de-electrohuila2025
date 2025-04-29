@@ -295,6 +295,7 @@ export default function Home() {
               <span>Correo</span>
             </a>
             
+            
             {/* Aquí reemplazamos el enlace con onClick por el componente cliente */}
             <ChatOption />
             
