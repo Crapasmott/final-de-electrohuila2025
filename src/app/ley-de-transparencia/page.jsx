@@ -1053,7 +1053,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/tramites" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/institucional/tramites-usuarios" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Trámites
                                             </Link>
                                         </li>
@@ -1086,7 +1086,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/linea-transparencia/electrohuila" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/institucional/etica-y-cumplimiento" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Canal Electrohuila
                                             </Link>
                                         </li>
@@ -1103,7 +1103,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/linea-transparencia/minenergia" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/institucional/etica-y-cumplimiento" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Canal MinEnergía
                                             </Link>
                                         </li>
