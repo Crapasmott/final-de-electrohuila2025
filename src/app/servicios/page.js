@@ -7,7 +7,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 export default function Page() {
     // Estado para navegación
     const [activeCategory, setActiveCategory] = useState('');
-    
+
     // Define las rutas para la miga de pan
     const breadcrumbItems = [
         { label: 'Servicios', url: '/servicios' }
@@ -156,7 +156,7 @@ export default function Page() {
                         <i className="fas fa-exclamation-triangle">🔌</i>
                         <h3>Trámites de Usuario</h3>
                         <p>Accede a todos los trámites disponibles para nuestros usuarios.</p>
-                        <a href="/tramites-usuario" className="btn btn-warning">
+                        <a href="/institucional/tramites-usuarios" className="btn btn-warning">
                             Ver trámites
                         </a>
                     </div>

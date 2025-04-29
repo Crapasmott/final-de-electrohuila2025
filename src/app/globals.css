@@ -1,5 +1,7 @@
 
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* src/app/globals.css */
 :root {
@@ -1155,4 +1157,52 @@ footer {
 .tab-container {
   max-width: 100% !important;
   margin: 0 auto !important;
+}
+/* Estilos personalizados para los trámites */
+.tramite-item {
+  transition: background-color 0.2s ease;
+}
+
+.tramite-item:hover {
+  background-color: #f9fafb;
+}
+
+.tramite-title {
+  color: #3b82f6;
+}
+
+.tramite-button {
+  display: flex;
+  align-items: center;
+}
+
+.tramite-button svg {
+  transition: transform 0.2s ease;
+}
+
+.expanded .tramite-button svg {
+  transform: rotate(90deg);
+}
+
+/* Estilos para botones grandes en la parte inferior */
+.action-button {
+  transition: all 0.2s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Estilos para breadcrumbs */
+.breadcrumb-item {
+  color: #f97316; /* Orange-500 */
+}
+
+.breadcrumb-separator {
+  color: #6b7280; /* Gray-500 */
+}
+
+.breadcrumb-current {
+  color: #374151; /* Gray-700 */
 }
