@@ -52,7 +52,7 @@ export default function Page() {
             title: "Puntos de Atención",
             description: "Conoce nuestras oficinas y centros de atención al cliente en todo el departamento del Huila.",
             icon: "👥",
-            link: "/servicios/puntos-atencion",
+            link: "/puntos-de-atencion",
             category: "atencion"
         },
         {
@@ -60,7 +60,7 @@ export default function Page() {
             title: "Tarifas",
             description: "Consulta las tarifas vigentes para el servicio de energía eléctrica según tu tipo de usuario.",
             icon: "💲",
-            link: "/servicios/tarifas",
+            link: "/tarifas",
             category: "pagos"
         },
         {
@@ -68,7 +68,7 @@ export default function Page() {
             title: "Suspensiones Programadas",
             description: "Infórmate sobre los mantenimientos y suspensiones programadas del servicio en tu zona.",
             icon: "📅",
-            link: "/servicios/suspensiones",
+            link: "/suspensiones-programadas",
             category: "mantenimiento"
         },
         {
