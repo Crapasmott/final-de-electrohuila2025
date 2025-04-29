@@ -36,7 +36,7 @@ export default function Page() {
             title: "Conoce tu Factura",
             description: "Descubre cada detalle de tu factura y aprende a gestionarla de manera sencilla y eficiente.",
             icon: "📄",
-            link: "/servicios/conoce-tu-factura",
+            link: "/conoce-tu-factura",
             category: "pagos"
         },
         {
