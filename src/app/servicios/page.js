@@ -44,7 +44,7 @@ export default function Page() {
             title: "Puntos de Pago",
             description: "Encuentra todos los puntos físicos donde puedes realizar el pago de tu factura de energía.",
             icon: "📍",
-            link: "/servicios/puntos-pago",
+            link: "/puntos-de-pago",
             category: "pagos"
         },
         {
