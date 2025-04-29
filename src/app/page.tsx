@@ -309,7 +309,7 @@ export default function Home() {
               <span>WhatsApp</span>
             </a>
             
-            <a href="/pqr" className="service-option">
+            <a href="https://enlinea.electrohuila.com.co/home/" className="service-option">
               <Image 
                 src="/images/iconos/quejarse.png" 
                 alt="PQR" 

@@ -1,13 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDown, ChevronRight, FileText, Download, Calendar, Search } from 'lucide-react';
+import { ChevronDown, ChevronRight, FileText, Download, Calendar, Search, Filter, X } from 'lucide-react';
 
 export default function ProveedoresContratistasPage() {
     // Estado para controlar los acordeones expandidos
     const [expandedSections, setExpandedSections] = useState([]);
     const [activeTab, setActiveTab] = useState('contratacion');
+    
+    // Estados para filtrado
+    const [filtroEstado, setFiltroEstado] = useState('');
+    const [filtroTexto, setFiltroTexto] = useState('');
+    const [mostrarRegistros, setMostrarRegistros] = useState(10);
+    const [paginaActual, setPaginaActual] = useState(1);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     
     // Función para manejar la expansión de secciones
     const toggleSection = (sectionId) => {
@@ -22,45 +29,125 @@ export default function ProveedoresContratistasPage() {
     const isSectionExpanded = (sectionId) => {
         return expandedSections.includes(sectionId);
     };
-    // Datos de los procesos de contratación en curso
+
+    // Datos de los procesos de contratación en curso (ampliados con más datos)
     const procesosContratacion = [
         {
-            id: 'PC-2025-001',
+            id: 'EHUI-TD-032-2025',
             title: 'Suministro de material eléctrico para redes de distribución',
+            descripcion: 'Suministro, transporte hasta el centro de control, centro de gestión y sitios establecidos por ElectroHuila del mantenimiento preventivo, predictivo de la Electrificadora del Huila S.A.',
             fecha_publicacion: '05/04/2025',
             fecha_cierre: '25/04/2025',
+            fecha_apertura: '2025-04-15 12:20:00',
             estado: 'Abierto',
             modalidad: 'Licitación pública',
-            url: '/contratos/PC-2025-001'
+            url: '/contratos/EHUI-TD-032-2025'
         },
         {
-            id: 'PC-2025-002',
+            id: 'EHUI-SC-018-2025',
             title: 'Servicios de mantenimiento de instalaciones',
+            descripcion: 'Prestar el servicio de brigadas de inspección para el control de pérdidas en los municipios de: Neiva, Zona: Norte, Centro, Occidente y Sur de ElectroHuila S.A E.S.P.',
             fecha_publicacion: '08/04/2025',
             fecha_cierre: '20/04/2025',
+            fecha_apertura: '2025-04-08 13:17:20',
             estado: 'Abierto',
             modalidad: 'Invitación directa',
-            url: '/contratos/PC-2025-002'
+            url: '/contratos/EHUI-SC-018-2025'
         },
         {
-            id: 'PC-2025-003',
+            id: 'EHUI-SC-016-2025',
             title: 'Desarrollo e implementación de software de gestión',
+            descripcion: 'Prestar los servicios de verificación y consultoria técnica, incluido las correcciones, mantenimiento, y reposición de elementos del sistema de medición de los fronteras comerciales, de distribución, de generación y puntas de medición de control de transformadores de ElectroHuila S.A E.S.P (69) y de reporte al ASIC, actuados o actuables, todos cumplimiento a lo indicado en el 2017 (Código de Medida), incluido los pruebas de rutina a los puntos de medición de tensión 4, 3, 2.',
             fecha_publicacion: '01/04/2025',
             fecha_cierre: '18/04/2025',
+            fecha_apertura: '2025-04-08 17:06:00',
             estado: 'Abierto',
             modalidad: 'Concurso de méritos',
-            url: '/contratos/PC-2025-003'
+            url: '/contratos/EHUI-SC-016-2025'
+        },
+        {
+            id: 'EHUI-SC-019-2025',
+            title: 'Realizar la interventoría al contrato de brigadas de inspecciones',
+            descripcion: 'Realizar la interventoría al contrato de brigadas de inspecciones suscrito por ElectroHuila S.A. E.S.P.',
+            fecha_publicacion: '22/03/2025',
+            fecha_cierre: '15/04/2025',
+            fecha_apertura: '2025-04-08 18:11:00',
+            estado: 'Abierto',
+            modalidad: 'Solicitud de ofertas',
+            url: '/contratos/EHUI-SC-019-2025'
+        },
+        {
+            id: 'EHUI-ODO-014-2025',
+            title: 'Solución integral de visualización',
+            descripcion: 'Arrendar una solución integral de visualización y backup basada en una plataforma informática, de alto rendimiento para la Electrificadora del Huila S.A E.S.P.',
+            fecha_publicacion: '18/03/2025',
+            fecha_cierre: '10/04/2025',
+            fecha_apertura: '2025-04-04 16:03:00',
+            estado: 'Abierto',
+            modalidad: 'Concurso abierto',
+            url: '/contratos/EHUI-ODO-014-2025'
+        },
+        {
+            id: 'EHUI-SAF-013-2025',
+            title: 'Prestar el servicio de vigilancia y seguridad',
+            descripcion: 'Prestar el servicio de vigilancia y seguridad privada permanente para todos los bienes muebles e inmuebles propiedad de la Electrificadora del Huila S.A. E.S.P., y de todos aquellos que por su custodia llegue a ser responsable.',
+            fecha_publicacion: '15/03/2025',
+            fecha_cierre: '05/04/2025',
+            fecha_apertura: '2025-04-03 10:26:00',
+            estado: 'Abierto',
+            modalidad: 'Licitación pública',
+            url: '/contratos/EHUI-SAF-013-2025'
+        },
+        {
+            id: 'EHUI-SD-007-2025',
+            title: 'Realizar la interventoría técnica, jurídica, administrativa',
+            descripcion: 'Realizar la interventoría técnica, jurídica, administrativa, ambiental, social, financiera y predial a la construcción de redes eléctricas en vivienda rural dispersa en los municipios de: Palermo, Rivera, Campoalegre, Yaguará, Hobo, Santa María, Teruel, Iquira, Villavieja, Guadalupe, Garzón, Tesalia, Tello, Colombia, San Agustín y Palestina en el departamento del Huila, en el marco del contrato FAER GGC 1361 de 2024, suscrito entre la Nación – Ministerio de Minas y Energía y la Electrificadora del Huila S.A. E.S.P., ELECTROHUILA S.A. E.S.P adt como el apoyo a la ejecución del cronograma físico y al contrato interadministrativo de electrificación.',
+            fecha_publicacion: '10/03/2025',
+            fecha_cierre: '01/04/2025',
+            fecha_apertura: '2025-04-19 13:22:00',
+            estado: 'Abierto',
+            modalidad: 'Convocatoria pública',
+            url: '/contratos/EHUI-SD-007-2025'
         },
         {
             id: 'PC-2025-004',
             title: 'Servicio de transporte para personal técnico',
+            descripcion: 'Servicio de transporte terrestre para el personal técnico que realiza mantenimiento en las redes de distribución en zonas urbanas y rurales del departamento del Huila.',
             fecha_publicacion: '22/03/2025',
             fecha_cierre: '15/04/2025',
+            fecha_apertura: '2025-03-22 09:30:00',
             estado: 'Evaluación',
             modalidad: 'Solicitud de ofertas',
             url: '/contratos/PC-2025-004'
         }
     ];
+    // Función para filtrar los procesos
+    const filtrarProcesos = () => {
+        return procesosContratacion
+            .filter(proceso => 
+                (filtroEstado === '' || proceso.estado === filtroEstado) &&
+                (filtroTexto === '' || 
+                proceso.id.toLowerCase().includes(filtroTexto.toLowerCase()) ||
+                proceso.title.toLowerCase().includes(filtroTexto.toLowerCase()) ||
+                proceso.descripcion.toLowerCase().includes(filtroTexto.toLowerCase()))
+            );
+    };
+
+    // Procesos filtrados
+    const procesosFiltrados = filtrarProcesos();
+    
+    // Paginación
+    const indexInicial = (paginaActual - 1) * mostrarRegistros;
+    const indexFinal = indexInicial + mostrarRegistros;
+    const procesosActuales = procesosFiltrados.slice(indexInicial, indexFinal);
+    const totalPaginas = Math.ceil(procesosFiltrados.length / mostrarRegistros);
+
+    // Cambiar página
+    const cambiarPagina = (pagina) => {
+        if (pagina > 0 && pagina <= totalPaginas) {
+            setPaginaActual(pagina);
+        }
+    };
 
     // Datos de los documentos de contratación
     const documentosContratacion = [
@@ -100,6 +187,7 @@ export default function ProveedoresContratistasPage() {
             icon: 'Calendar'
         }
     ];
+    
     // Preguntas frecuentes sobre contratación
     const preguntasFrecuentes = [
         {
@@ -183,7 +271,7 @@ export default function ProveedoresContratistasPage() {
             costo: 'No aplica'
         }
     ];
-    // Renderizado del contenido para la sección de Contratación
+    // Renderizado del contenido para la sección de Contratación (mejorada con filtros como en la Imagen 1)
     const renderSeccionContratacion = () => {
         return (
             <div id="contratacion" style={{ marginBottom: '60px' }}>
@@ -197,65 +285,346 @@ export default function ProveedoresContratistasPage() {
                     así como los documentos y requisitos para registrarse como proveedor.
                 </p>
                 
-                {/* Procesos de contratación en curso */}
-                <h3 style={{ fontSize: '24px', marginBottom: '20px', color: '#0098d9' }}>
-                    Procesos de Contratación en Curso
-                </h3>
+                {/* Procesos de contratación en curso - MEJORADO CON ESTILO DE IMAGEN 1 */}
+                <div className="header-section" style={{ 
+                    backgroundColor: '#0098d9', 
+                    padding: '15px 20px',
+                    borderTopLeftRadius: '8px',
+                    borderTopRightRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <h3 style={{ fontSize: '22px', margin: 0, color: '#fff', fontWeight: '600' }}>
+                        Procesos de Contratación en Curso
+                    </h3>
+                </div>
                 
+                {/* Filtros como en la imagen 1 */}
+                <div style={{ 
+                    backgroundColor: '#f8f9fa', 
+                    padding: '20px', 
+                    border: '1px solid #e0e0e0',
+                    borderTopWidth: 0,
+                    marginBottom: '20px'
+                }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'center', marginBottom: '15px' }}>
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '14px', color: '#555' }}>Estado:</label>
+                            <div style={{ position: 'relative' }}>
+                                <div 
+                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                    style={{
+                                        border: '1px solid #ccc',
+                                        borderRadius: '4px',
+                                        padding: '8px 12px',
+                                        cursor: 'pointer',
+                                        backgroundColor: '#fff',
+                                        width: '200px',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center'
+                                    }}
+                                >
+                                    <span>{filtroEstado || '---SELECCIONE---'}</span>
+                                    <ChevronDown size={16} color="#666" />
+                                </div>
+                                
+                                {isDropdownOpen && (
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '100%',
+                                        left: 0,
+                                        width: '200px',
+                                        backgroundColor: '#fff',
+                                        border: '1px solid #ccc',
+                                        borderRadius: '4px',
+                                        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                                        zIndex: 10
+                                    }}>
+                                        <div 
+                                            onClick={() => {
+                                                setFiltroEstado('');
+                                                setIsDropdownOpen(false);
+                                            }}
+                                            style={{
+                                                padding: '10px 15px',
+                                                cursor: 'pointer',
+                                                borderBottom: '1px solid #eee',
+                                                backgroundColor: filtroEstado === '' ? '#e9f7fe' : 'transparent'
+                                            }}
+                                        >
+                                            ---SELECCIONE---
+                                        </div>
+                                        <div 
+                                            onClick={() => {
+                                                setFiltroEstado('Abierto');
+                                                setIsDropdownOpen(false);
+                                            }}
+                                            style={{
+                                                padding: '10px 15px',
+                                                cursor: 'pointer',
+                                                borderBottom: '1px solid #eee',
+                                                backgroundColor: filtroEstado === 'Abierto' ? '#e9f7fe' : 'transparent'
+                                            }}
+                                        >
+                                            ABIERTA
+                                        </div>
+                                        <div 
+                                            onClick={() => {
+                                                setFiltroEstado('Cerrado');
+                                                setIsDropdownOpen(false);
+                                            }}
+                                            style={{
+                                                padding: '10px 15px',
+                                                cursor: 'pointer',
+                                                borderBottom: '1px solid #eee',
+                                                backgroundColor: filtroEstado === 'Cerrado' ? '#e9f7fe' : 'transparent'
+                                            }}
+                                        >
+                                            CERRADA
+                                        </div>
+                                        <div 
+                                            onClick={() => {
+                                                setFiltroEstado('Evaluación');
+                                                setIsDropdownOpen(false);
+                                            }}
+                                            style={{
+                                                padding: '10px 15px',
+                                                cursor: 'pointer',
+                                                borderBottom: '1px solid #eee',
+                                                backgroundColor: filtroEstado === 'Evaluación' ? '#e9f7fe' : 'transparent'
+                                            }}
+                                        >
+                                            EVALUACIÓN
+                                        </div>
+                                        <div 
+                                            onClick={() => {
+                                                setFiltroEstado('Anulada');
+                                                setIsDropdownOpen(false);
+                                            }}
+                                            style={{
+                                                padding: '10px 15px',
+                                                cursor: 'pointer',
+                                                backgroundColor: filtroEstado === 'Anulada' ? '#e9f7fe' : 'transparent'
+                                            }}
+                                        >
+                                            ANULADA
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label style={{ display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '14px', color: '#555' }}>Mostrar:</label>
+                            <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                                <input 
+                                    type="number" 
+                                    value={mostrarRegistros}
+                                    min="1"
+                                    onChange={(e) => setMostrarRegistros(parseInt(e.target.value) || 10)}
+                                    style={{ 
+                                        padding: '8px', 
+                                        border: '1px solid #ccc', 
+                                        borderRadius: '4px',
+                                        width: '60px',
+                                        textAlign: 'center'
+                                    }}
+                                />
+                                <span style={{ marginLeft: '8px', color: '#555' }}>registros</span>
+                            </div>
+                        </div>
+                        
+                        <div style={{ marginLeft: 'auto' }}>
+                            <label style={{ display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '14px', color: '#555' }}>Buscar:</label>
+                            <div style={{ position: 'relative' }}>
+                                <input 
+                                    type="text"
+                                    value={filtroTexto}
+                                    onChange={(e) => setFiltroTexto(e.target.value)}
+                                    placeholder="Buscar proceso..."
+                                    style={{
+                                        padding: '8px 12px',
+                                        border: '1px solid #ccc',
+                                        borderRadius: '4px',
+                                        width: '250px'
+                                    }}
+                                />
+                                <Search size={18} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: '#555' }} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {/* Tabla de procesos mejorada con estilos similares a la imagen 1 */}
                 <div className="table-responsive" style={{ overflowX: 'auto', marginBottom: '40px' }}>
                     <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #e0e0e0' }}>
                         <thead>
-                            <tr style={{ backgroundColor: '#f8f9fa' }}>
-                                <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '2px solid #0098d9' }}>Referencia</th>
-                                <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '2px solid #0098d9' }}>Objeto</th>
-                                <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '2px solid #0098d9' }}>Publicación</th>
-                                <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '2px solid #0098d9' }}>Cierre</th>
-                                <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '2px solid #0098d9' }}>Estado</th>
-                                <th style={{ padding: '12px 15px', textAlign: 'left', borderBottom: '2px solid #0098d9' }}>Acción</th>
+                            <tr style={{ backgroundColor: '#0098d9', color: 'white' }}>
+                                <th style={{ padding: '12px 15px', textAlign: 'left' }}>Código</th>
+                                <th style={{ padding: '12px 15px', textAlign: 'left' }}>Objeto</th>
+                                <th style={{ padding: '12px 15px', textAlign: 'left' }}>Publicación</th>
+                                <th style={{ padding: '12px 15px', textAlign: 'left' }}>Cierre</th>
+                                <th style={{ padding: '12px 15px', textAlign: 'center' }}>Estado</th>
+                                <th style={{ padding: '12px 15px', textAlign: 'center' }}>Fecha Apertura</th>
+                                <th style={{ padding: '12px 15px', textAlign: 'center' }}>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {procesosContratacion.map((proceso, index) => (
-                                <tr key={proceso.id} style={{ 
-                                    backgroundColor: index % 2 === 0 ? '#fff' : '#f8f9fa',
-                                    borderBottom: '1px solid #e0e0e0'
-                                }}>
-                                    <td style={{ padding: '12px 15px' }}>{proceso.id}</td>
-                                    <td style={{ padding: '12px 15px' }}>{proceso.title}</td>
-                                    <td style={{ padding: '12px 15px' }}>{proceso.fecha_publicacion}</td>
-                                    <td style={{ padding: '12px 15px' }}>{proceso.fecha_cierre}</td>
-                                    <td style={{ padding: '12px 15px' }}>
-                                        <span style={{
-                                            display: 'inline-block',
-                                            padding: '5px 10px',
-                                            borderRadius: '20px',
-                                            backgroundColor: proceso.estado === 'Abierto' ? '#e1f5e8' : '#e9f7fe',
-                                            color: proceso.estado === 'Abierto' ? '#28a745' : '#0098d9',
-                                            fontSize: '14px',
-                                            fontWeight: 'bold'
-                                        }}>
-                                            {proceso.estado}
-                                        </span>
-                                    </td>
-                                    <td style={{ padding: '12px 15px' }}>
-                                        <Link 
-                                            href={proceso.url}
-                                            style={{
-                                                display: 'inline-flex',
-                                                alignItems: 'center',
-                                                color: '#0098d9',
-                                                textDecoration: 'none',
+                            {procesosActuales.length > 0 ? (
+                                procesosActuales.map((proceso, index) => (
+                                    <tr key={proceso.id} style={{ 
+                                        backgroundColor: index % 2 === 0 ? '#fff' : '#f8f9fa',
+                                        borderBottom: '1px solid #e0e0e0'
+                                    }}>
+                                        <td style={{ padding: '12px 15px', fontWeight: '500', color: '#0a3d62' }}>{proceso.id}</td>
+                                        <td style={{ padding: '12px 15px' }}>
+                                            <div style={{ fontWeight: '500', marginBottom: '5px' }}>{proceso.title}</div>
+                                            <div style={{ fontSize: '13px', color: '#666', lineHeight: '1.4' }}>{proceso.descripcion}</div>
+                                        </td>
+                                        <td style={{ padding: '12px 15px' }}>{proceso.fecha_publicacion}</td>
+                                        <td style={{ padding: '12px 15px' }}>{proceso.fecha_cierre}</td>
+                                        <td style={{ padding: '12px 15px', textAlign: 'center' }}>
+                                            <span style={{
+                                                display: 'inline-block',
+                                                padding: '5px 10px',
+                                                borderRadius: '20px',
+                                                backgroundColor: 
+                                                    proceso.estado === 'Abierto' ? '#e1f5e8' : 
+                                                    proceso.estado === 'Evaluación' ? '#fff4e5' :
+                                                    proceso.estado === 'Cerrado' ? '#fee' : 
+                                                    proceso.estado === 'Anulada' ? '#f5e1e1' : '#e9f7fe',
+                                                color: 
+                                                    proceso.estado === 'Abierto' ? '#28a745' : 
+                                                    proceso.estado === 'Evaluación' ? '#f5a623' :
+                                                    proceso.estado === 'Cerrado' ? '#e63946' : 
+                                                    proceso.estado === 'Anulada' ? '#dc3545' : '#0098d9',
+                                                fontSize: '14px',
                                                 fontWeight: 'bold'
-                                            }}
-                                        >
-                                            <Search size={16} style={{ marginRight: '5px' }} />
-                                            Ver detalles
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
+                                            }}>
+                                                {proceso.estado}
+                                            </span>
+                                        </td>
+                                        <td style={{ padding: '12px 15px', textAlign: 'center', fontSize: '14px' }}>{proceso.fecha_apertura}</td>
+                                        <td style={{ padding: '12px 15px', textAlign: 'center' }}>
+                                            <Link 
+                                                href={proceso.url}
+                                                style={{
+                                                    display: 'inline-flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    color: '#0098d9',
+                                                    textDecoration: 'none',
+                                                    fontWeight: 'bold',
+                                                    padding: '6px 12px',
+                                                    border: '1px solid #0098d9',
+                                                    borderRadius: '4px',
+                                    fontSize: '14px',
+                                    transition: 'all 0.2s'
+                                }}
+                            >
+                                <Search size={14} style={{ marginRight: '5px' }} />
+                                Ver detalles
+                            </Link>
+                        </td>
+                    </tr>
+                ))
+            ) : (
+                <tr>
+                    <td colSpan="7" style={{ padding: '20px', textAlign: 'center', color: '#555' }}>
+                        No se encontraron procesos de contratación que coincidan con los criterios de búsqueda.
+                    </td>
+                </tr>
+            )}
                         </tbody>
                     </table>
+                </div>
+                
+                {/* Paginación */}
+                {procesosFiltrados.length > 0 && (
+                    <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between', 
+                        alignItems: 'center',
+                        marginBottom: '30px',
+                        fontSize: '14px',
+                        color: '#555'
+                    }}>
+                        <div>
+                            Mostrando {indexInicial + 1} a {Math.min(indexFinal, procesosFiltrados.length)} de {procesosFiltrados.length} registros
+                        </div>
+                        
+                        <div className="pagination" style={{ display: 'flex', gap: '5px' }}>
+                            <button 
+                                onClick={() => cambiarPagina(paginaActual - 1)} 
+                                disabled={paginaActual === 1}
+                                style={{
+                                    padding: '8px 12px',
+                                    border: '1px solid #ddd',
+                                    backgroundColor: paginaActual === 1 ? '#f8f9fa' : '#fff',
+                                    color: paginaActual === 1 ? '#aaa' : '#0098d9',
+                                    borderRadius: '4px',
+                                    cursor: paginaActual === 1 ? 'not-allowed' : 'pointer'
+                                }}
+                            >
+                                Anterior
+                            </button>
+                            
+                            {[...Array(totalPaginas)].map((_, index) => (
+                                <button 
+                                    key={index}
+                                    onClick={() => cambiarPagina(index + 1)}
+                                    style={{
+                                        padding: '8px 12px',
+                                        border: '1px solid #ddd',
+                                        backgroundColor: paginaActual === index + 1 ? '#0098d9' : '#fff',
+                                        color: paginaActual === index + 1 ? '#fff' : '#0098d9',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                            
+                            <button 
+                                onClick={() => cambiarPagina(paginaActual + 1)} 
+                                disabled={paginaActual === totalPaginas}
+                                style={{
+                                    padding: '8px 12px',
+                                    border: '1px solid #ddd',
+                                    backgroundColor: paginaActual === totalPaginas ? '#f8f9fa' : '#fff',
+                                    color: paginaActual === totalPaginas ? '#aaa' : '#0098d9',
+                                    borderRadius: '4px',
+                                    cursor: paginaActual === totalPaginas ? 'not-allowed' : 'pointer'
+                                }}
+                            >
+                                Siguiente
+                            </button>
+                        </div>
+                    </div>
+                )}
+                
+                {/* Botón de filtros adicionales - Similar a la imagen 1 */}
+                <div style={{ marginBottom: '40px' }}>
+                    <button 
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            backgroundColor: '#f27b13',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            padding: '10px 20px',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                            fontSize: '14px'
+                        }}
+                    >
+                        <Filter size={16} />
+                        Búsqueda de procesos contractuales Secop II
+                    </button>
                 </div>
                 
                 {/* Documentos de contratación */}
@@ -476,6 +845,7 @@ export default function ProveedoresContratistasPage() {
             </div>
         );
     };
+    
     return (
         <div>
             {/* Hero Section con banner personalizado */}

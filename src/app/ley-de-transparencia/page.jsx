@@ -1136,7 +1136,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/pqr" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="https://enlinea.electrohuila.com.co/home/" style={{ color: '#555', textDecoration: 'none' }}>
                                                 PQR
                                             </Link>
                                         </li>
