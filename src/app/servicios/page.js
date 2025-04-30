@@ -221,9 +221,10 @@ export default function Page() {
             </div>
 
             {/* Fixed Payment Button */}
-            <a href="/servicios/pagar-factura" className="fixed-pay-btn">
+            <a href="https://pagos.electrohuila.com.co/" className="fixed-pay-btn">
                 <i className="fas fa-credit-card">💳</i> Pagar Factura
             </a>
         </div>
+        
     );
 }
