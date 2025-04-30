@@ -810,7 +810,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span> 
-                                            <Link href="/contacto" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/contactenos" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Contáctenos
                                             </Link>
                                         </li>
@@ -843,7 +843,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/servicios/tramites" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/institucional/tramites-usuarios" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Trámites Usuarios
                                             </Link>
                                         </li>
@@ -875,7 +875,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/servicios/en-linea" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="https://enlinea.electrohuila.com.co/home/" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Electrohuila en línea
                                             </Link>
                                         </li>

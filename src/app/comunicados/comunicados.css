@@ -1,0 +1,28 @@
+.comunicados-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .comunicados-title {
+    text-align: center;
+    position: relative;
+    color: #2d3748;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .comunicados-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6rem;
+    height: 0.25rem;
+    background-color: #3182ce;
+    border-radius: 0.125rem;
+  }
+  
+  /* Puedes añadir el resto de los estilos CSS que compartí anteriormente */
