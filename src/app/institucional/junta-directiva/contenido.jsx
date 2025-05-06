@@ -28,7 +28,7 @@ export default function JuntaDirectivaPage() {
         <div>
             {/* Hero Section */}
             <div style={{
-                background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/directiva-bg.jpg') no-repeat center center",
+                background: "linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.08)), url('/images/directivos/juntadirectiva.jpg') no-repeat center center",
                 backgroundSize: "cover",
                 padding: "60px 0",
                 color: "white",

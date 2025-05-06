@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import './quienes-somos.css';
+import './breadcrumb.css'; // Importamos los estilos de migas de pan
+import BreadcrumbSimple from './BreadcrumbSimple'; // Importamos el componente de migas de pan
 import { TimelineAnimado } from './TimelineAnimado'; // Asegúrate de crear este archivo
 
 export default function QuienesSomos() {
@@ -53,17 +55,17 @@ export default function QuienesSomos() {
             icon: '/images/iconos/public-service.png'
         },
         {
-            id: 9,
+            id: 10,
             title: 'Innovación en energías renovables',
             icon: '/images/iconos/solar.png'
         },
         {
-            id: 9,
+            id: 11,
             title: 'Sostenibilidad y responsabilidad social',
             icon: '/images/iconos/sostenibilidad.png'
         },
         {
-            id: 9,
+            id: 12,
             title: 'Optimización de la eficiencia energética',
             icon: '/images/iconos/fuentes-de-energia.png'
         }
@@ -71,6 +73,8 @@ export default function QuienesSomos() {
 
     return (
         <>
+           
+
             {/* Banner principal */}
             <section className="hero-about">
                 <div className="container">
@@ -78,7 +82,8 @@ export default function QuienesSomos() {
                     <p>Conoce más sobre la Electrificadora del Huila</p>
                 </div>
             </section>
-
+ {/* Componente de migas de pan */}
+ <BreadcrumbSimple />
             {/* Sección de historia y misión */}
             <section className="about-us">
                 <div className="container">
@@ -116,14 +121,34 @@ export default function QuienesSomos() {
                 </div>
             </section>
 
-            {/* NUEVA SECCIÓN: Objetivos Institucionales */}
+            {/* NUEVA SECCIÓN: Objetivos Institucionales - Título Mejorado */}
             <section className="objetivos-institucionales" style={{
                 padding: '60px 0',
                 marginBottom: '40px'
             }}>
                 <div className="container">
-                    <div className="section-title-animated">
-                        <h2>Objetivos Institucionales</h2>
+                    <div className="section-title-enhanced" style={{
+                        textAlign: 'center',
+                        marginBottom: '40px',
+                        position: 'relative'
+                    }}>
+                        <h2 style={{
+                            fontSize: '36px',
+                            color: '#003366',
+                            fontWeight: '700',
+                            textTransform: 'uppercase',
+                            marginBottom: '15px',
+                            letterSpacing: '1px',
+                            position: 'relative',
+                            display: 'inline-block'
+                        }}>Objetivos Institucionales</h2>
+                        <div className="title-decoration" style={{
+                            width: '80px',
+                            height: '4px',
+                            background: '#ffc107',
+                            margin: '0 auto',
+                            borderRadius: '2px'
+                        }}></div>
                     </div>
                     <div className="objetivos-grid" style={{
                         display: 'grid',
@@ -174,11 +199,31 @@ export default function QuienesSomos() {
                 </div>
             </section>
 
-            {/* NUEVA SECCIÓN: Reseña Histórica - Animada */}
+            {/* NUEVA SECCIÓN: Reseña Histórica - Título Mejorado */}
             <section className="resena-historica">
                 <div className="container">
-                    <div className="section-title-animated">
-                        <h2>Nuestra Historia</h2>
+                    <div className="section-title-enhanced" style={{
+                        textAlign: 'center',
+                        marginBottom: '40px',
+                        position: 'relative'
+                    }}>
+                        <h2 style={{
+                            fontSize: '36px',
+                            color: '#003366',
+                            fontWeight: '700',
+                            textTransform: 'uppercase',
+                            marginBottom: '15px',
+                            letterSpacing: '1px',
+                            position: 'relative',
+                            display: 'inline-block'
+                        }}>Nuestra Historia</h2>
+                        <div className="title-decoration" style={{
+                            width: '80px',
+                            height: '4px',
+                            background: '#ffc107',
+                            margin: '0 auto',
+                            borderRadius: '2px'
+                        }}></div>
                     </div>
 
                     <p className="intro-text" style={{

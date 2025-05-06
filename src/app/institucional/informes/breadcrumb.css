@@ -1,0 +1,251 @@
+/* Estilos para la página de informes */
+.informes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.informes-header {
+    margin-bottom: 30px;
+}
+
+.informes-header h1 {
+    color: #003366;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Eliminamos los estilos de la miga de pan anterior */
+/* .breadcrumb {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.breadcrumb a {
+    color: #0099da;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+} */
+
+/* Estilos para las pestañas */
+.tabs-container {
+    display: flex;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.tab-button {
+    background: transparent;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #495057;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab-button:hover {
+    color: #0099da;
+}
+
+.tab-button.active {
+    color: #0099da;
+    font-weight: 600;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0099da;
+}
+
+.tab-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #0099da;
+    color: white;
+    font-size: 0.7rem;
+    margin-right: 8px;
+}
+
+/* Estilos para el acordeón */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.accordion-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #e9ecef;
+}
+
+.accordion-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #0099da;
+    color: white;
+    font-size: 1rem;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.accordion-title {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #003366;
+}
+
+.accordion-arrow {
+    margin-left: 10px;
+    font-size: 1.5rem;
+    color: #0099da;
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+}
+
+.accordion-header[aria-expanded="true"] .accordion-arrow {
+    transform: rotate(270deg);
+}
+
+.accordion-content {
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #e9ecef;
+}
+
+.item-description {
+    color: #495057;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Estilos para la lista de documentos */
+.documents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.document-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.document-item:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.document-icon {
+    margin-right: 15px;
+}
+
+.document-info {
+    flex: 1;
+}
+
+.document-name {
+    display: block;
+    font-weight: 600;
+    color: #003366;
+    margin-bottom: 5px;
+}
+
+.document-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.document-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.document-view, .document-download {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #0099da;
+    background-color: rgba(0, 153, 218, 0.1);
+    transition: all 0.3s ease;
+}
+
+.document-view:hover, .document-download:hover {
+    background-color: rgba(0, 153, 218, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .document-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .document-icon {
+        margin-bottom: 10px;
+    }
+    
+    .document-actions {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .document-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

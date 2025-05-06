@@ -1,17 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import Breadcrumb from '@/components/Breadcrumb';
+import Link from 'next/link';
 
 // Componente de página de Servicios
 export default function Page() {
     // Estado para navegación
     const [activeCategory, setActiveCategory] = useState('');
-
-    // Define las rutas para la miga de pan
-    const breadcrumbItems = [
-        { label: 'Servicios', url: '/servicios' }
-    ];
 
     // Lista de servicios
     const servicios = [
@@ -132,8 +127,23 @@ export default function Page() {
                 </div>
             </div>
 
-            {/* Breadcrumb - Colocado DESPUÉS del hero */}
-            <Breadcrumb items={breadcrumbItems} />
+            {/* Breadcrumb exactamente igual a la imagen */}
+            <div style={{ background: "#f8f9fa", padding: "10px 0" }}>
+                <div className="container">
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <Link href="/" style={{ color: "#FF5A1F", textDecoration: "none", fontWeight: 500 }}>
+                            Inicio
+                        </Link>
+                        <span style={{ margin: "0 8px", color: "#6c757d" }}>/</span>
+                        <span style={{ color: "#333", fontWeight: 400 }}>
+                            Servicios
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Espacio adicional antes de las tarjetas */}
+            <div style={{ height: "30px" }}></div>
 
             {/* Quick Access Section */}
             <div className="container quick-access">

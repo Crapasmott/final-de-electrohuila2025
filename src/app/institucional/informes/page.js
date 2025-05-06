@@ -190,6 +190,7 @@ export default function InformesPage() {
     return (
         <div className="informes-container">
             <div className="informes-header">
+                
                 <h1>Informes</h1>
                 <div className="breadcrumb">
                     <Link href="/">Inicio</Link> | <Link href="/institucional/politicas">Políticas</Link>
