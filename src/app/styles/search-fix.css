@@ -1,0 +1,9 @@
+/* Mueve el botón de búsqueda hacia la derecha */
+button[aria-label="Buscar"],
+.search-button,
+.icono-busqueda,
+button:has(svg),
+[class*="search"] {
+  margin-left: auto !important;
+  margin-right: 100px !important; /* Ajusta este valor para moverlo más o menos a la derecha */
+}

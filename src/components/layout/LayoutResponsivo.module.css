@@ -1,0 +1,70 @@
+.contenedorMovil,
+.contenedorTablet,
+.contenedorEscritorio {
+  width: 100%;
+  margin: 0 auto;
+  transition: padding 0.3s ease;
+}
+
+.contenedorMovil {
+  padding: 12px;
+  max-width: 100%;
+}
+
+.contenedorTablet {
+  padding: 16px;
+  max-width: 960px;
+}
+
+.contenedorEscritorio {
+  padding: 24px;
+  max-width: 1280px;
+}
+
+/* Clase para enfoque mobile-first */
+.mobileFirst {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .mobileFirst > * {
+    margin-bottom: 16px;
+  }
+  
+  .mobileFirst > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mobileFirst {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .mobileFirst > * {
+    flex: 0 0 calc(50% - 16px);
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .mobileFirst > *:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .mobileFirst {
+    flex-direction: row;
+  }
+  
+  .mobileFirst > * {
+    flex: 1;
+    margin-right: 24px;
+  }
+  
+  .mobileFirst > *:last-child {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,358 @@
+/* Estilos responsivos para Electrohuila */
+
+/* Base responsiva */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Sección Hero */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Tarjetas de acceso rápido */
+.quick-access-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.quick-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Servicios */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Noticias */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.news-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* Elementos flotantes */
+.floating-services {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  z-index: 100;
+}
+
+.service-options {
+  position: absolute;
+  right: 60px;
+  bottom: 0;
+  width: 200px;
+}
+
+.fixed-pay-btn {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  max-width: max-content;
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Cambiado de left a right */
+  left: auto; /* Eliminar cualquier valor left */
+  z-index: 100;
+  background: #27ae60;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* Responsive para tablets */
+@media screen and (max-width: 992px) {
+  .quick-access-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .service-card img,
+  .news-card img {
+    height: 180px;
+  }
+}
+
+/* Responsive para móviles */
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 40px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 28px;
+  }
+  
+  .hero p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Solución para el problema de las tarjetas */
+  .quick-access-cards {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  .quick-card {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    max-width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .services {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  .service-card {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .news-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  .news-card {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .section-title {
+    margin-bottom: 20px;
+  }
+  
+  .section-title h2 {
+    font-size: 24px;
+  }
+  
+  .cta {
+    padding: 40px 20px;
+  }
+  
+  .cta h2 {
+    font-size: 24px;
+  }
+  
+  .service-options {
+    right: 0;
+    width: 180px;
+  }
+  
+  .service-icon span {
+    display: none;
+  }
+  
+  /* Ajustes para el botón fijo de pago */
+  .fixed-pay-btn {
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    right: 10px; /* Cambiado de left a right */
+    left: auto; /* Aseguramos que left no afecte */
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* Responsive para pantallas muy pequeñas */
+@media screen and (max-width: 480px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+  
+  .btn-primary, .btn-secondary, .btn-green {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+  .quick-card h3 {
+    font-size: 18px;
+  }
+  
+  .news-content h3,
+  .service-content h3 {
+    font-size: 18px;
+  }
+  
+  .news-date {
+    font-size: 12px;
+  }
+  
+  .service-card img,
+  .news-card img {
+    height: 160px;
+  }
+  
+  .fixed-pay-btn {
+    max-width: 140px;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
+/* Estilos para la barra superior */
+.top-header {
+  background-color: #ff7210;
+  color: white;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.top-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .top-header-container {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+  
+  .contact-info {
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .social-icons {
+    gap: 12px;
+    margin-top: 5px;
+  }
+  
+  .contact-item {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .contact-label {
+    display: none;
+  }
+  
+  .contact-item {
+    font-size: 12px;
+  }
+  
+  .top-header {
+    padding: 8px 0;
+  }
+}
+/* Mejoras para dispositivos táctiles */
+@media (max-width: 768px) {
+  .mobile-menu-button, 
+  .mobile-menu button,
+  .mobile-menu a {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Aumenta la zona táctil */
+  .mobile-menu-button {
+    padding: 12px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .mobile-menu li {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .mobile-menu a {
+    padding: 12px 0;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,239 @@
+/* Estilos para la Nueva Sección */
+.nueva-seccion-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .nueva-seccion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .nueva-seccion-header h1 {
+    font-size: 36px;
+    color: #333;
+  }
+  
+  .nueva-seccion-header h1 span {
+    color: #4020f4;
+  }
+  
+  .breadcrumb {
+    font-size: 14px;
+  }
+  
+  .breadcrumb a {
+    color: #3639ec;
+    text-decoration: none;
+  }
+  
+  .nueva-seccion-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 30px;
+  }
+  
+  .seccion-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .separator-line {
+    width: 120px;
+    height: 3px;
+    background-color: #f47920;
+    margin: 0 auto 30px;
+  }
+  
+  /* Estilos para las pestañas */
+  .tabs-container {
+    margin-bottom: 30px;
+  }
+  
+  .tab-header {
+    display: flex;
+    background-color: #f2f2f2;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+  }
+  
+  .tab-item {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #666;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tab-icon {
+    background-color: #ccc;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    font-size: 12px;
+  }
+  
+  .tab-item.active {
+    background-color: #009cde;
+    color: white;
+  }
+  
+  .tab-item.active .tab-icon {
+    background-color: white;
+    color: #009cde;
+  }
+  
+  .tab-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+  }
+  
+  /* Estilo para la lista de documentos */
+  .documents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .document-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  
+  .document-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .document-info {
+    flex: 1;
+  }
+  
+  .document-info h3 {
+    margin: 0 0 5px;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  .document-description {
+    color: #666;
+    margin: 0 0 5px;
+    font-size: 14px;
+  }
+  
+  .document-date {
+    color: #999;
+    font-size: 12px;
+    margin: 0;
+  }
+  
+  .download-button {
+    background-color: #009cde;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+  }
+  
+  .download-button:hover {
+    background-color: #0082b8;
+  }
+  
+  .download-icon {
+    margin-right: 5px;
+  }
+  
+  /* Estilo para el acordeón de años */
+  .years-accordion {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+  }
+  
+  .year-item {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .year-header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #009cde;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .plus-icon {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .arrow-icon {
+    position: absolute;
+    right: 15px;
+    font-size: 20px;
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .document-item {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .nueva-seccion-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .breadcrumb {
+      margin-top: 10px;
+    }
+    
+    .tab-header {
+      flex-direction: column;
+    }
+    
+    .document-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .download-button {
+      margin-top: 10px;
+      align-self: flex-start;
+    }
+  }

@@ -1,0 +1,33 @@
+/* styles/search-button-fix.css */
+
+/* Selector específico para el botón de búsqueda */
+button[aria-label="Buscar"],
+.search-button,
+.boton-busqueda,
+.icono-busqueda,
+.search-icon,
+button:has(svg[viewBox*="24"]),
+.MuiButtonBase-root[aria-label*="buscar" i],
+.MuiButtonBase-root[aria-label*="search" i] {
+  position: relative !important;
+  margin-left: auto !important; /* Empuja el botón hacia la derecha */
+  margin-right: 70px !important; /* Espacio antes del menú de navegación - ajusta este valor según necesites */
+}
+
+/* Asegurarte de que la barra de navegación tiene flexbox activado (ya lo tienes pero reforzamos) */
+.main-header {
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Media queries para dispositivos móviles - para mantener coherencia con tus breakpoints */
+@media (max-width: 768px) {
+  button[aria-label="Buscar"],
+  .search-button,
+  .boton-busqueda,
+  .icono-busqueda,
+  .search-icon {
+    margin-right: 20px !important; /* Menos espacio en móviles */
+  }
+}

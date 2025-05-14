@@ -1,0 +1,201 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+  }
+  
+  .highlight {
+    color: #f47920; /* Color naranja institucional */
+  }
+  
+  .breadcrumb {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .breadcrumb a {
+    color: #f47920;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Pestañas de navegación */
+  .tabsContainer {
+    display: flex;
+    margin-bottom: 30px;
+    background-color: #f5f5f5;
+    border-radius: 0;
+    overflow: hidden;
+  }
+  
+  .tabButton {
+    flex: 1;
+    padding: 15px 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .tabButton.active {
+    background-color: #0099da;
+    color: white;
+  }
+  
+  .tabButton.active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #0099da transparent transparent transparent;
+  }
+  
+  .tabIcon {
+    margin-right: 8px;
+  }
+  
+  /* Tarjetas de programas */
+  .programsContainer {
+    margin-bottom: 50px;
+  }
+  
+  .programsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .programCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #f9f9f9;
+    height: 100%;
+  }
+  
+  .programCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .iconContainer {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #0099da;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .programTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .programDescription {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  /* Sección informativa */
+  .infoSection {
+    background-color: #f5f5f5;
+    padding: 40px;
+    border-radius: 8px;
+    margin-bottom: 60px;
+  }
+  
+  .infoTitle {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .orangeUnderline {
+    width: 100px;
+    height: 3px;
+    background-color: #f47920;
+    margin: 0 auto 30px;
+  }
+  
+  .infoText {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  
+  .infoText:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 992px) {
+    .programsGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .breadcrumb {
+      margin-top: 10px;
+    }
+    
+    .programsGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .tabButton {
+      font-size: 14px;
+      padding: 12px 10px;
+    }
+  }

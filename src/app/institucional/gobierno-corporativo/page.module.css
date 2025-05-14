@@ -1,0 +1,54 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .pageTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+  }
+  
+  .highlight {
+    color: #f47920; /* Color naranja de Electrohuila */
+  }
+  
+  .breadcrumb {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .breadcrumb a {
+    color: #f47920;
+    text-decoration: none;
+  }
+  
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  .section {
+    margin-bottom: 50px;
+  }
+  
+  /* Estilos para hacer la página responsive */
+  @media (max-width: 768px) {
+    .headerContainer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .breadcrumb {
+      margin-top: 10px;
+    }
+  }

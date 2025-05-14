@@ -1,0 +1,68 @@
+.container {
+    margin-top: 20px;
+  }
+  
+  .descripcion {
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  
+  .listaJunta {
+    margin: 20px 0;
+    padding-left: 20px;
+  }
+  
+  .listaJunta li {
+    margin-bottom: 10px;
+  }
+  
+  .subtitulo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .principalesContainer {
+    margin-top: 40px;
+  }
+  
+  .miembrosGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .miembroCard {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .miembroCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nombre {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .entidad {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Estilos para hacer el componente responsive */
+  @media (max-width: 768px) {
+    .miembrosGrid {
+      grid-template-columns: 1fr;
+    }
+  }
