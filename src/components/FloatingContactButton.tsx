@@ -23,9 +23,11 @@ export default function FloatingContactButton() {
   const contactOptions: ContactOption[] = [
     { id: 'atencion', text: 'Atención al Cliente', url: '/contactenos/atencion' },
     { id: 'reportes', text: 'Reportar Fallas', url: '/contactenos/reportes' },
-    { id: 'factura', text: 'Consulta de Facturas', url: '/pagos/factura' },
-    { id: 'puntos', text: 'Puntos de Atención', url: '/contactenos/puntos' },
-    { id: 'pqrs', text: 'PQRS', url: '/contactenos/pqrs' }
+    { id: 'factura', text: 'Consulta de Facturas', url: 'https://enlinea.electrohuila.com.co/generate-invoice/' },
+    { id: 'puntos', text: 'Puntos de Atención', url: '/puntos-de-pago' },
+    { id: 'pqrs', text: 'PQRS', url: 'https://enlinea.electrohuila.com.co/home/' },
+    // Nueva opción para PQR Anónimo - asegúrate de que la URL sea correcta
+    { id: 'pqr-anonimo', text: 'PQR Anónimo', url: '/contactenos/pqr-anonimo' }
   ];
 
   return (
@@ -47,17 +49,17 @@ export default function FloatingContactButton() {
         <div 
           style={{
             position: 'absolute',
-            right: isOpen ? '60px' : '10px', // Posición absoluta para un mejor control
+            right: isOpen ? '60px' : '10px',
             top: '0',
             backgroundColor: 'white',
             borderRadius: '10px 0 0 10px',
             boxShadow: '0 5px 20px rgba(0,0,0,0.2)',
             overflow: 'hidden',
             width: '250px',
-            transition: 'right 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease', // Curva de aceleración suave
+            transition: 'right 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease',
             opacity: isOpen ? 1 : 0,
-            pointerEvents: isOpen ? 'auto' : 'none', // Evita clics cuando está oculto
-            visibility: isOpen ? 'visible' : 'hidden' // Mejora la accesibilidad
+            pointerEvents: isOpen ? 'auto' : 'none',
+            visibility: isOpen ? 'visible' : 'hidden'
           }}
         >
           <div 
@@ -119,9 +121,8 @@ export default function FloatingContactButton() {
         </div>
       )}
 
-      {/* Botones estilo accesibilidad - Solo un botón redondeado */}
+      {/* Botón con icono de persona */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {/* Botón único con icono de persona */}
         <button
           onClick={() => {}}
           style={{
@@ -135,7 +136,7 @@ export default function FloatingContactButton() {
             justifyContent: 'center',
             cursor: 'pointer',
             transition: 'background-color 0.3s',
-            borderRadius: '10px 0 0 10px' // Bordes redondeados solo en la parte interior (izquierda)
+            borderRadius: '10px 0 0 10px'
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.backgroundColor = '#0C4AA3';
@@ -144,7 +145,6 @@ export default function FloatingContactButton() {
             e.currentTarget.style.backgroundColor = '#0A3A89';
           }}
         >
-          {/* Icono usuario o persona en SVG */}
           <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
           </svg>
