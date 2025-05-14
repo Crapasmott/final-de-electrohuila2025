@@ -213,7 +213,7 @@ export default function ContactoPage() {
         <div>
             {/* Hero Section con banner personalizado */}
             <div className="hero" style={{
-                background: "linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.17)), url('/images/contacto.jpg') no-repeat center center",
+                background: "linear-gradient(rgba(0, 0, 0, 0.47), rgba(0, 0, 0, 0.42)), url('/images/contacto.jpg') no-repeat center center",
                 backgroundSize: "cover",
                 padding: "80px 0",
                 color: "white",

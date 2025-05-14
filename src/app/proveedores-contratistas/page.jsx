@@ -850,7 +850,7 @@ export default function ProveedoresContratistasPage() {
         <div>
             {/* Hero Section con banner personalizado */}
             <div className="hero" style={{
-                background: "linear-gradient(rgba(0, 0, 0, 0.31), rgba(0, 0, 0, 0.36)), url('/images/contratistas.jpg') no-repeat center center",
+                background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.54)), url('/images/proveedores.jpg') no-repeat center center",
                 backgroundSize: "cover",
                 padding: "80px 0",
                 color: "white",

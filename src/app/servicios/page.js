@@ -118,7 +118,7 @@ export default function Page() {
         <div>
             {/* Hero Section con banner personalizado */}
             <div className="hero" style={{
-                background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/servicios.jpg') no-repeat center center",
+                background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/reparaciones.jpg') no-repeat center center",
                 backgroundSize: "cover"
             }}>
                 <div className="container">

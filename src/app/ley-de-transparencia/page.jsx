@@ -214,7 +214,7 @@ export default function TransparenciaPage() {
         <div>
             {/* Hero Section con banner personalizado */}
             <div className="hero" style={{
-                background: "linear-gradient(rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.33)), url('/images/transparencia.jpg') no-repeat center center",
+                background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.64)), url('/images/transparencia.jpg') no-repeat center center",
                 backgroundSize: "cover",
                 padding: "80px 0",
                 color: "white",

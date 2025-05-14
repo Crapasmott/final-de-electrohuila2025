@@ -88,7 +88,7 @@ export default function NuestraEmpresaPage() {
         <div>
             {/* Hero Section con banner personalizado */}
             <div className="hero" style={{
-                background: "linear-gradient(rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.32)), url('/images/empleada.JPG') no-repeat center center",
+                background: "linear-gradient(rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.53)), url('/images/equipodecampo.JPG') no-repeat center center",
                 backgroundSize: "cover",
                 padding: "80px 0",
                 color: "white",
