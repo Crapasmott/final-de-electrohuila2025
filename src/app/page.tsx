@@ -16,7 +16,7 @@ const VideoThumbnail = ({
   duration, 
   previewVideoSrc = null,
   category,
-  onClick
+  onClick = () => {} // Haciendo onClick opcional con función vacía por defecto
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -498,6 +498,7 @@ export default function Home() {
                       duration={video.duration}
                       previewVideoSrc={video.previewVideo}
                       category={video.category}
+                      // Ya no es necesario pasar onClick aquí porque ahora es opcional
                     />
                     <div className="video-info">
                       <span className="video-category">{video.category}</span>

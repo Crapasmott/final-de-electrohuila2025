@@ -27,7 +27,7 @@ export default function FloatingContactButton() {
     { id: 'puntos', text: 'Puntos de Atención', url: '/puntos-de-pago' },
     { id: 'pqrs', text: 'PQRS', url: 'https://enlinea.electrohuila.com.co/home/' },
     // Nueva opción para PQR Anónimo - asegúrate de que la URL sea correcta
-    { id: 'pqr-anonimo', text: 'PQR Anónimo', url: '/contactenos/pqr-anonimo' }
+    { id: 'pqr-anonimo', text: 'PQR Anónimo', url: '/pqr-anonimo' }
   ];
 
   return (
