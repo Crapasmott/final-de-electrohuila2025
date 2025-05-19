@@ -37,14 +37,14 @@ export default function AutogeneradoresCard() {
           className="card-icon animated-icon"
         />
       </div>
-      <h3>Autogeneradores</h3>
+      <h3>SOLICITUDES AGPE-AGGE-GD</h3>
       <p>Permiten al usuario gestionar de una manera eficiente los objetivos.</p>
       
       <button 
         onClick={() => setShowOptions(!showOptions)}
         className="btn-green"
       >
-        Autogeneradores
+        SOLICITUDES AGPE-AGGE-GD
       </button>
       
       {/* Panel de opciones */}
