@@ -10,14 +10,14 @@ export default function AutogeneradoresCard() {
   // URLs para los autogeneradores
   const opciones = [
     { 
-      nombre: "Sistema EHFACT2", 
+      nombre: "SOLICITUDES AGPE-AGGE-GD", 
       descripcion: "Sistema de facturación eléctrica", 
       url: "http://200.21.4.66:8070/ehfact2/" 
     },
     { 
-      nombre: "Sistema Solicitante", 
-      descripcion: "Portal para solicitantes", 
-      url: "http://35.184.36.98/solicitante/" 
+      nombre: "Conexiones", 
+      descripcion: "conexiones", 
+      url: "https://enlinea.electrohuila.com.co/home/" 
     }
   ];
 
@@ -30,21 +30,21 @@ export default function AutogeneradoresCard() {
     >
       <div className="icon-container">
         <Image 
-          src="/images/iconos/identificacion.png" 
+          src="/images/iconos/solar.png" 
           alt="Autogeneradores" 
           width={60} 
           height={60} 
           className="card-icon animated-icon"
         />
       </div>
-      <h3>SOLICITUDES AGPE-AGGE-GD</h3>
+      <h3>Nuevas Conexiones</h3>
       <p>Permiten al usuario gestionar de una manera eficiente los objetivos.</p>
       
       <button 
         onClick={() => setShowOptions(!showOptions)}
         className="btn-green"
       >
-        SOLICITUDES AGPE-AGGE-GD
+       Nuevas Conexiones
       </button>
       
       {/* Panel de opciones */}

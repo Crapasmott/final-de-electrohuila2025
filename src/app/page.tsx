@@ -8,9 +8,40 @@ import ChatOption from '../components/ChatOption';
 import styles from '../styles/Home.module.css';
 import { getYouTubeVideosSimple } from '../lib/youtubeService';
 import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton';
+import FloatingAutogeneradorButton from '@/components/FloatingAutogeneradorButton';
+
+// Definición de interfaces para TypeScript
+interface VideoData {
+  id: string;
+  youtubeId: string;
+  thumbnail: string;
+  title: string;
+  description: string;
+  duration: string;
+  category: string;
+  date: string;
+  views: string;
+  previewVideo?: string | null;
+}
+
+interface VideoThumbnailProps {
+  thumbnailSrc: string;
+  title?: string;
+  duration: string;
+  previewVideoSrc?: string | null;
+  category?: string;
+  onClick?: () => void;
+}
+
+interface RevealElementProps {
+  children: React.ReactNode;
+  direction?: 'top' | 'bottom' | 'left' | 'right';
+  delay?: number;
+  threshold?: number;
+}
 
 // Componente VideoThumbnail
-const VideoThumbnail = ({ 
+const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ 
   thumbnailSrc, 
   title, 
   duration, 
@@ -20,19 +51,21 @@ const VideoThumbnail = ({
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const previewRef = useRef(null);
-  const thumbnailRef = useRef(null);
+  const previewRef = useRef<HTMLVideoElement>(null);
+  const thumbnailRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
   // Manejar hover para iniciar/detener preview
   useEffect(() => {
     if (!previewVideoSrc || !previewRef.current) return;
     
+    const videoElement = previewRef.current;
+    
     if (isHovering && hasInteracted) {
-      previewRef.current.currentTime = 0;
-      previewRef.current.play().catch(e => console.log('Auto-play prevented:', e));
-    } else if (previewRef.current) {
-      previewRef.current.pause();
+      videoElement.currentTime = 0;
+      videoElement.play().catch(e => console.log('Auto-play prevented:', e));
+    } else {
+      videoElement.pause();
     }
   }, [isHovering, hasInteracted, previewVideoSrc]);
   
@@ -127,9 +160,14 @@ const VideoThumbnail = ({
 };
 
 // Componente de Revelado para elementos que aparecen con animación
-const RevealElement = ({ children, direction = 'bottom', delay = 0, threshold = 0.1 }) => {
+const RevealElement: React.FC<RevealElementProps> = ({ 
+  children, 
+  direction = 'bottom', 
+  delay = 0, 
+  threshold = 0.1 
+}) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -194,7 +232,7 @@ const RevealElement = ({ children, direction = 'bottom', delay = 0, threshold = 
 };
 
 // Videos de fallback en caso de error
-const getFallbackVideos = () => {
+const getFallbackVideos = (): VideoData[] => {
   return [
     {
       id: 'video1',
@@ -243,21 +281,40 @@ const getFallbackVideos = () => {
   ];
 };
 
-export default function Home() {
+// Tipo para las cards de acceso rápido
+interface QuickCard {
+  icon: string;
+  alt: string;
+  title: string;
+  description: string;
+  link: string;
+  buttonText: string;
+}
+
+// Tipo para noticias
+interface NewsItem {
+  img: string;
+  alt: string;
+  date: string;
+  title: string;
+  description: string;
+}
+
+const Home: React.FC = () => {
   // Estados para el modal de video
-  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   
   // Estados para controlar la visibilidad del botón de pago
   const [showPaymentButton, setShowPaymentButton] = useState(true);
   const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeout = useRef(null);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   
   // Estado para videos de YouTube
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState<VideoData[]>([]);
   const [isLoadingVideos, setIsLoadingVideos] = useState(true);
-  const [videoError, setVideoError] = useState(null);
+  const [videoError, setVideoError] = useState<string | null>(null);
   
   // Cargar videos al inicio
   useEffect(() => {
@@ -316,7 +373,7 @@ export default function Home() {
   }, []);
 
   // Manejar clic en video para abrir modal
-  const handleVideoClick = (video) => {
+  const handleVideoClick = (video: VideoData) => {
     if (!video) return;
     
     setSelectedVideo(video);
@@ -336,8 +393,8 @@ export default function Home() {
 
   // Detectar clic fuera del modal para cerrar
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         closeModal();
       }
     };
@@ -353,7 +410,7 @@ export default function Home() {
 
   // Manejador para tecla ESC para cerrar modal
   useEffect(() => {
-    const handleEscKey = (event) => {
+    const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         closeModal();
       }
@@ -368,9 +425,77 @@ export default function Home() {
     };
   }, [isModalOpen]);
 
+  // Datos para las cards de acceso rápido
+  const quickCards: QuickCard[] = [
+    {
+      icon: "/images/iconos/factura.png",
+      alt: "Pago de facturas",
+      title: "Pago de Facturas",
+      description: "Paga tu factura de energía de forma rápida y segura por diferentes medios.",
+      link: "https://pagos.electrohuila.com.co/",
+      buttonText: "Pagar Ahora"
+    },
+    {
+      icon: "/images/iconos/electro.png",
+      alt: "Electrohuila en línea",
+      title: "Electrohuila en Línea",
+      description: "Accede a todos nuestros servicios digitales desde cualquier lugar.",
+      link: "https://enlinea.electrohuila.com.co/",
+      buttonText: "Ingresar"
+    },
+    {
+      icon: "/images/iconos/tarifas-de-cajeros-automaticos.png",
+      alt: "Tarifas",
+      title: "Tarifas",
+      description: "Consulta las tarifas vigentes para el servicio de energía eléctrica según tu tipo de usuario.",
+      link: "/tarifas/",
+      buttonText: "Consultar"
+    },
+    {
+      icon: "/images/iconos/conversacion.png",
+      alt: "Línea de transparencia",
+      title: "Línea de Transparencia",
+      description: "Canal confidencial para reportar casos de corrupción o conductas indebidas.",
+      link: "/ley-de-transparencia",
+      buttonText: "Reporte AQUÍ"
+    },
+    {
+      icon: "/images/iconos/justicia.png",
+      alt: "Notificaciones Judiciales",
+      title: "Notificaciones Judiciales",
+      description: "Recepción de comunicaciones y notificaciones judiciales oficiales.",
+      link: "https://enlinea.electrohuila.com.co/notificacion-web/#",
+      buttonText: "Consultar"
+    }
+  ];
+
+  // Datos para las noticias
+  const newsItems: NewsItem[] = [
+    {
+      img: "/images/mantenimiento.jpg",
+      alt: "Noticia 1",
+      date: "20 de Febrero, 2025",
+      title: "Mantenimiento programado en sector norte",
+      description: "Se realizará mantenimiento preventivo en redes del sector norte. Conozca los horarios y zonas afectadas."
+    },
+    {
+      img: "/images/factura.jpg",
+      alt: "Noticia 2",
+      date: "15 de Febrero, 2025",
+      title: "Nuevo sistema de facturación digital",
+      description: "Implementamos un nuevo sistema de facturación digital para mejorar la experiencia de nuestros usuarios."
+    },
+    {
+      img: "/images/energia-reno.jpg",
+      alt: "Noticia 3",
+      date: "10 de Febrero, 2025",
+      title: "Programa de energías renovables",
+      description: "Conoce nuestro nuevo programa de implementación de energías renovables para el departamento."
+    }
+  ];
+
   return (
     <>
-   
       {/* Sección Hero con mensaje principal */}
       <section className="hero">
         <div className="container">
@@ -391,47 +516,7 @@ export default function Home() {
         <div className="container">
           <div className="quick-access-cards">
             {/* Primeros 5 cards */}
-            {[
-              {
-                icon: "/images/iconos/factura.png",
-                alt: "Pago de facturas",
-                title: "Pago de Facturas",
-                description: "Paga tu factura de energía de forma rápida y segura por diferentes medios.",
-                link: "https://pagos.electrohuila.com.co/",
-                buttonText: "Pagar Ahora"
-              },
-              {
-                icon: "/images/iconos/electro.png",
-                alt: "Electrohuila en línea",
-                title: "Electrohuila en Línea",
-                description: "Accede a todos nuestros servicios digitales desde cualquier lugar.",
-                link: "https://enlinea.electrohuila.com.co/",
-                buttonText: "Ingresar"
-              },
-              {
-                icon: "/images/iconos/tarifas-de-cajeros-automaticos.png",
-                alt: "Tarifas",
-                title: "Tarifas",
-                description: "Consulta las tarifas vigentes para el servicio de energía eléctrica según tu tipo de usuario.",
-                link: "/tarifas/",
-                buttonText: "Consultar"              },
-              {
-                icon: "/images/iconos/conversacion.png",
-                alt: "Línea de transparencia",
-                title: "Línea de Transparencia",
-                description: "Canal confidencial para reportar casos de corrupción o conductas indebidas.",
-                link: "/ley-de-transparencia",
-                buttonText: "Reporte AQUÍ"
-              },
-              {
-                icon: "/images/iconos/justicia.png",
-                alt: "Notificaciones Judiciales",
-                title: "Notificaciones Judiciales",
-                description: "Recepción de comunicaciones y notificaciones judiciales oficiales.",
-                link: "https://enlinea.electrohuila.com.co/notificacion-web/#",
-                buttonText: "Consultar"
-              }
-            ].map((card, index) => (
+            {quickCards.map((card, index) => (
               <RevealElement key={`card-${index}`} direction={index % 2 === 0 ? "left" : "right"} delay={0.1 * index}>
                 <div className="quick-card">
                   <div className="icon-container">
@@ -498,7 +583,6 @@ export default function Home() {
                       duration={video.duration}
                       previewVideoSrc={video.previewVideo}
                       category={video.category}
-                      // Ya no es necesario pasar onClick aquí porque ahora es opcional
                     />
                     <div className="video-info">
                       <span className="video-category">{video.category}</span>
@@ -565,29 +649,7 @@ export default function Home() {
             </div>
           </RevealElement>
           <div className="news-grid">
-            {[
-              {
-                img: "/images/mantenimiento.jpg",
-                alt: "Noticia 1",
-                date: "20 de Febrero, 2025",
-                title: "Mantenimiento programado en sector norte",
-                description: "Se realizará mantenimiento preventivo en redes del sector norte. Conozca los horarios y zonas afectadas."
-              },
-              {
-                img: "/images/factura.jpg",
-                alt: "Noticia 2",
-                date: "15 de Febrero, 2025",
-                title: "Nuevo sistema de facturación digital",
-                description: "Implementamos un nuevo sistema de facturación digital para mejorar la experiencia de nuestros usuarios."
-              },
-              {
-                img: "/images/energia-reno.jpg",
-                alt: "Noticia 3",
-                date: "10 de Febrero, 2025",
-                title: "Programa de energías renovables",
-                description: "Conoce nuestro nuevo programa de implementación de energías renovables para el departamento."
-              }
-            ].map((news, index) => (
+            {newsItems.map((news, index) => (
               <RevealElement key={`news-${index}`} direction={index % 2 === 0 ? "left" : "right"} delay={0.2 * index}>
                 <div className="news-card">
                   <img src={news.img} alt={news.alt} />
@@ -642,6 +704,12 @@ export default function Home() {
           </button>
         </div>
       )}
+
+      {/* Botón flotante de WhatsApp */}
+      <FloatingWhatsAppButton />
+      <FloatingAutogeneradorButton/>
     </>
   );
-}
+};
+
+export default Home;
