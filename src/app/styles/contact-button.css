@@ -1,0 +1,223 @@
+/* styles/contact-button.css */
+
+.contact-button-container {
+    position: relative;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Botón principal mejorado */
+  .contact-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #1797D5, #1A6192);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(26, 97, 146, 0.3);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Efecto de onda al hacer click */
+  .contact-button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0;
+    top: 0;
+    left: 0;
+    transition: all 0.5s;
+  }
+  
+  .contact-button:active::after {
+    transform: scale(2);
+    opacity: 0;
+    transition: 0s;
+  }
+  
+  .contact-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(26, 97, 146, 0.4);
+    background: linear-gradient(135deg, #0084c2, #155683);
+  }
+  
+  .contact-button:active {
+    transform: translateY(-1px);
+  }
+  
+  .contact-button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 6px;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .contact-button-text {
+    position: relative;
+  }
+  
+  /* Animación del ícono */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .contact-button .contact-button-icon {
+    animation: pulse 2s infinite;
+  }
+  
+  .contact-button:hover .contact-button-icon {
+    animation-play-state: paused;
+  }
+  
+  /* Panel de opciones de contacto */
+  .contact-options-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    min-width: 250px;
+    transform-origin: top left;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1050;
+  }
+  
+  .contact-button-container.active .contact-options-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .panel-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+  }
+  
+  /* Opciones de contacto */
+  .contact-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-bottom: 8px;
+  }
+  
+  .contact-option:last-child {
+    margin-bottom: 0;
+  }
+  
+  .contact-option:hover {
+    background-color: #f5f9fd;
+    transform: translateX(5px);
+  }
+  
+  .option-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .option-whatsapp .option-icon {
+    background-color: #25D366;
+  }
+  
+  .option-email .option-icon {
+    background-color: #EA4335;
+  }
+  
+  .option-phone .option-icon {
+    background-color: #1A6192;
+  }
+  
+  .option-chat .option-icon {
+    background-color: #4080FF;
+  }
+  
+  .option-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .option-label {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .option-desc {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  /* Flecha indicadora */
+  .contact-options-panel::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 16px;
+    height: 16px;
+    background-color: white;
+    transform: rotate(45deg);
+    box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Posición flotante */
+  .floating-contact {
+    position: fixed;
+    bottom: 90px; /* Posicionado sobre el FloatingPaymentButton */
+    left: 20px;
+    z-index: 1000;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .contact-options-panel {
+      min-width: 280px;
+      right: 0;
+      left: auto;
+    }
+    
+    .contact-options-panel::before {
+      left: auto;
+      right: 20px;
+    }
+    
+    .floating-contact {
+      bottom: 80px;
+    }
+  }

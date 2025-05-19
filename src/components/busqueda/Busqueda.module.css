@@ -1,0 +1,121 @@
+.busquedaContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .inputBusqueda {
+    flex: 1;
+    padding: 12px 16px;
+    padding-left: 40px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+  }
+  
+  .iconoBusqueda {
+    position: absolute;
+    left: 12px;
+    height: 20px;
+    width: 20px;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .botonLimpiar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #6b7280;
+    margin-right: 4px;
+  }
+  
+  .botonBuscar {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 8px;
+    transition: background-color 0.2s;
+  }
+  
+  .botonBuscar:hover {
+    background-color: #004494;
+  }
+  
+  /* Variantes */
+  .busquedaSimple {
+    border: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+  }
+  
+  .busquedaAnimada {
+    border: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .busquedaAnimada.enfocado {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    border-color: #0056b3;
+  }
+  
+  .busquedaAvanzada {
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Temas */
+  .temaClaro {
+    background-color: #ffffff;
+    border-color: #e5e7eb;
+  }
+  
+  .temaOscuro {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+  
+  .temaOscuro .inputBusqueda {
+    color: #f9fafb;
+  }
+  
+  .temaOscuro .iconoBusqueda {
+    color: #9ca3af;
+  }
+  
+  .temaPrimario {
+    background-color: #eff6ff;
+    border-color: #93c5fd;
+  }
+  
+  @media (max-width: 640px) {
+    .busquedaContainer {
+      max-width: 100%;
+    }
+    
+    .botonBuscar {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  }
