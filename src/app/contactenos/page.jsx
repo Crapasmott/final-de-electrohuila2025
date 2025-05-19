@@ -15,16 +15,16 @@ export default function ContactoPage() {
         tipoPQRSD: 'peticion',
         aceptaPolitica: false
     });
-    
+
     // Estado para controlar errores de validación
     const [errors, setErrors] = useState({});
-    
+
     // Estado para controlar el mensaje de éxito
     const [successMessage, setSuccessMessage] = useState('');
-    
+
     // Estado para controlar las oficinas expandidas
     const [expandedOffices, setExpandedOffices] = useState([]);
-    
+
     // Función para manejar el cambio en los campos del formulario
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -32,7 +32,7 @@ export default function ContactoPage() {
             ...formData,
             [name]: type === 'checkbox' ? checked : value
         });
-        
+
         // Limpiar el error del campo si existe
         if (errors[name]) {
             setErrors({
@@ -41,52 +41,52 @@ export default function ContactoPage() {
             });
         }
     };
-    
+
     // Función para validar el formulario
     const validateForm = () => {
         const newErrors = {};
-        
+
         if (!formData.nombre.trim()) {
             newErrors.nombre = 'El nombre es requerido';
         }
-        
+
         if (!formData.email.trim()) {
             newErrors.email = 'El correo electrónico es requerido';
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             newErrors.email = 'Ingrese un correo electrónico válido';
         }
-        
+
         if (!formData.telefono.trim()) {
             newErrors.telefono = 'El teléfono es requerido';
         }
-        
+
         if (!formData.asunto.trim()) {
             newErrors.asunto = 'El asunto es requerido';
         }
-        
+
         if (!formData.mensaje.trim()) {
             newErrors.mensaje = 'El mensaje es requerido';
         }
-        
+
         if (!formData.aceptaPolitica) {
             newErrors.aceptaPolitica = 'Debe aceptar la política de tratamiento de datos';
         }
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
-    
+
     // Función para manejar el envío del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         if (validateForm()) {
             // Aquí iría la lógica para enviar el formulario al backend
             console.log('Formulario enviado:', formData);
-            
+
             // Mostrar mensaje de éxito
             setSuccessMessage('Su mensaje ha sido enviado con éxito. Pronto nos pondremos en contacto con usted.');
-            
+
             // Limpiar el formulario
             setFormData({
                 nombre: '',
@@ -97,7 +97,7 @@ export default function ContactoPage() {
                 tipoPQRSD: 'peticion',
                 aceptaPolitica: false
             });
-            
+
             // Limpiar el mensaje después de 5 segundos
             setTimeout(() => {
                 setSuccessMessage('');
@@ -106,7 +106,7 @@ export default function ContactoPage() {
             console.log('El formulario contiene errores');
         }
     };
-    
+
     // Función para expandir/contraer oficinas
     const toggleOffice = (officeId) => {
         if (expandedOffices.includes(officeId)) {
@@ -115,12 +115,12 @@ export default function ContactoPage() {
             setExpandedOffices([...expandedOffices, officeId]);
         }
     };
-    
+
     // Verificar si una oficina está expandida
     const isOfficeExpanded = (officeId) => {
         return expandedOffices.includes(officeId);
     };
-    
+
     // Datos de las oficinas
     const oficinas = [
         {
@@ -130,10 +130,6 @@ export default function ContactoPage() {
             telefono: '(608) 871 9020',
             horario: 'Lunes a Viernes: 7:00 am - 4:00 pm',
             email: 'info@electrohuila.com.co',
-            coordenadas: {
-                lat: 2.927,
-                lng: -75.289
-            }
         },
         {
             id: 'pitalito',
@@ -142,10 +138,6 @@ export default function ContactoPage() {
             telefono: '(608) 836 2425',
             horario: 'Lunes a Viernes: 7:00 am - 4:00 pm',
             email: 'pitalito@electrohuila.com.co',
-            coordenadas: {
-                lat: 1.851,
-                lng: -76.051
-            }
         },
         {
             id: 'garzon',
@@ -154,10 +146,6 @@ export default function ContactoPage() {
             telefono: '(608) 833 3909',
             horario: 'Lunes a Viernes: 7:00 am - 4:00 pm',
             email: 'garzon@electrohuila.com.co',
-            coordenadas: {
-                lat: 2.198,
-                lng: -75.627
-            }
         },
         {
             id: 'labplata',
@@ -166,13 +154,9 @@ export default function ContactoPage() {
             telefono: '(608) 837 0200',
             horario: 'Lunes a Viernes: 7:00 am - 4:00 pm',
             email: 'laplata@electrohuila.com.co',
-            coordenadas: {
-                lat: 2.385,
-                lng: -75.890
-            }
         }
     ];
-    
+
     // Canales de atención
     const canalesAtencion = [
         {
@@ -211,7 +195,7 @@ export default function ContactoPage() {
 
     return (
         <div>
-            {/* Hero Section con banner personalizado */}
+            {/* Hero Section */}
             <div className="hero" style={{
                 background: "linear-gradient(rgba(0, 0, 0, 0.47), rgba(0, 0, 0, 0.42)), url('/images/contacto.jpg') no-repeat center center",
                 backgroundSize: "cover",
@@ -230,17 +214,16 @@ export default function ContactoPage() {
             <div className="container" style={{ padding: '60px 0' }}>
                 {/* Breadcrumb */}
                 <div className="breadcrumb" style={{ marginBottom: '30px' }}>
-                    <Link href="/" style={{ color: '#f27b13', textDecoration: 'none' }}>Inicio</Link> / 
+                    <Link href="/" style={{ color: '#f27b13', textDecoration: 'none' }}>Inicio</Link> /
                     <span style={{ marginLeft: '5px' }}>Contáctenos</span>
                 </div>
-                
+
                 {/* Canales de atención */}
                 <div style={{ marginBottom: '60px' }}>
                     <h2 style={{ fontSize: '32px', marginBottom: '30px', color: '#333', borderBottom: '2px solid #0098d9', paddingBottom: '10px' }}>
                         Canales de Atención
                     </h2>
-                    
-                    <div style={{ 
+                    <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
                         gap: '30px'
@@ -253,7 +236,7 @@ export default function ContactoPage() {
                                 boxShadow: '0 2px 15px rgba(0,0,0,0.05)',
                                 border: '1px solid #eee'
                             }}>
-                                <div style={{ 
+                                <div style={{
                                     display: 'flex',
                                     alignItems: 'center',
                                     marginBottom: '20px'
@@ -278,14 +261,14 @@ export default function ContactoPage() {
                                 <p style={{ color: '#555', marginBottom: '20px', fontSize: '14px' }}>
                                     {canal.descripcion}
                                 </p>
-                                <ul style={{ 
+                                <ul style={{
                                     listStyle: 'none',
                                     padding: 0,
                                     margin: 0
                                 }}>
                                     {canal.datos.map((dato, index) => (
-                                        <li key={index} style={{ 
-                                            marginBottom: '10px', 
+                                        <li key={index} style={{
+                                            marginBottom: '10px',
                                             paddingBottom: '10px',
                                             borderBottom: index !== canal.datos.length - 1 ? '1px solid #f0f0f0' : 'none'
                                         }}>
@@ -302,23 +285,49 @@ export default function ContactoPage() {
                         ))}
                     </div>
                 </div>
-                
-                {/* Formulario y Mapa */}
-                <div style={{ 
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '40px',
-                    marginBottom: '60px',
-                    '@media (max-width: 768px)': {
-                        gridTemplateColumns: '1fr',
+
+                {/* Formulario y Mapa RESPONSIVO */}
+                <style>
+                    {`
+                    @media (max-width: 900px) {
+                        .form-map-grid {
+                            display: block !important;
+                        }
                     }
-                }}>
-                    {/* Formulario de contacto */}
-                    <div>
+                    @media (max-width: 600px) {
+                        .form-map-grid input,
+                        .form-map-grid textarea,
+                        .form-map-grid select,
+                        .form-map-grid button {
+                            font-size: 18px !important;
+                            padding: 14px !important;
+                        }
+                        .form-card-mobile {
+                            background: #fff;
+                            border-radius: 12px;
+                            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+                            padding: 32px 24px;
+                            border: 1px solid #eee;
+                            max-width: 500px;
+                            margin: 32px auto;
+                        }
+                    }
+                    `}
+                </style>
+                <div
+                    className="form-map-grid"
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '40px',
+                        marginBottom: '60px'
+                    }}
+                >
+                    {/* Formulario de contacto: solo tarjeta en móvil */}
+                    <div className="form-card-mobile">
                         <h2 style={{ fontSize: '28px', marginBottom: '20px', color: '#333' }}>
                             Formulario de Contacto
                         </h2>
-                        
                         {successMessage && (
                             <div style={{
                                 backgroundColor: '#e1f5e8',
@@ -331,14 +340,13 @@ export default function ContactoPage() {
                                 {successMessage}
                             </div>
                         )}
-                        
                         <form onSubmit={handleSubmit}>
                             <div style={{ marginBottom: '20px' }}>
-                                <label 
+                                <label
                                     htmlFor="tipoPQRSD"
-                                    style={{ 
-                                        display: 'block', 
-                                        marginBottom: '5px', 
+                                    style={{
+                                        display: 'block',
+                                        marginBottom: '5px',
                                         fontWeight: 'bold',
                                         color: '#333'
                                     }}
@@ -365,13 +373,12 @@ export default function ContactoPage() {
                                     <option value="denuncia">Denuncia</option>
                                 </select>
                             </div>
-                            
                             <div style={{ marginBottom: '20px' }}>
-                                <label 
+                                <label
                                     htmlFor="nombre"
-                                    style={{ 
-                                        display: 'block', 
-                                        marginBottom: '5px', 
+                                    style={{
+                                        display: 'block',
+                                        marginBottom: '5px',
                                         fontWeight: 'bold',
                                         color: '#333'
                                     }}
@@ -398,13 +405,12 @@ export default function ContactoPage() {
                                     </div>
                                 )}
                             </div>
-                            
                             <div style={{ marginBottom: '20px' }}>
-                                <label 
+                                <label
                                     htmlFor="email"
-                                    style={{ 
-                                        display: 'block', 
-                                        marginBottom: '5px', 
+                                    style={{
+                                        display: 'block',
+                                        marginBottom: '5px',
                                         fontWeight: 'bold',
                                         color: '#333'
                                     }}
@@ -431,13 +437,12 @@ export default function ContactoPage() {
                                     </div>
                                 )}
                             </div>
-                            
                             <div style={{ marginBottom: '20px' }}>
-                                <label 
+                                <label
                                     htmlFor="telefono"
-                                    style={{ 
-                                        display: 'block', 
-                                        marginBottom: '5px', 
+                                    style={{
+                                        display: 'block',
+                                        marginBottom: '5px',
                                         fontWeight: 'bold',
                                         color: '#333'
                                     }}
@@ -464,13 +469,12 @@ export default function ContactoPage() {
                                     </div>
                                 )}
                             </div>
-                            
                             <div style={{ marginBottom: '20px' }}>
-                                <label 
+                                <label
                                     htmlFor="asunto"
-                                    style={{ 
-                                        display: 'block', 
-                                        marginBottom: '5px', 
+                                    style={{
+                                        display: 'block',
+                                        marginBottom: '5px',
                                         fontWeight: 'bold',
                                         color: '#333'
                                     }}
@@ -497,13 +501,12 @@ export default function ContactoPage() {
                                     </div>
                                 )}
                             </div>
-                            
                             <div style={{ marginBottom: '20px' }}>
-                                <label 
+                                <label
                                     htmlFor="mensaje"
-                                    style={{ 
-                                        display: 'block', 
-                                        marginBottom: '5px', 
+                                    style={{
+                                        display: 'block',
+                                        marginBottom: '5px',
                                         fontWeight: 'bold',
                                         color: '#333'
                                     }}
@@ -531,9 +534,8 @@ export default function ContactoPage() {
                                     </div>
                                 )}
                             </div>
-                            
                             <div style={{ marginBottom: '20px' }}>
-                                <label style={{ 
+                                <label style={{
                                     display: 'flex',
                                     alignItems: 'flex-start',
                                     cursor: 'pointer'
@@ -558,9 +560,8 @@ export default function ContactoPage() {
                                     </div>
                                 )}
                             </div>
-                            
                             <div>
-                                <button 
+                                <button
                                     type="submit"
                                     style={{
                                         backgroundColor: '#0098d9',
@@ -582,38 +583,34 @@ export default function ContactoPage() {
                             </div>
                         </form>
                     </div>
-                    
                     {/* Mapa de ubicación */}
                     <div>
                         <h2 style={{ fontSize: '28px', marginBottom: '20px', color: '#333' }}>
                             Ubicación
                         </h2>
-                        
                         <div style={{
-  width: '100%',
-  height: '400px',
-  marginBottom: '20px',
-  borderRadius: '8px',
-  overflow: 'hidden',
-  border: '1px solid #ddd'
-}}>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5632870255567!2d-75.3097839!3d2.9410099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b74930d148179%3A0x2036b3da8145fb0!2sElectrificadora%20Del%20Huila!5e0!3m2!1ses-419!2sco!4v1744641852512!5m2!1ses-419!2sco"
-    width="100%"
-    height="100%"
-    style={{ border: 0 }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-  />
-</div>
-
-                        
+                            width: '100%',
+                            height: '400px',
+                            marginBottom: '20px',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            border: '1px solid #ddd'
+                        }}>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5632870255567!2d-75.3097839!3d2.9410099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b74930d148179%3A0x2036b3da8145fb0!2sElectrificadora%20Del%20Huila!5e0!3m2!1ses-419!2sco!4v1744641852512!5m2!1ses-419!2sco"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title="Mapa Electrohuila"
+                            />
+                        </div>
                         <div>
                             <h3 style={{ fontSize: '20px', marginBottom: '15px', color: '#333' }}>
                                 Nuestras Sedes
                             </h3>
-                            
                             {oficinas.map((oficina) => (
                                 <div key={oficina.id} style={{
                                     marginBottom: '10px',
@@ -621,7 +618,7 @@ export default function ContactoPage() {
                                     borderRadius: '5px',
                                     overflow: 'hidden'
                                 }}>
-                                    <div 
+                                    <div
                                         onClick={() => toggleOffice(oficina.id)}
                                         style={{
                                             padding: '15px',
@@ -635,12 +632,11 @@ export default function ContactoPage() {
                                         <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '600', color: '#333' }}>
                                             {oficina.nombre}
                                         </h4>
-                                        {isOfficeExpanded(oficina.id) ? 
-                                            <ChevronDown size={18} color="#0098d9" /> : 
+                                        {isOfficeExpanded(oficina.id) ?
+                                            <ChevronDown size={18} color="#0098d9" /> :
                                             <ChevronRight size={18} color="#0098d9" />
                                         }
                                     </div>
-                                    
                                     {isOfficeExpanded(oficina.id) && (
                                         <div style={{ padding: '15px', backgroundColor: '#f8f9fa', borderTop: '1px solid #e0e0e0' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
@@ -666,7 +662,7 @@ export default function ContactoPage() {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Información adicional */}
                 <div style={{
                     backgroundColor: '#f8f9fa',
@@ -678,19 +674,19 @@ export default function ContactoPage() {
                         Información Importante
                     </h3>
                     <p style={{ marginBottom: '15px', color: '#555', lineHeight: '1.6' }}>
-                        ElectroHuila garantiza la protección de sus datos personales de acuerdo con la 
-                        Ley 1581 de 2012 y el Decreto 1377 de 2013. La información que usted nos suministra 
+                        ElectroHuila garantiza la protección de sus datos personales de acuerdo con la
+                        Ley 1581 de 2012 y el Decreto 1377 de 2013. La información que usted nos suministra
                         será utilizada únicamente para los fines autorizados por usted y para dar trámite a sus
                         solicitudes, quejas, reclamos o sugerencias.
                     </p>
                     <p style={{ color: '#555', lineHeight: '1.6' }}>
-                        Recuerde que para trámites relacionados con su facturación, solicitudes técnicas y 
-                        reportes de daños, debe utilizar los canales específicos dispuestos para ello, 
+                        Recuerde que para trámites relacionados con su facturación, solicitudes técnicas y
+                        reportes de daños, debe utilizar los canales específicos dispuestos para ello,
                         indicados en nuestra sección de <Link href="/servicios" style={{ color: '#0098d9' }}>Servicios</Link>.
                     </p>
                 </div>
             </div>
-            
+
             {/* CTA Section */}
             <div className="cta" style={{
                 backgroundColor: '#0a3d62',
@@ -704,8 +700,8 @@ export default function ContactoPage() {
                         ElectroHuila está comprometida con brindar un servicio de calidad a todos nuestros usuarios.
                         Su opinión es muy importante para nosotros.
                     </p>
-                    <Link 
-                        href="/preguntas-frecuentes" 
+                    <Link
+                        href="/preguntas-frecuentes"
                         style={{
                             backgroundColor: '#f27b13',
                             color: 'white',
