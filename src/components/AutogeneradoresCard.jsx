@@ -11,12 +11,12 @@ export default function AutogeneradoresCard() {
   const opciones = [
     { 
       nombre: "SOLICITUDES AGPE-AGGE-GD", 
-      descripcion: "Sistema de facturación eléctrica", 
-      url: "http://200.21.4.66:8070/ehfact2/" 
+      descripcion: "Solicitudes de autogeneración y generación distribuidas en el marco de la resolución CREG 174.", 
+      url: "http://35.184.36.98/solicitante/" 
     },
     { 
       nombre: "Conexiones", 
-      descripcion: "conexiones", 
+      descripcion: "Solicitudes de carga, en el marco de la resolución CREG 075 de 2021 para proyectos clase 2.", 
       url: "https://enlinea.electrohuila.com.co/home/" 
     }
   ];
@@ -38,7 +38,7 @@ export default function AutogeneradoresCard() {
         />
       </div>
       <h3>Nuevas Conexiones</h3>
-      <p>Permiten al usuario gestionar de una manera eficiente los objetivos.</p>
+      <p>Solicitudes de carga y autogeneración según resoluciones CREG 075 y 174.</p>
       
       <button 
         onClick={() => setShowOptions(!showOptions)}
