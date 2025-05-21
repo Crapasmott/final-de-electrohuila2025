@@ -599,7 +599,7 @@ const Home: React.FC = () => {
 
           <RevealElement direction="bottom" delay={0.3}>
             <div className="gallery-footer">
-              <Link href="https://www.youtube.com/channel/UCr9_1fQlpJnwJBXwrRjI1-Q" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.youtube.com/@ElectrificadoraDelHuila" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
                 Ver Todos los Videos
               </Link>
             </div>
