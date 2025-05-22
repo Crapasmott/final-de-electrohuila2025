@@ -2076,3 +2076,340 @@ footer {
   /* Esta línea elimina la línea azul al comentar o eliminar el content */
   content: none; /* Esto quita la línea azul */
 }
+/* Estilos para los botones del hero */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Estilos responsivos para los botones */
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* Asegurar que ambos botones tengan el mismo tamaño */
+.hero-buttons .btn {
+  min-width: 180px;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Estilos para el botón primario */
+.hero-buttons .btn-primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+}
+
+.hero-buttons .btn-primary:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+}
+
+/* Estilos para el botón secundario */
+.hero-buttons .btn-secondary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+}
+
+.hero-buttons .btn-secondary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Alternativa: botón secundario con borde */
+.hero-buttons .btn-outline {
+  background: transparent;
+  color: #10b981;
+  border: 2px solid #10b981;
+}
+
+.hero-buttons .btn-outline:hover {
+  background: #10b981;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+}
+/* =================================================
+   ESTILOS PARA SUBMENÚ DE NUEVAS CONEXIONES
+   Agregar al final del archivo globals.css
+   ================================================= */
+
+/* Estilos para la tarjeta con submenú de Nuevas Conexiones */
+.connections-card {
+  position: relative;
+}
+
+.connections-button-container {
+  position: relative;
+  width: 100%;
+}
+
+.connections-main-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  background-color: #203461;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.connections-main-btn:hover {
+  background-color: #1797D5;
+  transform: translateY(-1px);
+}
+
+.dropdown-icon {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+/* Submenú desplegable */
+.connections-submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e5e7eb;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  animation: slideDown 0.3s ease forwards;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.submenu-header {
+  padding: 1rem 1.25rem 0.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  background: #f9fafb;
+}
+
+.submenu-header h4 {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.submenu-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  color: #374151;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f3f4f6;
+  background: white;
+}
+
+.submenu-item:hover {
+  background: #f8fafc;
+  color: #203461;
+  transform: translateX(4px);
+}
+
+.submenu-item:last-child {
+  border-bottom: none;
+}
+
+.submenu-icon {
+  font-size: 1.25rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.submenu-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.submenu-title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: inherit;
+}
+
+.submenu-description {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.3;
+}
+
+.submenu-arrow {
+  color: #9ca3af;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.submenu-item:hover .submenu-arrow {
+  color: #203461;
+  transform: translateX(2px);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .connections-submenu {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px 20px 0 0;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    margin-top: 0;
+  }
+
+  @keyframes slideDown {
+    to {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  .submenu-item {
+    padding: 1.25rem;
+  }
+
+  .submenu-icon {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .submenu-title {
+    font-size: 1rem;
+  }
+
+  .submenu-description {
+    font-size: 0.875rem;
+  }
+}
+
+/* Overlay para móviles */
+@media (max-width: 768px) {
+  .connections-submenu::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* Mejorar z-index para asegurar que aparezca sobre otros elementos */
+.connections-card {
+  z-index: 10;
+}
+
+.connections-submenu {
+  z-index: 1001;
+}
+
+/* Estilo para cuando el menú está abierto */
+.connections-main-btn[aria-expanded="true"] {
+  background: #1797D5;
+}
+
+/* Ajustes adicionales para integrar con el estilo existente */
+.quick-card.connections-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quick-card.connections-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Asegurar que el submenú aparezca correctamente en el contexto de la grid */
+.quick-access-cards .connections-card {
+  position: relative;
+  overflow: visible;
+}
+
+/* Animación de entrada para el submenú */
+.connections-submenu.show {
+  animation: slideDownShow 0.3s ease forwards;
+}
+
+@keyframes slideDownShow {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}

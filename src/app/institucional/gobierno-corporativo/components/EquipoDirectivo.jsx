@@ -9,11 +9,7 @@ const EquipoDirectivo = () => {
       cargo: 'Gerente General (E)',
       imagen: '/images/directivos/Dra-nika-768x768.jpg.webp'
     },
-    {
-      nombre: 'Luis Alfredo Carballo Gutiérrez',
-      cargo: 'Secretario General (E) Y Asesor Legal',
-      imagen: '/images/directivos/luis-carballo-768x768.jpg.webp'
-    },
+    
     {
       nombre: 'Sebastián Andrés Repiso Ramón',
       cargo: 'Subgerente Administrativo y Financiero (E)',
@@ -28,6 +24,11 @@ const EquipoDirectivo = () => {
       nombre: 'Alberto Bladimir Solis Perdomo',
       cargo: 'Subgerente de Distribución (E)',
       imagen: '/images/directivos/Sin-titulo-2-v3-768x768.jpg.webp'
+    },
+    {
+      nombre: 'Luis Alfredo Carballo Gutiérrez',
+      cargo: 'Secretario General (E) Y Asesor Legal',
+      imagen: '/images/directivos/luis-carballo-768x768.jpg.webp'
     }
   ];
 

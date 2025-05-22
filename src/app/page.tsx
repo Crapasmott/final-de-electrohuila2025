@@ -8,7 +8,6 @@ import ChatOption from '../components/ChatOption';
 import styles from '../styles/Home.module.css';
 import { getYouTubeVideosSimple } from '../lib/youtubeService';
 import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton';
-import FloatingAutogeneradorButton from '@/components/FloatingAutogeneradorButton';
 
 // Definición de interfaces para TypeScript
 interface VideoData {
@@ -474,23 +473,23 @@ const Home: React.FC = () => {
     {
       img: "/images/mantenimiento.jpg",
       alt: "Noticia 1",
-      date: "20 de Febrero, 2025",
-      title: "Mantenimiento programado en sector norte",
-      description: "Se realizará mantenimiento preventivo en redes del sector norte. Conozca los horarios y zonas afectadas."
+      date: "15 de Mayo, 2025",
+      title: "Rendición de Cuentas de la vigencia 2024",
+      description: "La Gerente de ElectroHuila Dra. Nika D. Cuellar invita a la Rendición de Cuentas 2024 de ElectroHuila. ¡Acompáñanos!."
     },
     {
       img: "/images/factura.jpg",
       alt: "Noticia 2",
-      date: "15 de Febrero, 2025",
-      title: "Nuevo sistema de facturación digital",
-      description: "Implementamos un nuevo sistema de facturación digital para mejorar la experiencia de nuestros usuarios."
+      date: "19 de Mayo, 2025",
+      title: "Entrenamiento de brigadas",
+      description: "Entrenamiento de brigadas para reforzar respuesta ante emergencias con bomberos expertos."
     },
     {
       img: "/images/energia-reno.jpg",
       alt: "Noticia 3",
-      date: "10 de Febrero, 2025",
-      title: "Programa de energías renovables",
-      description: "Conoce nuestro nuevo programa de implementación de energías renovables para el departamento."
+      date: "21 de Mayo, 2025",
+      title: "Jornada de vacunación",
+      description: "Participa en la jornada de vacunación y protege tu salud y la de tu familia. ¡Vacunarse es un acto de amor y prevención!."
     }
   ];
 
@@ -506,7 +505,14 @@ const Home: React.FC = () => {
             <p>Brindamos energía para el desarrollo de nuestra región con calidad, sostenibilidad y compromiso social.</p>
           </RevealElement>
           <RevealElement direction="bottom" delay={0.4}>
-            <Link href="https://enlinea.electrohuila.com.co/generate-invoice/" className="btn btn-primary">Consultar Factura</Link>
+            <div className="hero-buttons">
+              <Link href="https://enlinea.electrohuila.com.co/generate-invoice/" className="btn btn-primary">
+                Consultar Factura
+              </Link>
+              <Link href="http://200.21.4.66:8070/ehfact2/" className="btn btn-secondary">
+                Autogeneradores
+              </Link>
+            </div>
           </RevealElement>
         </div>
       </section>
@@ -707,7 +713,6 @@ const Home: React.FC = () => {
 
       {/* Botón flotante de WhatsApp */}
       <FloatingWhatsAppButton />
-      <FloatingAutogeneradorButton/>
     </>
   );
 };
