@@ -9,7 +9,7 @@ const ElectroHuilaKidsButton = () => {
   const handleClick = () => {
     setIsClicked(true);
     setTimeout(() => setIsClicked(false), 300);
-    window.open('https://web-kids.vercel.app/', '_blank', 'noopener,noreferrer');
+    window.open('https://energikids.vercel.app/', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -91,7 +91,8 @@ const ElectroHuilaKidsButton = () => {
               onError={(e) => {
                 // Fallback si no encuentra la imagen
                 e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling.style.display = 'block';
+                const next = e.currentTarget.nextElementSibling as HTMLElement | null;
+                if (next) next.style.display = 'block';
               }}
             />
             
