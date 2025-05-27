@@ -33,7 +33,7 @@ const ElectroHuilaKidsButton = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleClick}
-        aria-label="Ir a ElectroHuila KIDS - Plataforma educativa"
+        aria-label="Ir a KIDS - Plataforma educativa"
       >
         {/* Efecto de brillo animado */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out animate-shimmer"></div>
@@ -111,10 +111,8 @@ const ElectroHuilaKidsButton = () => {
             )}
           </div>
           
-          <span className="font-extrabold tracking-wide text-xs md:text-base leading-tight">
-            ElectroHuila
-            <br className="md:hidden" />
-            <span className="text-yellow-300"> KIDS</span>
+          <span className="font-extrabold tracking-wide text-lg md:text-xl leading-tight text-yellow-300">
+            KIDS
           </span>
           
           {/* Icono de estrella parpadeante - Solo en desktop */}
