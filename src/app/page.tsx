@@ -8,6 +8,7 @@ import ChatOption from '../components/ChatOption';
 import styles from '../styles/Home.module.css';
 import { getYouTubeVideosSimple } from '../lib/youtubeService';
 import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton';
+import ElectroHuilaKidsButton from '../components/ElectroHuilaKidsButton';
 
 // Definición de interfaces para TypeScript
 interface VideoData {
@@ -492,6 +493,34 @@ const Home: React.FC = () => {
       description: "Participa en la jornada de vacunación y protege tu salud y la de tu familia. ¡Vacunarse es un acto de amor y prevención!."
     }
   ];
+const FloatingKidsButtonInline = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible) return null;
+
+  return (
+    <div style={{
+      position: 'fixed',
+      bottom: '120px',
+      left: '20px',
+      zIndex: 1000,
+      background: 'linear-gradient(135deg, #ff6b9d, #4ecdc4, #f9ca24)',
+      border: 'none',
+      borderRadius: '50px',
+      padding: '15px 20px',
+      cursor: 'pointer',
+      color: 'white',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      boxShadow: '0 10px 30px rgba(255, 107, 157, 0.4)',
+      minWidth: '180px'
+    }}
+    onClick={() => window.location.href = '/electrohuila-kids'}
+    >
+      ⚡ ElectroHuila KIDS 🚀
+    </div>
+  );
+};
 
   return (
     <>
@@ -713,6 +742,9 @@ const Home: React.FC = () => {
 
       {/* Botón flotante de WhatsApp */}
       <FloatingWhatsAppButton />
+        <ElectroHuilaKidsButton />
+      {/* Botón flotante ElectroHuila Kids - Simple */}
+
     </>
   );
 };
