@@ -9,6 +9,7 @@ import styles from '../styles/Home.module.css';
 import { getYouTubeVideosSimple } from '../lib/youtubeService';
 import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton';
 import ElectroHuilaKidsButton from '../components/ElectroHuilaKidsButton';
+import NewsNotification from '../components/NewsNotification';
 
 // Definición de interfaces para TypeScript
 interface VideoData {
@@ -168,7 +169,7 @@ const RevealElement: React.FC<RevealElementProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
+const [showNewsNotification, setShowNewsNotification] = useState(true);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -301,21 +302,23 @@ interface NewsItem {
 }
 
 const Home: React.FC = () => {
-  // Estados para el modal de video
-  const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalRef = useRef<HTMLDivElement>(null);
-  
-  // Estados para controlar la visibilidad del botón de pago
-  const [showPaymentButton, setShowPaymentButton] = useState(true);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
-  
-  // Estado para videos de YouTube
-  const [videos, setVideos] = useState<VideoData[]>([]);
-  const [isLoadingVideos, setIsLoadingVideos] = useState(true);
-  const [videoError, setVideoError] = useState<string | null>(null);
-  
+ // Estados para el modal de video
+const [selectedVideo, setSelectedVideo] = useState<VideoData | null>(null);
+const [isModalOpen, setIsModalOpen] = useState(false);
+const modalRef = useRef<HTMLDivElement>(null);
+
+// Estados para controlar la visibilidad del botón de pago
+const [showPaymentButton, setShowPaymentButton] = useState(true);
+const [isScrolling, setIsScrolling] = useState(false);
+const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
+// Estado para videos de YouTube
+const [videos, setVideos] = useState<VideoData[]>([]);
+const [isLoadingVideos, setIsLoadingVideos] = useState(true);
+const [videoError, setVideoError] = useState<string | null>(null);
+
+// AGREGAR ESTA LÍNEA:
+const [showNewsNotification, setShowNewsNotification] = useState(true);
   // Cargar videos al inicio
   useEffect(() => {
     const loadVideos = async () => {
@@ -743,8 +746,21 @@ const FloatingKidsButtonInline = () => {
       {/* Botón flotante de WhatsApp */}
       <FloatingWhatsAppButton />
         <ElectroHuilaKidsButton />
-      {/* Botón flotante ElectroHuila Kids - Simple */}
-
+      {/* NUEVA: Notificación de noticias */}
+{/* NUEVA: Notificación de noticias profesional */}
+      {/* NUEVA: Notificación de noticias profesional */}
+      <NewsNotification
+        image="/images/mantenimiento.jpg" // Cambia por tu imagen
+        title="Rendición de Cuentas 2024 - ElectroHuila"
+        description="La Gerente de ElectroHuila Dra. Nika D. Cuellar invita a la Rendición de Cuentas 2024. Conoce nuestros logros y proyecciones."
+        link="https://electrohuila.com.co/rendicion-cuentas-2024"
+        buttonText="Ver detalles"
+        category="Evento Importante"
+        autoHide={true}
+        duration={10000} // 10 segundos
+        isVisible={showNewsNotification}
+        onClose={() => setShowNewsNotification(false)}
+      />
     </>
   );
 };

@@ -2413,3 +2413,61 @@ footer {
     transform: translateY(0);
   }
 }
+/* Estilos adicionales para mejorar la integración de las notificaciones */
+
+/* Asegurar que las notificaciones no interfieran con otros elementos flotantes */
+.floating-payment-button {
+  z-index: 9998; /* Un nivel menor que las notificaciones */
+}
+
+.floating-whatsapp-button {
+  z-index: 9998;
+}
+
+/* Mejorar la responsividad en dispositivos móviles */
+@media (max-width: 768px) {
+  /* Ajustar posición de botones flotantes cuando hay notificación */
+  .news-notification + .floating-payment-button,
+  .floating-payment-button {
+    bottom: 140px; /* Subir un poco para evitar solapamiento */
+  }
+}
+
+/* Animación adicional para entrada suave */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+/* Efecto de hover mejorado para toda la tarjeta */
+.news-notification {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Mejoras para accesibilidad */
+.news-notification:focus {
+  outline: 3px solid #00a651;
+  outline-offset: 2px;
+}
+
+.close-button:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.action-button:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Prevenir problemas con z-index en Safari */
+.news-notification {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
