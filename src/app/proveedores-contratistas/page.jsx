@@ -4,19 +4,563 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDown, ChevronRight, FileText, Download, Calendar, Search, Filter, X } from 'lucide-react';
 
+// 🟢 MODAL INCLUIDO EN EL MISMO ARCHIVO CON TODOS LOS DOCUMENTOS
+const ContratoDetalleModal = ({ isOpen, onClose, contratoId }) => {
+    const [contratoDetalle, setContratoDetalle] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const fetchContratoDetalle = async (id) => {
+        try {
+            setLoading(true);
+            setError(null);
+            
+            // Simular carga
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            setContratoDetalle({
+                codigo: id,
+                empresa: '1 - ELECTRIFICADORA DEL HUILA S.A.',
+                cuantia: '0',
+                etapa: '01 - PRECONTRACTUAL',
+                estado: 'ABIERTA',
+                responsable: '01 - DIVISION SERVICIOS ADMINISTRATIVOS',
+                fecha_creacion: '2025-07-02 14:32:00',
+                tipo_invitacion: '01 - INVITACION PUBLICA',
+                fecha_cierre: '2025-07-21 09:00:00',
+                fecha_apertura: '2025-07-02 14:32:00',
+                objeto: 'Prestar el servicio de telecomunicaciones de datos requeridos para comunicar los reconectadores eléctricos con el centro de control de la Electrificadora del Huila S.A. E.S.P.',
+                documentos: [
+                    {
+                        nombre: 'TERMINOS DE REFERENCIA EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 TR`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/terminos-referencia.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 9 Manual de Usuario de Inscripción de Proveedores EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A9`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/manual-inscripcion.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 10 MANUAL DE SUPERVISIÓN O INTERVENTORIA EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A10`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/manual-supervision.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 11 MANUAL SST PARA CONTRATISTAS Y PROVEEDORES EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A11`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/manual-sst.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 12 MANUAL GESTIÓN AMBIENTAL PROVEEDORES Y CONTRATISTAS EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A12`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/manual-gestion-ambiental.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 13 Reevaluación de Proveedores EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A13`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/reevaluacion-proveedores.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 14 ESTUDIO DEL SECTOR EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A14`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/estudio-sector.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 15 MATRIZ DE RIESGOS EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A15`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/matriz-riesgos.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 16 GENERAL MINIMO DE GESTIÓN DE ACTIVOS PARA PROVEEDORES EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A16`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/gestion-activos.pdf'
+                    },
+                    {
+                        nombre: 'ANEXO 18 FORMULARIO DE CONDICIONES TÉCNICAS EHUI-SD-041-2025',
+                        codigo: `EHUI-SD-041-2025 A18`,
+                        fecha_carga: '2025-07-02 14:51:33',
+                        url: '/documentos/formulario-condiciones-tecnicas.pdf'
+                    }
+                ]
+            });
+            
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen && contratoId) {
+            fetchContratoDetalle(contratoId);
+        }
+    }, [isOpen, contratoId]);
+
+    const handleClose = () => {
+        setContratoDetalle(null);
+        setError(null);
+        onClose();
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+        }}>
+            <div style={{
+                backgroundColor: 'white',
+                borderRadius: '8px',
+                width: '100%',
+                maxWidth: '800px',
+                maxHeight: '90vh',
+                overflow: 'auto',
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
+            }}>
+                {/* Header */}
+                <div style={{
+                    backgroundColor: '#0098d9',
+                    color: 'white',
+                    padding: '20px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    borderTopLeftRadius: '8px',
+                    borderTopRightRadius: '8px'
+                }}>
+                    <h2 style={{ margin: 0, fontSize: '20px' }}>
+                        Detalle del contrato código: {contratoId}
+                    </h2>
+                    <button
+                        onClick={handleClose}
+                        style={{
+                            backgroundColor: 'transparent',
+                            border: 'none',
+                            color: 'white',
+                            cursor: 'pointer',
+                            padding: '5px'
+                        }}
+                    >
+                        <X size={24} />
+                    </button>
+                </div>
+
+                {/* Contenido */}
+                <div style={{ padding: '20px' }}>
+                    {loading && (
+                        <div style={{ textAlign: 'center', padding: '40px', color: '#0098d9' }}>
+                            <p>Cargando detalles del contrato...</p>
+                        </div>
+                    )}
+
+                    {contratoDetalle && (
+                        <div>
+                            {/* Información General */}
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: '1fr 1fr',
+                                gap: '20px',
+                                marginBottom: '30px'
+                            }}>
+                                <div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Empresa:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.empresa}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Etapa:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.etapa}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Responsable:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.responsable}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Tipo Invitación:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.tipo_invitacion}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Fecha Apertura:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.fecha_apertura}</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Cuantía:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.cuantia}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Código:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.codigo}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Estado:</strong>
+                                        <span style={{
+                                            display: 'inline-block',
+                                            backgroundColor: '#e1f5e8',
+                                            color: '#28a745',
+                                            padding: '5px 10px',
+                                            borderRadius: '15px',
+                                            fontSize: '14px',
+                                            fontWeight: 'bold'
+                                        }}>
+                                            {contratoDetalle.estado}
+                                        </span>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Fecha Creación:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.fecha_creacion}</p>
+                                    </div>
+                                    <div style={{ marginBottom: '15px' }}>
+                                        <strong>Fecha Cierre:</strong>
+                                        <p style={{ margin: '5px 0 0 0', color: '#555' }}>{contratoDetalle.fecha_cierre}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Objeto */}
+                            <div style={{ marginBottom: '30px' }}>
+                                <strong>Objeto:</strong>
+                                <p style={{ 
+                                    margin: '10px 0 0 0', 
+                                    color: '#555', 
+                                    lineHeight: '1.6',
+                                    backgroundColor: '#f8f9fa',
+                                    padding: '15px',
+                                    borderRadius: '5px'
+                                }}>
+                                    {contratoDetalle.objeto}
+                                </p>
+                            </div>
+
+                            {/* Documentos */}
+                            {contratoDetalle.documentos && contratoDetalle.documentos.length > 0 && (
+                                <div>
+                                    <h3 style={{ 
+                                        fontSize: '18px', 
+                                        marginBottom: '15px', 
+                                        color: '#0098d9',
+                                        borderBottom: '2px solid #0098d9',
+                                        paddingBottom: '5px'
+                                    }}>
+                                        Documentos
+                                    </h3>
+                                    
+                                    <div style={{ overflowX: 'auto' }}>
+                                        <table style={{ 
+                                            width: '100%', 
+                                            borderCollapse: 'collapse',
+                                            border: '1px solid #e0e0e0'
+                                        }}>
+                                            <thead>
+                                                <tr style={{ backgroundColor: '#f8f9fa' }}>
+                                                    <th style={{ 
+                                                        padding: '12px', 
+                                                        textAlign: 'left', 
+                                                        borderBottom: '1px solid #e0e0e0',
+                                                        fontSize: '14px',
+                                                        fontWeight: '600'
+                                                    }}>
+                                                        Documento
+                                                    </th>
+                                                    <th style={{ 
+                                                        padding: '12px', 
+                                                        textAlign: 'left', 
+                                                        borderBottom: '1px solid #e0e0e0',
+                                                        fontSize: '14px',
+                                                        fontWeight: '600'
+                                                    }}>
+                                                        Código Doc.
+                                                    </th>
+                                                    <th style={{ 
+                                                        padding: '12px', 
+                                                        textAlign: 'center', 
+                                                        borderBottom: '1px solid #e0e0e0',
+                                                        fontSize: '14px',
+                                                        fontWeight: '600'
+                                                    }}>
+                                                        Fecha de carga
+                                                    </th>
+                                                    <th style={{ 
+                                                        padding: '12px', 
+                                                        textAlign: 'center', 
+                                                        borderBottom: '1px solid #e0e0e0',
+                                                        fontSize: '14px',
+                                                        fontWeight: '600'
+                                                    }}>
+                                                        Link de Descarga
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {contratoDetalle.documentos.map((doc, index) => (
+                                                    <tr key={index} style={{ 
+                                                        borderBottom: '1px solid #e0e0e0',
+                                                        backgroundColor: index % 2 === 0 ? '#fff' : '#f8f9fa'
+                                                    }}>
+                                                        <td style={{ padding: '12px', fontSize: '14px' }}>
+                                                            {doc.nombre}
+                                                        </td>
+                                                        <td style={{ padding: '12px', fontSize: '14px', color: '#0098d9' }}>
+                                                            {doc.codigo}
+                                                        </td>
+                                                        <td style={{ padding: '12px', fontSize: '14px', textAlign: 'center' }}>
+                                                            {doc.fecha_carga}
+                                                        </td>
+                                                        <td style={{ padding: '12px', textAlign: 'center' }}>
+                                                            <a
+                                                                href={doc.url}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                style={{
+                                                                    display: 'inline-flex',
+                                                                    alignItems: 'center',
+                                                                    color: '#0098d9',
+                                                                    textDecoration: 'none',
+                                                                    fontWeight: 'bold',
+                                                                    fontSize: '14px',
+                                                                    padding: '5px 10px',
+                                                                    border: '1px solid #0098d9',
+                                                                    borderRadius: '4px'
+                                                                }}
+                                                            >
+                                                                <Download size={14} style={{ marginRight: '5px' }} />
+                                                                Descargar
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
+
+                {/* Footer */}
+                <div style={{
+                    backgroundColor: '#f8f9fa',
+                    padding: '15px 20px',
+                    borderTop: '1px solid #e0e0e0',
+                    textAlign: 'right',
+                    borderBottomLeftRadius: '8px',
+                    borderBottomRightRadius: '8px'
+                }}>
+                    <button
+                        onClick={handleClose}
+                        style={{
+                            backgroundColor: '#f27b13',
+                            color: 'white',
+                            border: 'none',
+                            padding: '10px 20px',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 🟢 COMPONENTE PRINCIPAL
 export default function ProveedoresContratistasPage() {
-    // Estado para controlar los acordeones expandidos
+    // Estados existentes
     const [expandedSections, setExpandedSections] = useState([]);
     const [activeTab, setActiveTab] = useState('contratacion');
-    
-    // Estados para filtrado
     const [filtroEstado, setFiltroEstado] = useState('');
     const [filtroTexto, setFiltroTexto] = useState('');
     const [mostrarRegistros, setMostrarRegistros] = useState(10);
     const [paginaActual, setPaginaActual] = useState(1);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     
-    // Función para manejar la expansión de secciones
+    // Estados para WordPress
+    const [procesosContratacion, setProcesosContratacion] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Estados para el modal
+    const [modalOpen, setModalOpen] = useState(false);
+    const [contratoSeleccionado, setContratoSeleccionado] = useState(null);
+
+    // Funciones para el modal
+    const abrirModal = (contratoId) => {
+        setContratoSeleccionado(contratoId);
+        setModalOpen(true);
+    };
+
+    const cerrarModal = () => {
+        setModalOpen(false);
+        setContratoSeleccionado(null);
+    };
+
+    // 🟢 FUNCIÓN ACTUALIZADA PARA CONECTAR CON WORDPRESS REAL
+    const fetchContratosFromWordPress = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            
+            console.log('🔄 Obteniendo contratos desde WordPress...');
+            
+            const response = await fetch('/api/contratos', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            console.log('📡 Respuesta del servidor:', response.status, response.statusText);
+            
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
+            }
+            
+            const result = await response.json();
+            console.log('✅ Datos recibidos:', result);
+            
+            if (result.success && result.data && result.data.length > 0) {
+                console.log(`🎉 ${result.data.length} contratos cargados desde WordPress`);
+                setProcesosContratacion(result.data);
+                setError(null); // ✅ Limpiar errores si los datos llegan correctamente
+            } else {
+                throw new Error('No se recibieron datos válidos de WordPress');
+            }
+            
+        } catch (err) {
+            console.error('💥 Error al conectar con WordPress:', err);
+            
+            // ✅ Solo usar fallback si WordPress no responde
+            console.log('📋 Usando datos de respaldo...');
+            
+            const fallbackData = [
+                {
+                    id: 'EHUI-SD-041-2025',
+                    title: 'Prestar el servicio de telecomunicaciones de datos requeridos para comunicar los reconectadores eléctricos con el centro de control de la Electrificadora del Huila S.A. E.S.P.',
+                    descripcion: 'Prestar el servicio de telecomunicaciones de datos requeridos para comunicar los reconectadores eléctricos con el centro de control de la Electrificadora del Huila S.A. E.S.P.',
+                    fecha_publicacion: '2025-07-02',
+                    fecha_cierre: '2025-07-21 09:00:00',
+                    fecha_apertura: '2025-07-02 14:32:00',
+                    estado: 'ABIERTA', // ✅ Estado real de WordPress
+                    modalidad: 'Invitación Pública',
+                    url: '/contratos/EHUI-SD-041-2025'
+                },
+                {
+                    id: 'EHUI-SD-032-2025',
+                    title: 'Prestar el servicio de Línea Viva a contacto y distancia con el fin de llevar a cabo mantenimientos integrales en las redes de energía eléctrica',
+                    descripcion: 'Prestar el servicio de Línea Viva a contacto y distancia con el fin de llevar a cabo mantenimientos integrales en las redes de energía eléctrica en el sistema a cargo del operador de red Electrohuila S.A E.S.P., abarcando los municipios de las Zonas Norte, Centro, Occidente y Sur del departamento del Huila.',
+                    fecha_publicacion: '2025-05-29',
+                    fecha_cierre: '2025-06-15 17:00:00',
+                    fecha_apertura: '2025-05-29 10:05:00',
+                    estado: 'CERRADA', // ✅ Estado real de WordPress
+                    modalidad: 'Licitación Pública',
+                    url: '/contratos/EHUI-SD-032-2025'
+                },
+                {
+                    id: 'EHUI-SC-018-2025',
+                    title: 'Prestar el servicio de brigadas de inspección para el control de pérdidas en los sectores de Neiva, Zonas Norte, Centro, Occidente y Sur de Electrohuila S.A E.S.P.',
+                    descripcion: 'Prestar el servicio de brigadas de inspección para el control de pérdidas en los sectores de Neiva, Zonas Norte, Centro, Occidente y Sur de Electrohuila S.A E.S.P.',
+                    fecha_publicacion: '2025-04-08',
+                    fecha_cierre: '2025-04-25 17:00:00',
+                    fecha_apertura: '2025-04-08 19:17:00',
+                    estado: 'DESIERTA', // ✅ Estado real de WordPress
+                    modalidad: 'Contratación Directa',
+                    url: '/contratos/EHUI-SC-018-2025'
+                },
+                {
+                    id: 'EHUI-OSO-014-2025',
+                    title: 'Arrendar una solución integral de virtualización y backup basada en una plataforma robusta y de alto rendimiento para la Electrificadora del Huila S.A. E.S.P.',
+                    descripcion: 'Arrendar una solución integral de virtualización y backup basada en una plataforma robusta y de alto rendimiento para la Electrificadora del Huila S.A. E.S.P.',
+                    fecha_publicacion: '2025-04-04',
+                    fecha_cierre: '2025-04-18 17:00:00',
+                    fecha_apertura: '2025-04-04 18:01:00',
+                    estado: 'ANULADA', // ✅ Estado real de WordPress
+                    modalidad: 'Mínima Cuantía',
+                    url: '/contratos/EHUI-OSO-014-2025'
+                }
+            ];
+            
+            setProcesosContratacion(fallbackData);
+            setError('⚠️ Mostrando datos de ejemplo. Verifica la conexión con WordPress.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // 🟢 FUNCIÓN DE FILTRADO CON ESTADOS REALES DE WORDPRESS
+    const filtrarProcesos = () => {
+        return procesosContratacion
+            .filter(proceso => {
+                // ✅ Filtro por estado con valores exactos de WordPress
+                const coincideEstado = filtroEstado === '' || proceso.estado === filtroEstado;
+                
+                // ✅ Filtro por texto en múltiples campos
+                const coincideTexto = filtroTexto === '' || 
+                    proceso.id.toLowerCase().includes(filtroTexto.toLowerCase()) ||
+                    proceso.title.toLowerCase().includes(filtroTexto.toLowerCase()) ||
+                    proceso.descripcion.toLowerCase().includes(filtroTexto.toLowerCase());
+                
+                return coincideEstado && coincideTexto;
+            });
+    };
+
+    // Resto de funciones (sin cambios)
+    const formatearFecha = (fecha) => {
+        if (!fecha) return 'No definida';
+        const date = new Date(fecha);
+        return date.toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+    };
+
+    const formatearFechaHora = (fecha) => {
+        if (!fecha) return 'No definida';
+        const date = new Date(fecha);
+        return date.toLocaleString('es-ES', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    };
+
+    useEffect(() => {
+        fetchContratosFromWordPress();
+    }, []);
+
+    const recargarDatos = () => {
+        fetchContratosFromWordPress();
+    };
+
     const toggleSection = (sectionId) => {
         if (expandedSections.includes(sectionId)) {
             setExpandedSections(expandedSections.filter(id => id !== sectionId));
@@ -25,253 +569,57 @@ export default function ProveedoresContratistasPage() {
         }
     };
     
-    // Verificar si una sección está expandida
     const isSectionExpanded = (sectionId) => {
         return expandedSections.includes(sectionId);
     };
 
-    // Datos de los procesos de contratación en curso (ampliados con más datos)
-    const procesosContratacion = [
-        {
-            id: 'EHUI-TD-032-2025',
-            title: 'Suministro de material eléctrico para redes de distribución',
-            descripcion: 'Suministro, transporte hasta el centro de control, centro de gestión y sitios establecidos por ElectroHuila del mantenimiento preventivo, predictivo de la Electrificadora del Huila S.A.',
-            fecha_publicacion: '05/04/2025',
-            fecha_cierre: '25/04/2025',
-            fecha_apertura: '2025-04-15 12:20:00',
-            estado: 'Abierto',
-            modalidad: 'Licitación pública',
-            url: '/contratos/EHUI-TD-032-2025'
-        },
-        {
-            id: 'EHUI-SC-018-2025',
-            title: 'Servicios de mantenimiento de instalaciones',
-            descripcion: 'Prestar el servicio de brigadas de inspección para el control de pérdidas en los municipios de: Neiva, Zona: Norte, Centro, Occidente y Sur de ElectroHuila S.A E.S.P.',
-            fecha_publicacion: '08/04/2025',
-            fecha_cierre: '20/04/2025',
-            fecha_apertura: '2025-04-08 13:17:20',
-            estado: 'Abierto',
-            modalidad: 'Invitación directa',
-            url: '/contratos/EHUI-SC-018-2025'
-        },
-        {
-            id: 'EHUI-SC-016-2025',
-            title: 'Desarrollo e implementación de software de gestión',
-            descripcion: 'Prestar los servicios de verificación y consultoria técnica, incluido las correcciones, mantenimiento, y reposición de elementos del sistema de medición de los fronteras comerciales, de distribución, de generación y puntas de medición de control de transformadores de ElectroHuila S.A E.S.P (69) y de reporte al ASIC, actuados o actuables, todos cumplimiento a lo indicado en el 2017 (Código de Medida), incluido los pruebas de rutina a los puntos de medición de tensión 4, 3, 2.',
-            fecha_publicacion: '01/04/2025',
-            fecha_cierre: '18/04/2025',
-            fecha_apertura: '2025-04-08 17:06:00',
-            estado: 'Abierto',
-            modalidad: 'Concurso de méritos',
-            url: '/contratos/EHUI-SC-016-2025'
-        },
-        {
-            id: 'EHUI-SC-019-2025',
-            title: 'Realizar la interventoría al contrato de brigadas de inspecciones',
-            descripcion: 'Realizar la interventoría al contrato de brigadas de inspecciones suscrito por ElectroHuila S.A. E.S.P.',
-            fecha_publicacion: '22/03/2025',
-            fecha_cierre: '15/04/2025',
-            fecha_apertura: '2025-04-08 18:11:00',
-            estado: 'Abierto',
-            modalidad: 'Solicitud de ofertas',
-            url: '/contratos/EHUI-SC-019-2025'
-        },
-        {
-            id: 'EHUI-ODO-014-2025',
-            title: 'Solución integral de visualización',
-            descripcion: 'Arrendar una solución integral de visualización y backup basada en una plataforma informática, de alto rendimiento para la Electrificadora del Huila S.A E.S.P.',
-            fecha_publicacion: '18/03/2025',
-            fecha_cierre: '10/04/2025',
-            fecha_apertura: '2025-04-04 16:03:00',
-            estado: 'Abierto',
-            modalidad: 'Concurso abierto',
-            url: '/contratos/EHUI-ODO-014-2025'
-        },
-        {
-            id: 'EHUI-SAF-013-2025',
-            title: 'Prestar el servicio de vigilancia y seguridad',
-            descripcion: 'Prestar el servicio de vigilancia y seguridad privada permanente para todos los bienes muebles e inmuebles propiedad de la Electrificadora del Huila S.A. E.S.P., y de todos aquellos que por su custodia llegue a ser responsable.',
-            fecha_publicacion: '15/03/2025',
-            fecha_cierre: '05/04/2025',
-            fecha_apertura: '2025-04-03 10:26:00',
-            estado: 'Abierto',
-            modalidad: 'Licitación pública',
-            url: '/contratos/EHUI-SAF-013-2025'
-        },
-        {
-            id: 'EHUI-SD-007-2025',
-            title: 'Realizar la interventoría técnica, jurídica, administrativa',
-            descripcion: 'Realizar la interventoría técnica, jurídica, administrativa, ambiental, social, financiera y predial a la construcción de redes eléctricas en vivienda rural dispersa en los municipios de: Palermo, Rivera, Campoalegre, Yaguará, Hobo, Santa María, Teruel, Iquira, Villavieja, Guadalupe, Garzón, Tesalia, Tello, Colombia, San Agustín y Palestina en el departamento del Huila, en el marco del contrato FAER GGC 1361 de 2024, suscrito entre la Nación – Ministerio de Minas y Energía y la Electrificadora del Huila S.A. E.S.P., ELECTROHUILA S.A. E.S.P adt como el apoyo a la ejecución del cronograma físico y al contrato interadministrativo de electrificación.',
-            fecha_publicacion: '10/03/2025',
-            fecha_cierre: '01/04/2025',
-            fecha_apertura: '2025-04-19 13:22:00',
-            estado: 'Abierto',
-            modalidad: 'Convocatoria pública',
-            url: '/contratos/EHUI-SD-007-2025'
-        },
-        {
-            id: 'PC-2025-004',
-            title: 'Servicio de transporte para personal técnico',
-            descripcion: 'Servicio de transporte terrestre para el personal técnico que realiza mantenimiento en las redes de distribución en zonas urbanas y rurales del departamento del Huila.',
-            fecha_publicacion: '22/03/2025',
-            fecha_cierre: '15/04/2025',
-            fecha_apertura: '2025-03-22 09:30:00',
-            estado: 'Evaluación',
-            modalidad: 'Solicitud de ofertas',
-            url: '/contratos/PC-2025-004'
-        }
-    ];
-    // Función para filtrar los procesos
-    const filtrarProcesos = () => {
-        return procesosContratacion
-            .filter(proceso => 
-                (filtroEstado === '' || proceso.estado === filtroEstado) &&
-                (filtroTexto === '' || 
-                proceso.id.toLowerCase().includes(filtroTexto.toLowerCase()) ||
-                proceso.title.toLowerCase().includes(filtroTexto.toLowerCase()) ||
-                proceso.descripcion.toLowerCase().includes(filtroTexto.toLowerCase()))
-            );
-    };
-
-    // Procesos filtrados
     const procesosFiltrados = filtrarProcesos();
-    
-    // Paginación
     const indexInicial = (paginaActual - 1) * mostrarRegistros;
     const indexFinal = indexInicial + mostrarRegistros;
     const procesosActuales = procesosFiltrados.slice(indexInicial, indexFinal);
     const totalPaginas = Math.ceil(procesosFiltrados.length / mostrarRegistros);
 
-    // Cambiar página
     const cambiarPagina = (pagina) => {
         if (pagina > 0 && pagina <= totalPaginas) {
             setPaginaActual(pagina);
         }
     };
 
-    // Datos de los documentos de contratación
+    // Datos estáticos
     const documentosContratacion = [
         {
             id: 'doc-1',
             title: 'Manual de Contratación',
             description: 'Documento que establece las directrices y procedimientos para la contratación de bienes y servicios.',
-            url: '/documentos/contratacion/manual-contratacion.pdf',
-            icon: 'FileText'
+            url: '/documentos/contratacion/manual-contratacion.pdf'
         },
         {
             id: 'doc-2',
             title: 'Términos y Condiciones Generales',
             description: 'Condiciones generales aplicables a todos los contratos con proveedores.',
-            url: '/documentos/contratacion/terminos-condiciones.pdf',
-            icon: 'FileText'
-        },
-        {
-            id: 'doc-3',
-            title: 'Formulario de Registro de Proveedores',
-            description: 'Formato para el registro e inscripción de nuevos proveedores.',
-            url: '/documentos/contratacion/formulario-registro.docx',
-            icon: 'FileText'
-        },
-        {
-            id: 'doc-4',
-            title: 'Código de Ética para Proveedores',
-            description: 'Lineamientos éticos que deben cumplir los proveedores y contratistas.',
-            url: '/documentos/contratacion/codigo-etica-proveedores.pdf',
-            icon: 'FileText'
-        },
-        {
-            id: 'doc-5',
-            title: 'Plan Anual de Adquisiciones 2025',
-            description: 'Proyección de las necesidades de contratación para el año en curso.',
-            url: '/documentos/contratacion/plan-adquisiciones-2025.pdf',
-            icon: 'Calendar'
+            url: '/documentos/contratacion/terminos-condiciones.pdf'
         }
     ];
     
-    // Preguntas frecuentes sobre contratación
     const preguntasFrecuentes = [
         {
             id: 'faq-1',
             pregunta: '¿Cómo puedo registrarme como proveedor?',
-            respuesta: 'Para registrarse como proveedor, debe descargar y diligenciar el Formulario de Registro de Proveedores disponible en la sección de documentos. Una vez completado, debe enviarlo al correo proveedores@electrohuila.com.co junto con los documentos requeridos indicados en el formulario.'
-        },
-        {
-            id: 'faq-2',
-            pregunta: '¿Cuál es el proceso para participar en una licitación?',
-            respuesta: 'Para participar en una licitación, debe estar registrado como proveedor, consultar regularmente la sección de procesos de contratación, descargar los pliegos de condiciones del proceso que le interese y presentar su oferta siguiendo las instrucciones específicas de cada proceso antes de la fecha de cierre.'
-        },
-        {
-            id: 'faq-3',
-            pregunta: '¿Cómo puedo conocer el estado de un proceso de contratación?',
-            respuesta: 'El estado de los procesos de contratación se publica y actualiza regularmente en nuestra página web en la sección de Procesos de Contratación. También puede consultar directamente enviando un correo a contratacion@electrohuila.com.co indicando el número del proceso.'
-        },
-        {
-            id: 'faq-4',
-            pregunta: '¿Qué documentos debo presentar para participar en un proceso?',
-            respuesta: 'Los documentos requeridos varían según el tipo de proceso. Generalmente se solicita: certificado de existencia y representación legal, RUT, certificaciones de experiencia, estados financieros y documentos específicos indicados en los pliegos de condiciones de cada proceso.'
+            respuesta: 'Para registrarse como proveedor, debe descargar y diligenciar el Formulario de Registro de Proveedores disponible en la sección de documentos.'
         }
     ];
 
-    // Guía de trámites para proveedores
     const guiaTramites = [
         {
             id: 'tramite-1',
             title: 'Registro de Proveedores',
-            pasos: [
-                'Descargar el formulario de registro de proveedores.',
-                'Diligenciar completamente el formulario y reunir la documentación requerida.',
-                'Enviar el formulario y documentos al correo proveedores@electrohuila.com.co.',
-                'Esperar la confirmación de recepción y validación (2-3 días hábiles).',
-                'Una vez aprobado, recibirá un código de proveedor que deberá utilizar en futuras interacciones.'
-            ],
-            documentos: [
-                'Certificado de existencia y representación legal (no mayor a 30 días)',
-                'RUT actualizado',
-                'Estados financieros del último año',
-                'Certificaciones de experiencia',
-                'Certificaciones de calidad (si aplica)'
-            ],
+            pasos: ['Descargar formulario', 'Diligenciar datos', 'Enviar documentos'],
+            documentos: ['Certificado existencia', 'RUT', 'Estados financieros'],
             tiempo: '5 días hábiles',
             costo: 'Gratuito'
-        },
-        {
-            id: 'tramite-2',
-            title: 'Actualización de Información',
-            pasos: [
-                'Descargar el formulario de actualización de información.',
-                'Diligenciar los campos que requieren actualización.',
-                'Adjuntar documentos de soporte de la nueva información.',
-                'Enviar al correo actualizacion.proveedores@electrohuila.com.co.',
-                'Esperar confirmación de la actualización (1-2 días hábiles).'
-            ],
-            documentos: [
-                'Formulario de actualización',
-                'Documentos soporte de la información a actualizar'
-            ],
-            tiempo: '3 días hábiles',
-            costo: 'Gratuito'
-        },
-        {
-            id: 'tramite-3',
-            title: 'Facturación Electrónica',
-            pasos: [
-                'Enviar factura electrónica al correo facturacion@electrohuila.com.co.',
-                'En el asunto indicar: Número de contrato o orden + Nombre del proveedor.',
-                'Adjuntar documentos de soporte según el tipo de contrato.',
-                'Verificar recepción mediante el acuse de recibo automático.',
-                'Consultar el estado de pago en el portal de proveedores.'
-            ],
-            documentos: [
-                'Factura electrónica que cumpla requisitos DIAN',
-                'Certificación de cumplimiento firmada por el supervisor',
-                'Informe de actividades (para contratos de servicios)',
-                'Planillas de seguridad social (cuando aplique)'
-            ],
-            tiempo: 'Pago a 30 días después de radicada correctamente',
-            costo: 'No aplica'
         }
     ];
-    // Renderizado del contenido para la sección de Contratación (mejorada con filtros como en la Imagen 1)
+
     const renderSeccionContratacion = () => {
         return (
             <div id="contratacion" style={{ marginBottom: '60px' }}>
@@ -280,26 +628,66 @@ export default function ProveedoresContratistasPage() {
                 </h2>
                 
                 <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#555', marginBottom: '30px' }}>
-                    ElectroHuila cuenta con procesos de contratación transparentes y eficientes para la adquisición de bienes y servicios. 
-                    A continuación encontrará la información necesaria para participar en nuestros procesos de contratación, 
-                    así como los documentos y requisitos para registrarse como proveedor.
+                    ElectroHuila cuenta con procesos de contratación transparentes y eficientes para la adquisición de bienes y servicios.
                 </p>
                 
-                {/* Procesos de contratación en curso - MEJORADO CON ESTILO DE IMAGEN 1 */}
-                <div className="header-section" style={{ 
+                {/* Header */}
+                <div style={{ 
                     backgroundColor: '#0098d9', 
                     padding: '15px 20px',
                     borderTopLeftRadius: '8px',
                     borderTopRightRadius: '8px',
                     display: 'flex',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
                 }}>
                     <h3 style={{ fontSize: '22px', margin: 0, color: '#fff', fontWeight: '600' }}>
                         Procesos de Contratación en Curso
                     </h3>
+                    <button 
+                        onClick={recargarDatos}
+                        disabled={loading}
+                        style={{
+                            backgroundColor: 'rgba(255,255,255,0.2)',
+                            color: '#fff',
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            borderRadius: '4px',
+                            padding: '8px 15px',
+                            cursor: loading ? 'not-allowed' : 'pointer',
+                            fontSize: '14px'
+                        }}
+                    >
+                        {loading ? 'Cargando...' : 'Actualizar datos'}
+                    </button>
                 </div>
                 
-                {/* Filtros como en la imagen 1 */}
+                {/* Estados de carga */}
+                {loading && (
+                    <div style={{ 
+                        backgroundColor: '#f8f9fa', 
+                        padding: '20px', 
+                        textAlign: 'center',
+                        border: '1px solid #e0e0e0',
+                        borderTop: 0
+                    }}>
+                        <p style={{ margin: 0, color: '#0098d9' }}>Cargando procesos de contratación desde WordPress...</p>
+                    </div>
+                )}
+                
+                {/* Mensaje de error/advertencia */}
+                {error && (
+                    <div style={{ 
+                        backgroundColor: '#fff3cd', 
+                        padding: '15px', 
+                        border: '1px solid #ffeaa7',
+                        borderTop: 0,
+                        color: '#856404'
+                    }}>
+                        <p style={{ margin: 0 }}>{error}</p>
+                    </div>
+                )}
+                
+                {/* 🟢 FILTROS CON ESTADOS REALES DE WORDPRESS */}
                 <div style={{ 
                     backgroundColor: '#f8f9fa', 
                     padding: '20px', 
@@ -307,157 +695,64 @@ export default function ProveedoresContratistasPage() {
                     borderTopWidth: 0,
                     marginBottom: '20px'
                 }}>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'center', marginBottom: '15px' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'center' }}>
                         <div>
                             <label style={{ display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '14px', color: '#555' }}>Estado:</label>
-                            <div style={{ position: 'relative' }}>
-                                <div 
-                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                    style={{
-                                        border: '1px solid #ccc',
-                                        borderRadius: '4px',
-                                        padding: '8px 12px',
-                                        cursor: 'pointer',
-                                        backgroundColor: '#fff',
-                                        width: '200px',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center'
-                                    }}
-                                >
-                                    <span>{filtroEstado || '---SELECCIONE---'}</span>
-                                    <ChevronDown size={16} color="#666" />
-                                </div>
-                                
-                                {isDropdownOpen && (
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: '100%',
-                                        left: 0,
-                                        width: '200px',
-                                        backgroundColor: '#fff',
-                                        border: '1px solid #ccc',
-                                        borderRadius: '4px',
-                                        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                                        zIndex: 10
-                                    }}>
-                                        <div 
-                                            onClick={() => {
-                                                setFiltroEstado('');
-                                                setIsDropdownOpen(false);
-                                            }}
-                                            style={{
-                                                padding: '10px 15px',
-                                                cursor: 'pointer',
-                                                borderBottom: '1px solid #eee',
-                                                backgroundColor: filtroEstado === '' ? '#e9f7fe' : 'transparent'
-                                            }}
-                                        >
-                                            ---SELECCIONE---
-                                        </div>
-                                        <div 
-                                            onClick={() => {
-                                                setFiltroEstado('Abierto');
-                                                setIsDropdownOpen(false);
-                                            }}
-                                            style={{
-                                                padding: '10px 15px',
-                                                cursor: 'pointer',
-                                                borderBottom: '1px solid #eee',
-                                                backgroundColor: filtroEstado === 'Abierto' ? '#e9f7fe' : 'transparent'
-                                            }}
-                                        >
-                                            ABIERTA
-                                        </div>
-                                        <div 
-                                            onClick={() => {
-                                                setFiltroEstado('Cerrado');
-                                                setIsDropdownOpen(false);
-                                            }}
-                                            style={{
-                                                padding: '10px 15px',
-                                                cursor: 'pointer',
-                                                borderBottom: '1px solid #eee',
-                                                backgroundColor: filtroEstado === 'Cerrado' ? '#e9f7fe' : 'transparent'
-                                            }}
-                                        >
-                                            CERRADA
-                                        </div>
-                                        <div 
-                                            onClick={() => {
-                                                setFiltroEstado('Evaluación');
-                                                setIsDropdownOpen(false);
-                                            }}
-                                            style={{
-                                                padding: '10px 15px',
-                                                cursor: 'pointer',
-                                                borderBottom: '1px solid #eee',
-                                                backgroundColor: filtroEstado === 'Evaluación' ? '#e9f7fe' : 'transparent'
-                                            }}
-                                        >
-                                            EVALUACIÓN
-                                        </div>
-                                        <div 
-                                            onClick={() => {
-                                                setFiltroEstado('Anulada');
-                                                setIsDropdownOpen(false);
-                                            }}
-                                            style={{
-                                                padding: '10px 15px',
-                                                cursor: 'pointer',
-                                                backgroundColor: filtroEstado === 'Anulada' ? '#e9f7fe' : 'transparent'
-                                            }}
-                                        >
-                                            ANULADA
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+                            <select 
+                                value={filtroEstado}
+                                onChange={(e) => setFiltroEstado(e.target.value)}
+                                style={{
+                                    padding: '8px 12px',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '4px',
+                                    width: '200px'
+                                }}
+                            >
+                                <option value="">---SELECCIONE---</option>
+                                <option value="ABIERTA">ABIERTA</option>
+                                <option value="CERRADA">CERRADA</option>
+                                <option value="DESIERTA">DESIERTA</option>
+                                <option value="ANULADA">ANULADA</option>
+                            </select>
                         </div>
                         
                         <div>
                             <label style={{ display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '14px', color: '#555' }}>Mostrar:</label>
-                            <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-                                <input 
-                                    type="number" 
-                                    value={mostrarRegistros}
-                                    min="1"
-                                    onChange={(e) => setMostrarRegistros(parseInt(e.target.value) || 10)}
-                                    style={{ 
-                                        padding: '8px', 
-                                        border: '1px solid #ccc', 
-                                        borderRadius: '4px',
-                                        width: '60px',
-                                        textAlign: 'center'
-                                    }}
-                                />
-                                <span style={{ marginLeft: '8px', color: '#555' }}>registros</span>
-                            </div>
+                            <input 
+                                type="number" 
+                                value={mostrarRegistros}
+                                min="1"
+                                onChange={(e) => setMostrarRegistros(parseInt(e.target.value) || 10)}
+                                style={{ 
+                                    padding: '8px', 
+                                    border: '1px solid #ccc', 
+                                    borderRadius: '4px',
+                                    width: '60px'
+                                }}
+                            />
+                            <span style={{ marginLeft: '8px', color: '#555' }}>registros</span>
                         </div>
                         
                         <div style={{ marginLeft: 'auto' }}>
                             <label style={{ display: 'block', marginBottom: '5px', fontWeight: '600', fontSize: '14px', color: '#555' }}>Buscar:</label>
-                            <div style={{ position: 'relative' }}>
-                                <input 
-                                    type="text"
-                                    value={filtroTexto}
-                                    onChange={(e) => setFiltroTexto(e.target.value)}
-                                    placeholder="Buscar proceso..."
-                                    style={{
-                                        padding: '8px 12px',
-                                        border: '1px solid #ccc',
-                                        borderRadius: '4px',
-                                        width: '250px'
-                                    }}
-                                />
-                                <Search size={18} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: '#555' }} />
-                            </div>
+                            <input 
+                                type="text"
+                                value={filtroTexto}
+                                onChange={(e) => setFiltroTexto(e.target.value)}
+                                placeholder="Buscar proceso..."
+                                style={{
+                                    padding: '8px 12px',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '4px',
+                                    width: '250px'
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
                 
-                {/* Tabla de procesos mejorada con estilos similares a la imagen 1 */}
-                <div className="table-responsive" style={{ overflowX: 'auto', marginBottom: '40px' }}>
+                {/* Tabla */}
+                <div style={{ overflowX: 'auto', marginBottom: '40px' }}>
                     <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #e0e0e0' }}>
                         <thead>
                             <tr style={{ backgroundColor: '#0098d9', color: 'white' }}>
@@ -471,7 +766,7 @@ export default function ProveedoresContratistasPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {procesosActuales.length > 0 ? (
+                            {!loading && procesosActuales.length > 0 ? (
                                 procesosActuales.map((proceso, index) => (
                                     <tr key={proceso.id} style={{ 
                                         backgroundColor: index % 2 === 0 ? '#fff' : '#f8f9fa',
@@ -480,7 +775,9 @@ export default function ProveedoresContratistasPage() {
                                         <td style={{ padding: '12px 15px', fontWeight: '500', color: '#0a3d62' }}>{proceso.id}</td>
                                         <td style={{ padding: '12px 15px' }}>
                                             <div style={{ fontWeight: '500', marginBottom: '5px' }}>{proceso.title}</div>
-                                            <div style={{ fontSize: '13px', color: '#666', lineHeight: '1.4' }}>{proceso.descripcion}</div>
+                                            <div style={{ fontSize: '13px', color: '#666', lineHeight: '1.4' }}>
+                                                {proceso.descripcion.substring(0, 150)}...
+                                            </div>
                                         </td>
                                         <td style={{ padding: '12px 15px' }}>{proceso.fecha_publicacion}</td>
                                         <td style={{ padding: '12px 15px' }}>{proceso.fecha_cierre}</td>
@@ -490,15 +787,15 @@ export default function ProveedoresContratistasPage() {
                                                 padding: '5px 10px',
                                                 borderRadius: '20px',
                                                 backgroundColor: 
-                                                    proceso.estado === 'Abierto' ? '#e1f5e8' : 
-                                                    proceso.estado === 'Evaluación' ? '#fff4e5' :
-                                                    proceso.estado === 'Cerrado' ? '#fee' : 
-                                                    proceso.estado === 'Anulada' ? '#f5e1e1' : '#e9f7fe',
+                                                    proceso.estado === 'ABIERTA' ? '#e1f5e8' : 
+                                                    proceso.estado === 'CERRADA' ? '#fee2e2' :
+                                                    proceso.estado === 'DESIERTA' ? '#fff4e5' :
+                                                    proceso.estado === 'ANULADA' ? '#f3f4f6' : '#e9f7fe',
                                                 color: 
-                                                    proceso.estado === 'Abierto' ? '#28a745' : 
-                                                    proceso.estado === 'Evaluación' ? '#f5a623' :
-                                                    proceso.estado === 'Cerrado' ? '#e63946' : 
-                                                    proceso.estado === 'Anulada' ? '#dc3545' : '#0098d9',
+                                                    proceso.estado === 'ABIERTA' ? '#28a745' : 
+                                                    proceso.estado === 'CERRADA' ? '#e63946' :
+                                                    proceso.estado === 'DESIERTA' ? '#f5a623' :
+                                                    proceso.estado === 'ANULADA' ? '#6b7280' : '#0098d9',
                                                 fontSize: '14px',
                                                 fontWeight: 'bold'
                                             }}>
@@ -507,41 +804,50 @@ export default function ProveedoresContratistasPage() {
                                         </td>
                                         <td style={{ padding: '12px 15px', textAlign: 'center', fontSize: '14px' }}>{proceso.fecha_apertura}</td>
                                         <td style={{ padding: '12px 15px', textAlign: 'center' }}>
-                                            <Link 
-                                                href={proceso.url}
+                                            <button
+                                                onClick={() => abrirModal(proceso.id)}
                                                 style={{
                                                     display: 'inline-flex',
                                                     alignItems: 'center',
                                                     justifyContent: 'center',
                                                     color: '#0098d9',
-                                                    textDecoration: 'none',
-                                                    fontWeight: 'bold',
-                                                    padding: '6px 12px',
+                                                    backgroundColor: 'transparent',
                                                     border: '1px solid #0098d9',
                                                     borderRadius: '4px',
-                                    fontSize: '14px',
-                                    transition: 'all 0.2s'
-                                }}
-                            >
-                                <Search size={14} style={{ marginRight: '5px' }} />
-                                Ver detalles
-                            </Link>
-                        </td>
-                    </tr>
-                ))
-            ) : (
-                <tr>
-                    <td colSpan="7" style={{ padding: '20px', textAlign: 'center', color: '#555' }}>
-                        No se encontraron procesos de contratación que coincidan con los criterios de búsqueda.
-                    </td>
-                </tr>
-            )}
+                                                    padding: '6px 12px',
+                                                    cursor: 'pointer',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '14px',
+                                                    transition: 'all 0.2s'
+                                                }}
+                                                onMouseOver={(e) => {
+                                                    e.target.style.backgroundColor = '#0098d9';
+                                                    e.target.style.color = 'white';
+                                                }}
+                                                onMouseOut={(e) => {
+                                                    e.target.style.backgroundColor = 'transparent';
+                                                    e.target.style.color = '#0098d9';
+                                                }}
+                                            >
+                                                <Search size={14} style={{ marginRight: '5px' }} />
+                                                Ver detalles
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : !loading ? (
+                                <tr>
+                                    <td colSpan="7" style={{ padding: '20px', textAlign: 'center', color: '#555' }}>
+                                        No se encontraron procesos de contratación que coincidan con los criterios de búsqueda.
+                                    </td>
+                                </tr>
+                            ) : null}
                         </tbody>
                     </table>
                 </div>
                 
                 {/* Paginación */}
-                {procesosFiltrados.length > 0 && (
+                {!loading && procesosFiltrados.length > 0 && (
                     <div style={{ 
                         display: 'flex', 
                         justifyContent: 'space-between', 
@@ -554,7 +860,7 @@ export default function ProveedoresContratistasPage() {
                             Mostrando {indexInicial + 1} a {Math.min(indexFinal, procesosFiltrados.length)} de {procesosFiltrados.length} registros
                         </div>
                         
-                        <div className="pagination" style={{ display: 'flex', gap: '5px' }}>
+                        <div style={{ display: 'flex', gap: '5px' }}>
                             <button 
                                 onClick={() => cambiarPagina(paginaActual - 1)} 
                                 disabled={paginaActual === 1}
@@ -605,138 +911,39 @@ export default function ProveedoresContratistasPage() {
                     </div>
                 )}
                 
-                {/* Botón de filtros adicionales - Similar a la imagen 1 */}
-                <div style={{ marginBottom: '40px' }}>
-                    <button 
+                {/* 🟢 BOTÓN NARANJA SECOP II AGREGADO */}
+                <div style={{ marginTop: '30px', textAlign: 'left' }}>
+                    <a
+                        href="https://www.colombiacompra.gov.co/secop-ii"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
+                            display: 'inline-block',
                             backgroundColor: '#f27b13',
                             color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            padding: '10px 20px',
-                            cursor: 'pointer',
+                            padding: '12px 25px',
+                            borderRadius: '5px',
+                            textDecoration: 'none',
                             fontWeight: 'bold',
-                            fontSize: '14px'
+                            fontSize: '16px',
+                            border: 'none',
+                            cursor: 'pointer',
+                            transition: 'background-color 0.2s'
+                        }}
+                        onMouseOver={(e) => {
+                            e.target.style.backgroundColor = '#e06a0a';
+                        }}
+                        onMouseOut={(e) => {
+                            e.target.style.backgroundColor = '#f27b13';
                         }}
                     >
-                        <Filter size={16} />
                         Búsqueda de procesos contractuales Secop II
-                    </button>
-                </div>
-                
-                {/* Documentos de contratación */}
-                <h3 style={{ fontSize: '24px', marginBottom: '20px', color: '#0098d9' }}>
-                    Documentos de Contratación
-                </h3>
-                
-                <div style={{ 
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                    gap: '20px',
-                    marginBottom: '40px'
-                }}>
-                    {documentosContratacion.map((doc) => (
-                        <div key={doc.id} style={{
-                            backgroundColor: '#f8f9fa',
-                            borderRadius: '8px',
-                            padding: '20px',
-                            boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-                            border: '1px solid #eee'
-                        }}>
-                            <div style={{ 
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: '15px'
-                            }}>
-                                <div style={{
-                                    backgroundColor: '#e9f7fe',
-                                    borderRadius: '50%',
-                                    width: '40px',
-                                    height: '40px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    marginRight: '15px'
-                                }}>
-                                    <FileText size={20} color="#0098d9" />
-                                </div>
-                                <h4 style={{ margin: 0, fontSize: '18px', color: '#333' }}>
-                                    {doc.title}
-                                </h4>
-                            </div>
-                            <p style={{ color: '#555', marginBottom: '15px', fontSize: '14px' }}>
-                                {doc.description}
-                            </p>
-                            <a 
-                                href={doc.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    color: '#0098d9',
-                                    textDecoration: 'none',
-                                    fontWeight: 'bold',
-                                    fontSize: '14px'
-                                }}
-                            >
-                                <Download size={16} style={{ marginRight: '5px' }} />
-                                Descargar documento
-                            </a>
-                        </div>
-                    ))}
-                </div>
-                
-                {/* Preguntas frecuentes */}
-                <h3 style={{ fontSize: '24px', marginBottom: '20px', color: '#0098d9' }}>
-                    Preguntas Frecuentes
-                </h3>
-                
-                <div className="accordion" style={{ marginBottom: '40px' }}>
-                    {preguntasFrecuentes.map((pregunta) => (
-                        <div key={pregunta.id} style={{
-                            marginBottom: '10px',
-                            border: '1px solid #e0e0e0',
-                            borderRadius: '5px',
-                            overflow: 'hidden'
-                        }}>
-                            <div 
-                                onClick={() => toggleSection(pregunta.id)}
-                                style={{
-                                    padding: '15px 20px',
-                                    backgroundColor: isSectionExpanded(pregunta.id) ? '#f8f9fa' : '#fff',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center'
-                                }}
-                            >
-                                <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '600', color: '#333' }}>
-                                    {pregunta.pregunta}
-                                </h4>
-                                {isSectionExpanded(pregunta.id) ? 
-                                    <ChevronDown size={18} color="#0098d9" /> : 
-                                    <ChevronRight size={18} color="#0098d9" />
-                                }
-                            </div>
-                            
-                            {isSectionExpanded(pregunta.id) && (
-                                <div style={{ padding: '15px 20px', backgroundColor: '#f8f9fa', borderTop: '1px solid #e0e0e0' }}>
-                                    <p style={{ margin: 0, lineHeight: '1.6', color: '#555' }}>
-                                        {pregunta.respuesta}
-                                    </p>
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                    </a>
                 </div>
             </div>
         );
     };
-    // Renderizado del contenido para la sección de Guía de Trámites
+
     const renderSeccionGuiaTramites = () => {
         return (
             <div id="guia-tramites" style={{ marginBottom: '60px' }}>
@@ -745,19 +952,15 @@ export default function ProveedoresContratistasPage() {
                 </h2>
                 
                 <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#555', marginBottom: '30px' }}>
-                    Esta guía proporciona información detallada sobre los trámites que deben realizar los proveedores 
-                    y contratistas para establecer y mantener relaciones comerciales con ElectroHuila. 
-                    Aquí encontrará los pasos, requisitos y tiempos de respuesta para cada trámite.
+                    Esta guía proporciona información detallada sobre los trámites que deben realizar los proveedores.
                 </p>
                 
-                {/* Lista de trámites */}
-                <div className="tramites-container">
+                <div>
                     {guiaTramites.map((tramite) => (
                         <div key={tramite.id} style={{
                             backgroundColor: '#fff',
                             borderRadius: '8px',
                             padding: '30px',
-                            boxShadow: '0 2px 15px rgba(0,0,0,0.05)',
                             marginBottom: '30px',
                             border: '1px solid #eee'
                         }}>
@@ -815,48 +1018,21 @@ export default function ProveedoresContratistasPage() {
                         </div>
                     ))}
                 </div>
-                
-                {/* Información de contacto */}
-                <div style={{
-                    backgroundColor: '#e9f7fe',
-                    padding: '30px',
-                    borderRadius: '8px',
-                    marginBottom: '30px'
-                }}>
-                    <h3 style={{ fontSize: '22px', marginBottom: '15px', color: '#0098d9' }}>
-                        Información de Contacto
-                    </h3>
-                    <p style={{ marginBottom: '15px', color: '#555' }}>
-                        Para mayor información sobre los trámites y procesos de contratación, puede contactarnos a través de:
-                    </p>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                        <div>
-                            <p style={{ fontWeight: 'bold', marginBottom: '5px', color: '#333' }}>Departamento de Contratación:</p>
-                            <p style={{ margin: 0, color: '#555' }}>contratacion@electrohuila.com.co</p>
-                            <p style={{ margin: 0, color: '#555' }}>Tel: (608) 8719003 Ext. 1200</p>
-                        </div>
-                        <div>
-                            <p style={{ fontWeight: 'bold', marginBottom: '5px', color: '#333' }}>Registro de Proveedores:</p>
-                            <p style={{ margin: 0, color: '#555' }}>proveedores@electrohuila.com.co</p>
-                            <p style={{ margin: 0, color: '#555' }}>Tel: (608) 8719003 Ext. 1205</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         );
     };
     
     return (
         <div>
-            {/* Hero Section con banner personalizado */}
-            <div className="hero" style={{
+            {/* Hero Section */}
+            <div style={{
                 background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.54)), url('/images/proveedores.jpg') no-repeat center center",
                 backgroundSize: "cover",
                 padding: "80px 0",
                 color: "white",
                 textAlign: "center"
             }}>
-                <div className="container">
+                <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
                     <h1 style={{ fontSize: "42px", marginBottom: "20px" }}>Proveedores y Contratistas</h1>
                     <p style={{ fontSize: "18px", maxWidth: "800px", margin: "0 auto" }}>
                         Toda la información sobre nuestros procesos de contratación, documentación 
@@ -865,21 +1041,18 @@ export default function ProveedoresContratistasPage() {
                 </div>
             </div>
 
-            <div className="container" style={{ padding: '60px 0' }}>
+            <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 20px' }}>
                 {/* Breadcrumb */}
-                <div className="breadcrumb" style={{ marginBottom: '30px' }}>
+                <div style={{ marginBottom: '30px' }}>
                     <Link href="/" style={{ color: '#f27b13', textDecoration: 'none' }}>Inicio</Link> / 
                     <span style={{ marginLeft: '5px' }}>Proveedores y Contratistas</span>
                 </div>
                 
-                {/* Tabs de navegación */}
-                <div className="tabs-container" style={{ marginBottom: '40px' }}>
-                    <div className="tabs" style={{
+                {/* Tabs */}
+                <div style={{ marginBottom: '40px' }}>
+                    <div style={{
                         display: 'flex',
-                        borderBottom: '1px solid #e0e0e0',
-                        overflowX: 'auto',
-                        scrollbarWidth: 'none',
-                        msOverflowStyle: 'none'
+                        borderBottom: '1px solid #e0e0e0'
                     }}>
                         <button 
                             onClick={() => setActiveTab('contratacion')}
@@ -892,13 +1065,10 @@ export default function ProveedoresContratistasPage() {
                                 fontWeight: 'bold',
                                 border: 'none',
                                 cursor: 'pointer',
-                                margin: '0 5px 0 0',
-                                display: 'flex',
-                                alignItems: 'center'
+                                marginRight: '5px'
                             }}
                         >
-                            <span style={{ marginRight: '10px' }}>✓</span>
-                            Contratación
+                            ✓ Contratación
                         </button>
                         <button 
                             onClick={() => setActiveTab('guia-tramites')}
@@ -910,20 +1080,16 @@ export default function ProveedoresContratistasPage() {
                                 borderTopRightRadius: '4px',
                                 fontWeight: 'bold',
                                 border: 'none',
-                                cursor: 'pointer',
-                                margin: '0 5px',
-                                display: 'flex',
-                                alignItems: 'center'
+                                cursor: 'pointer'
                             }}
                         >
-                            <span style={{ marginRight: '10px' }}>✓</span>
-                            Guía de Trámites
+                            ✓ Guía de Trámites
                         </button>
                     </div>
                 </div>
                 
-                {/* Contenido basado en la pestaña activa */}
-                <div className="tab-content" style={{
+                {/* Contenido */}
+                <div style={{
                     backgroundColor: 'white',
                     padding: '20px',
                     borderRadius: '5px',
@@ -933,7 +1099,7 @@ export default function ProveedoresContratistasPage() {
                     {activeTab === 'guia-tramites' && renderSeccionGuiaTramites()}
                 </div>
                 
-                {/* Llamado a la acción */}
+                {/* CTA */}
                 <div style={{
                     backgroundColor: '#f8f9fa',
                     borderRadius: '8px',
@@ -957,8 +1123,7 @@ export default function ProveedoresContratistasPage() {
                             color: 'white',
                             textDecoration: 'none',
                             borderRadius: '5px',
-                            fontWeight: 'bold',
-                            transition: 'background-color 0.3s'
+                            fontWeight: 'bold'
                         }}
                     >
                         Descargar formulario de registro
@@ -966,15 +1131,14 @@ export default function ProveedoresContratistasPage() {
                 </div>
             </div>
             
-            {/* CTA Section */}
-            <div className="cta" style={{
+            {/* Final CTA */}
+            <div style={{
                 backgroundColor: '#0a3d62',
                 color: 'white',
                 padding: '60px 0',
-                textAlign: 'center',
-                marginTop: '60px'
+                textAlign: 'center'
             }}>
-                <div className="container">
+                <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
                     <h2 style={{ fontSize: '32px', marginBottom: '20px' }}>¿Necesitas más información?</h2>
                     <p style={{ fontSize: '18px', marginBottom: '30px', maxWidth: '700px', margin: '0 auto 30px' }}>
                         Nuestro equipo está disponible para asistirte con cualquier consulta relacionada con 
@@ -997,6 +1161,13 @@ export default function ProveedoresContratistasPage() {
                     </Link>
                 </div>
             </div>
+
+            {/* Modal */}
+            <ContratoDetalleModal 
+                isOpen={modalOpen}
+                onClose={cerrarModal}
+                contratoId={contratoSeleccionado}
+            />
         </div>
     );
 }

@@ -30,7 +30,7 @@ export function TimelineAnimado() {
                     'Se crea el Instituto de Aprovechamiento de Aguas y Fomento Eléctrico ELECTRAGUAS (Ley 80 del 26 dic 1946). Inicia operación en 1947'
                 ],
                 icon: '⚡',
-                imageUrl: '/images/historia/20210309-165904-scaled-1.jpg'
+                imageUrl: '/images/historia/firma.jpg'
             },
             {
                 year: '1951',
@@ -41,7 +41,7 @@ export function TimelineAnimado() {
                     'En 1951 entra en operación la Plata Iquira 1 (Capacidad 3.900 Kw)'
                 ],
                 icon: '🏗️',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/miguel-.jpg'
             },
             {
                 year: '1955',
@@ -53,14 +53,14 @@ export function TimelineAnimado() {
                     'Sale de operación Planta Palermo (Fuerte creciente quebrada la Guagua en el año 1953)'
                 ],
                 icon: '🔌',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/la-pita.jpg'
             },
             {
                 year: '1958',
                 title: 'Inicia la generación térmica para reforzar planta diesel',
                 description: 'En 1958 entra en funcionamiento para reforzar planta Diesel Neiva tres nuevos motores MAN para reforzar Planta Diesel Barrio Calixto Leyva (Operaron hasta 1972)',
                 icon: '🔋',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/1958.jpg'
             },
             {
                 year: '1959',
@@ -70,7 +70,7 @@ export function TimelineAnimado() {
                     '10 de mayo de 1961 se firma primera convención colectiva de trabajo - CCT19'
                 ],
                 icon: '📝',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/miguel-.jpg'
             }
         ],
         // Página 2: 1962-1971
@@ -83,7 +83,7 @@ export function TimelineAnimado() {
                     'En octubre de 1963, es nombrado como Gerente General el Ing. Civil Idelfonso Polania Pérez'
                 ],
                 icon: '👨‍💼',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/idenlfonso.jpg'
             },
             {
                 year: '1965',
@@ -99,7 +99,7 @@ export function TimelineAnimado() {
                     'Se suspende operación de planta térmica en Palermo por emergencias'
                 ],
                 icon: '🔌',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/la-pita.jpg'
             },
             {
                 year: '1966',
@@ -112,7 +112,7 @@ export function TimelineAnimado() {
                     '14 diciembre queda por fuera de servicio la Iquira II por deslizamiento que destruyó obras hidráulicas de la entrada del túnel a presión'
                 ],
                 icon: '🚜',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/javier.png'
             },
             {
                 year: '1968',
@@ -122,7 +122,7 @@ export function TimelineAnimado() {
                     'Es nombrado como Gerente General el Ing. Electricista Alvaro Ramírez Sierra'
                 ],
                 icon: '👨‍💼',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/Alvaro.jpg'
             },
             {
                 year: '1969',
@@ -132,7 +132,7 @@ export function TimelineAnimado() {
                     'Entra en operación definitivamente Plata La Vicosa (Guadalupe)'
                 ],
                 icon: '🏗️',
-                imageUrl: '/images/historia/placeholder.jpg'
+                imageUrl: '/images/historia/constru.png'
             },
             {
                 year: '1971',

@@ -110,7 +110,7 @@ export default function Header() {
         {/* Logo */}
         <div>
           <Link href="/">
-            <img src="/images/logo-eh.png.webp" alt="Logo Electrohuila" style={{ height: '50px' }} />
+            <img src="/images/LOGO-normal.png" alt="Logo Electrohuila" style={{ height: '90px' }} />
           </Link>
         </div>
 
