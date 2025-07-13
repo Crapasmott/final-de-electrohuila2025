@@ -21,9 +21,8 @@ export default function FloatingContactButton() {
   };
 
   const contactOptions: ContactOption[] = [
-    { id: 'atencion', text: 'Atención al Cliente', url: '/contactenos/atencion' },
-    { id: 'reportes', text: 'Reportar Fallas', url: '/contactenos/reportes' },
-    { id: 'factura', text: 'Consulta de Facturas', url: 'https://enlinea.electrohuila.com.co/generate-invoice/' },
+    { id: 'atencion', text: 'Atención al Cliente', url: '/contactenos' },
+    { id: 'factura', text: 'Tramites de Usuarios', url: '/institucional/tramites-usuarios' },
     { id: 'puntos', text: 'Puntos de Atención', url: '/puntos-de-pago' },
     { id: 'pqrs', text: 'PQRS', url: 'https://enlinea.electrohuila.com.co/home/' },
     // Nueva opción para PQR Anónimo - asegúrate de que la URL sea correcta

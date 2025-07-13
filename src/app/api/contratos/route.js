@@ -7,20 +7,20 @@ export async function GET() {
         // 🎯 URLs para conectar con el backend real de WordPress
         const urlsToTry = [
             // URL principal que probablemente contiene los contratos
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/posts?per_page=100&status=publish',
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/pages?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/posts?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/pages?per_page=100&status=publish',
             
             // Custom post types más probables
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/contratos?per_page=100&status=publish',
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/contrato?per_page=100&status=publish',
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/licitaciones?per_page=100&status=publish',
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/proceso_contratacion?per_page=100&status=publish',
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/procesos_contratacion?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/contratos?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion/n/wp-json/wp/v2/contrato?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/licitaciones?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/proceso_contratacion?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/procesos_contratacion?per_page=100&status=publish',
             
             // Otras posibilidades
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/licitacion?per_page=100&status=publish',
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/convocatoria?per_page=100&status=publish',
-            'https://electrohuila.com.co/contratacion/wp-json/wp/v2/convocatorias?per_page=100&status=publish'
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/licitacion?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion//wp-json/wp/v2/convocatoria?per_page=100&status=publish',
+            'https://electrohuila.net/contratacion/o/contratacion/wp-json/wp/v2/convocatorias?per_page=100&status=publish'
         ];
 
         let realData = null;

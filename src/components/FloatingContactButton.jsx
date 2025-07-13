@@ -15,13 +15,7 @@ export default function FloatingContactButton() {
       description: 'Consulta sobre tu servicio y atención personalizada',
       link: '/contactenos/atencion-cliente'
     },
-    {
-      id: 'reportes',
-      title: 'Reportar Fallas',
-      icon: '⚡',
-      description: 'Informa problemas en el servicio eléctrico',
-      link: '/contactenos/reportar-fallas'
-    },
+  
     {
       id: 'factura',
       title: 'Consulta de Facturas',

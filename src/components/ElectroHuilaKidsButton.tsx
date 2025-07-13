@@ -9,7 +9,7 @@ const ElectroHuilaKidsButton = () => {
   const handleClick = () => {
     setIsClicked(true);
     setTimeout(() => setIsClicked(false), 300);
-    window.open('https://energikids.vercel.app/', '_blank', 'noopener,noreferrer');
+    window.open('https://kids.electrohuila.com.co/', '_blank', 'noopener,noreferrer');
   };
 
   return (

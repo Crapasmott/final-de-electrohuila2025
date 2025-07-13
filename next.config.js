@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    output: 'export',
+    // LÍNEA REMOVIDA: output: 'export',
 
     images: {
         unoptimized: true,
