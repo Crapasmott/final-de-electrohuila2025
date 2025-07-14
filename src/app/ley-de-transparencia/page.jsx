@@ -99,22 +99,22 @@ export default function TransparenciaPage() {
             title: 'Información de la entidad',
             items: [
                 { id: 'contact-1', title: 'Misión, visión, funciones y deberes', url: '/institucional/quienes-somos' },
-                { id: 'contact-2', title: 'Estructura orgánica y organigrama', url: '/transparencia/localizacion' },
-                { id: 'contact-3', title: 'Mapas y cartas descriptivas de los procesos', url: 'mailto:notificaciones@electrohuila.com.co' },
-                { id: 'contact-4', title: 'Directorio Institucional incluyendo sedes, oficinas, sucursales, o regionales, y dependencias', url: '/transparencia/politicas-seguridad' },
-                { id: 'contact-5', title: 'Directorio de entidades', url: '/transparencia/politicas-seguridad' },
-                { id: 'contact-6', title: 'Directorio de agremiaciones, asociaciones y otros grupos de interés', url: '/transparencia/politicas-seguridad' },
-                { id: 'contact-7', title: 'Servicio al público, normas, formularios y protocolos de atención', url: '/transparencia/politicas-seguridad' },
-                { id: 'contact-8', title: 'Mecanismo de presentación directa de solicitudes, quejas y reclamos a disposición del público en relación con acciones u omisiones del sujeto obligado', url: '/transparencia/politicas-seguridad' },
-                { id: 'contact-9', title: 'Información sobre decisiones que pueden afectar al público', url: '/transparencia/politicas-seguridad' },
-                { id: 'contact-9', title: 'Entes y autoridades que lo vigilan', url: '/transparencia/politicas-seguridad' }
+                { id: 'contact-2', title: 'Estructura orgánica y organigrama', url: '/institucional/gobierno-corporativo' },
+                { id: 'contact-3', title: 'Mapas y cartas descriptivas de los procesos', url: '/institucional/gobierno-corporativo' },
+                { id: 'contact-4', title: 'Directorio Institucional incluyendo sedes, oficinas, sucursales, o regionales, y dependencias', url: '/puntos-de-atencion' },
+                { id: 'contact-5', title: 'Directorio de entidades', url: '' },
+                { id: 'contact-6', title: 'Directorio de agremiaciones, asociaciones y otros grupos de interés', url: '' },
+                { id: 'contact-7', title: 'Servicio al público, normas, formularios y protocolos de atención', url: '/institucional/tramites-usuarios' },
+                { id: 'contact-8', title: 'Mecanismo de presentación directa de solicitudes, quejas y reclamos a disposición del público en relación con acciones u omisiones del sujeto obligado', url: 'https://enlinea.electrohuila.com.co/home/' },
+                { id: 'contact-9', title: 'Información sobre decisiones que pueden afectar al público', url: '/suspensiones-programadas' },
+                { id: 'contact-9', title: 'Entes y autoridades que lo vigilan', url: '' }
             ]
         },
         {
             id: 'normatividad',
             title: 'Normatividad',
             items: [
-                { id: 'norm-1', title: 'Normativa de la entidad o autoridad', url: '/transparencia/normatividad-nacional' },
+                { id: 'norm-1', title: 'Normativa de la entidad o autoridad', url: '' },
                 { id: 'norm-2', title: 'Búsqueda de normas', url: 'https://www.suin-juriscol.gov.co/index.html' }
             ]
         },
@@ -122,10 +122,10 @@ export default function TransparenciaPage() {
             id: 'Contratación',
             title: 'Contratación',
             items: [
-                { id: 'struct-1', title: 'Plan Anual de Adquisiciones', url: '/institucional/quienes-somos#mision-vision' },
-                { id: 'struct-2', title: 'Publicación de la información contractual', url: '/transparencia/funciones-deberes' },
-                { id: 'struct-3', title: 'Publicación de la ejecución de los contratos', url: '/transparencia/procesos-procedimientos' },
-                { id: 'struct-4', title: 'Manual de contratación, adquisición y/o compras', url: '/transparencia/organigrama' }
+                { id: 'struct-1', title: 'Plan Anual de Adquisiciones', url: '' },
+                { id: 'struct-2', title: 'Publicación de la información contractual', url: '/proveedores-contratistas' },
+                { id: 'struct-3', title: 'Publicación de la ejecución de los contratos', url: '/proveedores-contratistas' },
+                { id: 'struct-4', title: 'Manual de contratación, adquisición y/o compras', url: '' }
             ]
         },
         {
@@ -133,8 +133,8 @@ export default function TransparenciaPage() {
             title: 'Transparencia ética',
             items: [
                 { id: 'info-1', title: 'Línea de transparencia', url: 'https://www.datos.gov.co/browse?q=electrohuila', external: true },
-                { id: 'info-2', title: 'Programa de transparencia y ética empresarial', url: 'institucional/politicas' },
-                { id: 'info-2', title: 'Protección de datos personales', url: 'https://www.suin-juriscol.gov.co/index.html' }
+                { id: 'info-2', title: 'Programa de transparencia y ética empresarial', url: '/institucional/etica-y-cumplimiento' },
+                { id: 'info-2', title: 'Protección de datos personales', url: '/institucional/proteccion-datos-personales' }
             ]
         },
         {
@@ -146,35 +146,35 @@ export default function TransparenciaPage() {
                 { id: 'budget-3', title: 'Informe de rendición de cuentas zona occidente', url: '/documentos/transparencia/RENDICION-DE-CTAS-ZO.pdf' },
                 { id: 'budget-3', title: 'Informe de rendición de cuentas zona sur', url: '/documentos/transparencia/RENDICION-DE-CTAS-ZS-VF.pdf' },
                 { id: 'budget-3', title: 'Presupuesto general de ingresos, gastos e inversión', url: '/transparencia/estados-financieros' },
-                { id: 'budget-3', title: 'Ejecución presupuestal', url: '/transparencia/estados-financieros' },
-                { id: 'budget-3', title: 'Plan de Acción', url: '/transparencia/estados-financieros' },
-                { id: 'budget-3', title: 'Informes de empalme', url: '/transparencia/estados-financieros' },
-                { id: 'budget-3', title: 'Informes de gestión, evaluación y auditoría', url: '/transparencia/estados-financieros' },
-                { id: 'budget-3', title: 'Informes trimestrales sobre acceso a información, quejas y reclamos', url: '/transparencia/estados-financieros' }
+                { id: 'budget-3', title: 'Ejecución presupuestal', url: '/institucional/informes' },
+                { id: 'budget-3', title: 'Plan de Acción', url: '/institucional/informes' },
+                { id: 'budget-3', title: 'Informes de empalme', url: '/institucional/informes' },
+                { id: 'budget-3', title: 'Informes de gestión, evaluación y auditoría', url: '/institucional/informes' },
+                { id: 'budget-3', title: 'Informes trimestrales sobre acceso a información, quejas y reclamos', url: '/institucional/informes' }
             ]
         },
         {
             id: 'Trámites',
             title: 'Trámites',
             items: [
-                { id: 'plan-1', title: 'Trámites', url: '/transparencia/politicas-lineamientos-planeacion' },
+                { id: 'plan-1', title: 'Trámites', url: '/institucional/tramites-usuarios' },
             ]
         },
         {
             id: 'Datos Abiertos',
             title: 'Datos Abiertos',
             items: [
-                { id: 'ctrl-1', title: 'Instrumentos de gestión de la información', url: '/transparencia/informes-gestion' },
-                { id: 'ctrl-2', title: 'Sección de Datos Abiertos', url: '/transparencia/reportes-control-interno' },
+                { id: 'ctrl-1', title: 'Instrumentos de gestión de la información', url: 'https://www.electrohuila.com.co/wp-content/uploads/2023/11/instrumentos-gestion-informacion.zip' },
+                { id: 'ctrl-2', title: 'Sección de Datos Abiertos', url: 'https://www.datos.gov.co/' },
             ]
         },
         {
             id: 'Información específica para grupos de interés',
             title: 'Información específica para grupos de interés',
             items: [
-                { id: 'contr-1', title: 'Información para niños, niñas y adolescentes', url: '/proveedores-contratistas' },
-                { id: 'contr-2', title: 'Información para Mujeres', url: '/transparencia/procedimientos-contratacion' },
-                { id: 'contr-3', title: 'Otros de grupos de interés.', url: '/transparencia/plan-adquisiciones' }
+                { id: 'contr-1', title: 'Información para niños, niñas y adolescentes', url: 'https://kids.electrohuila.com.co/' },
+                { id: 'contr-2', title: 'Información para Mujeres', url: '' },
+                { id: 'contr-3', title: 'Otros de grupos de interés.', url: '/institucional/gestion-y-programas-de-sostenibilidad' }
             ]
         },
     ];
@@ -953,7 +953,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/boletines" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/comunicados" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Boletines de prensa
                                             </Link>
                                         </li>
@@ -1020,7 +1020,7 @@ export default function TransparenciaPage() {
                                                 borderRadius: '50%',
                                                 marginRight: '10px'
                                             }}></span>
-                                            <Link href="/programas-sostenibilidad" style={{ color: '#555', textDecoration: 'none' }}>
+                                            <Link href="/institucional/gestion-y-programas-de-sostenibilidad" style={{ color: '#555', textDecoration: 'none' }}>
                                                 Gestión programas de sostenibilidad
                                             </Link>
                                         </li>

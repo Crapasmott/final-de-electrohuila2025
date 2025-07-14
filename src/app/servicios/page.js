@@ -79,7 +79,7 @@ export default function Page() {
             title: "Uso Confiable de Energía Eléctrica",
             description: "Conoce las prácticas recomendadas para el uso eficiente y confiable de la energía eléctrica.",
             icon: "⚡",
-            link: "/uso-confiable-energia-electrica",
+            link: "/documentos/manuales de usuario/CARTILLA USO CONFIABLE Y SEGURO DE LA ENERGIA ELECTRICA.pdf",
             category: "educacion"
         },
         {
@@ -87,7 +87,7 @@ export default function Page() {
             title: "Uso Seguro de Energía Eléctrica",
             description: "Aprende sobre medidas de seguridad para prevenir accidentes relacionados con la energía eléctrica.",
             icon: "🛡️",
-            link: "/servicios/uso-seguro",
+            link: "/documentos/manuales de usuario/CARTILLA SEGURIDAD.pdf",
             category: "educacion"
         },
         {
@@ -95,7 +95,15 @@ export default function Page() {
             title: "Usuarios Contribución por Solidaridad",
             description: "Información sobre el programa de contribución solidaria y cómo beneficia a usuarios de menores recursos.",
             icon: "❤️",
-            link: "/servicios/contribucion-solidaridad",
+            link: "/documentos/manuales de usuario/USUARIOS-CONTRIBUCION-POR-SOLIDARIDAD-v2.pdf",
+            category: "ayudas"
+        },
+        {
+            id: 11,
+            title: "Campaña Riesgo Eléctrico",
+            description: "Información sobre la campaña de riesgo eléctrico y cómo prevenir accidentes en hogares con instalaciones vulnerables.",
+            icon: "⚡",
+            link: "/documentos/manuales de usuario/RIESGO-ELECTRICO-1.png",
             category: "ayudas"
         }
     ];

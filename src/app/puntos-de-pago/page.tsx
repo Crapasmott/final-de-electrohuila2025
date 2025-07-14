@@ -3,21 +3,58 @@
 import { useState, useEffect } from 'react';
 
 export default function PuntosPago() {
-  // Datos de ejemplo
-  const puntosData = [
-    { municipio: "ACEVEDO", recaudador: "Suchance", sitioVenta: "ACEVEDO OFICINA PRINCIPAL", direccion: "CARRERA 5 No 7 - 35 CENTRO" },
-    { municipio: "ACEVEDO", recaudador: "Suchance", sitioVenta: "GALERIA ACEVEDO", direccion: "CARRERA 5 No. 3-26 - CENTRO" },
-    { municipio: "RIVERA", recaudador: "Suchance", sitioVenta: "RIVERA OFICINA PRINCIPAL", direccion: "CALLE 4 No 7-62 Y 7-72" },
-    { municipio: "NEIVA", recaudador: "Banco Occidente", sitioVenta: "NEIVA OFICINA PRINCIPAL", direccion: "CALLE 8 No. 5-45" },
-    { municipio: "NEIVA", recaudador: "Credifuturo", sitioVenta: "GALERIA NEIVA", direccion: "CARRERA 3 No. 10-28" },
-    { municipio: "PITALITO", recaudador: "Suchance", sitioVenta: "PITALITO CENTRO", direccion: "CARRERA 4 No. 6-15" }
-  ];
-
   // Estados
+  const [puntosData, setPuntosData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [recaudador, setRecaudador] = useState('Todos');
-  const [filteredData, setFilteredData] = useState(puntosData);
+  const [filteredData, setFilteredData] = useState([]);
+  const [recaudadoresDisponibles, setRecaudadoresDisponibles] = useState(['Todos']);
+  
+  // Cargar datos desde WordPress al iniciar
+  useEffect(() => {
+    cargarPuntosDeWordPress();
+  }, []);
+  
+  const cargarPuntosDeWordPress = async () => {
+    setLoading(true);
+    try {
+      console.log('🚀 Cargando puntos de pago desde WordPress...');
+      const response = await fetch('https://www.electrohuila.com.co/wp-json/electrohuila/v2/puntos-pago');
+      const data = await response.json();
+      
+      console.log('📄 Respuesta API:', data);
+      
+      if (data.success && data.data && data.data.length > 0) {
+        console.log(`✅ ${data.data.length} puntos de pago cargados desde WordPress`);
+        setPuntosData(data.data);
+        
+        // Extraer recaudadores únicos de los datos
+        const recaudadoresUnicos = [...new Set(data.data.map(punto => punto.recaudador))];
+        setRecaudadoresDisponibles(['Todos', ...recaudadoresUnicos.sort()]);
+        
+      } else {
+        console.log('⚠️ No se encontraron datos válidos, usando fallback');
+        const fallbackData = getDataFallback();
+        setPuntosData(fallbackData);
+        setRecaudadoresDisponibles(['Todos', 'Suchance', 'Banco Occidente', 'Credifuturo']);
+      }
+    } catch (error) {
+      console.error('❌ Error al cargar desde WordPress:', error);
+      const fallbackData = getDataFallback();
+      setPuntosData(fallbackData);
+      setRecaudadoresDisponibles(['Todos', 'Suchance', 'Banco Occidente', 'Credifuturo']);
+    }
+    setLoading(false);
+  };
+  
+  // Datos de fallback (solo como respaldo)
+  const getDataFallback = () => [
+    { municipio: "ACEVEDO", recaudador: "Suchance", sitioVenta: "ACEVEDO OFICINA PRINCIPAL", direccion: "CARRERA 5 No 7 - 35 CENTRO" },
+    { municipio: "NEIVA", recaudador: "Banco Occidente", sitioVenta: "NEIVA OFICINA PRINCIPAL", direccion: "CALLE 8 No. 5-45" },
+    { municipio: "PITALITO", recaudador: "Suchance", sitioVenta: "PITALITO CENTRO", direccion: "CARRERA 4 No. 6-15" }
+  ];
   
   // Aplicar filtros cuando cambian los criterios
   useEffect(() => {
@@ -38,13 +75,43 @@ export default function PuntosPago() {
     }
     
     setFilteredData(filtered);
-  }, [searchTerm, recaudador]);
+  }, [searchTerm, recaudador, puntosData]);
   
   // Manejar envío del formulario de búsqueda
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTerm(inputValue);
   };
+
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '400px',
+        flexDirection: 'column'
+      }}>
+        <div style={{ 
+          width: '40px', 
+          height: '40px', 
+          border: '4px solid #f3f3f3', 
+          borderTop: '4px solid #2563EB', 
+          borderRadius: '50%', 
+          animation: 'spin 1s linear infinite',
+          marginBottom: '16px'
+        }} />
+        <p style={{ color: '#6B7280', fontSize: '16px' }}>Cargando puntos de pago...</p>
+        <p style={{ color: '#9CA3AF', fontSize: '14px' }}>Conectando con WordPress</p>
+        <style jsx>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -61,7 +128,7 @@ export default function PuntosPago() {
             Consulta los diferentes puntos de pago disponibles para realizar el pago de tu factura de energía.
           </p>
           
-          {/* Formulario de búsqueda con texto en negro */}
+          {/* Formulario de búsqueda */}
           <form onSubmit={handleSubmit} style={{ display: 'flex', maxWidth: '400px', margin: '0 auto' }}>
             <input
               type="text"
@@ -74,7 +141,7 @@ export default function PuntosPago() {
                 border: 'none',
                 borderRadius: '4px 0 0 4px',
                 fontSize: '16px',
-                color: '#000000', /* Texto en negro */
+                color: '#000000',
                 backgroundColor: 'white'
               }}
             />
@@ -113,7 +180,7 @@ export default function PuntosPago() {
             marginBottom: '16px' 
           }}>
             <span style={{ color: '#374151' }}>Filtrar por recaudador:</span>
-            {['Todos', 'Suchance', 'Banco Occidente', 'Credifuturo'].map((item) => (
+            {recaudadoresDisponibles.map((item) => (
               <button
                 key={item}
                 type="button"
@@ -125,7 +192,8 @@ export default function PuntosPago() {
                   borderRadius: '9999px',
                   padding: '6px 16px',
                   fontSize: '14px',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
                 }}
               >
                 {item}
@@ -218,7 +286,7 @@ export default function PuntosPago() {
           )}
           
           <p style={{ color: '#6B7280', fontSize: '14px' }}>
-            Mostrando {filteredData.length} resultados
+            Mostrando {filteredData.length} de {puntosData.length} resultados
           </p>
         </div>
         
@@ -242,7 +310,7 @@ export default function PuntosPago() {
             <tbody>
               {filteredData.length > 0 ? (
                 filteredData.map((punto, index) => (
-                  <tr key={index} style={{ 
+                  <tr key={punto.id || index} style={{ 
                     borderBottom: index === filteredData.length - 1 ? 'none' : '1px solid #E5E7EB',
                     backgroundColor: index % 2 === 0 ? 'white' : '#F9FAFB'
                   }}>
@@ -255,7 +323,24 @@ export default function PuntosPago() {
                         punto.municipio
                       )}
                     </td>
-                    <td style={{ padding: '12px 16px', color: '#374151', fontSize: '14px' }}>{punto.recaudador}</td>
+                    <td style={{ padding: '12px 16px', color: '#374151', fontSize: '14px' }}>
+                      <span style={{ 
+                        backgroundColor: punto.recaudador === 'Suchance' ? '#EFF6FF' : 
+                                        punto.recaudador === 'Banco Occidente' ? '#F0FDF4' :
+                                        punto.recaudador === 'Credifuturo' ? '#FEF3C7' :
+                                        punto.recaudador === 'Banco Agrario' ? '#F3E8FF' : '#FEE2E2',
+                        color: punto.recaudador === 'Suchance' ? '#1D4ED8' : 
+                               punto.recaudador === 'Banco Occidente' ? '#059669' :
+                               punto.recaudador === 'Credifuturo' ? '#D97706' :
+                               punto.recaudador === 'Banco Agrario' ? '#7C3AED' : '#DC2626',
+                        padding: '2px 8px',
+                        borderRadius: '12px',
+                        fontSize: '12px',
+                        fontWeight: '500'
+                      }}>
+                        {punto.recaudador}
+                      </span>
+                    </td>
                     <td style={{ padding: '12px 16px', fontSize: '14px' }}>
                       <span style={{ color: punto.sitioVenta.includes('OFICINA PRINCIPAL') ? '#2563EB' : '#374151' }}>
                         {punto.sitioVenta}
@@ -275,12 +360,23 @@ export default function PuntosPago() {
           </table>
         </div>
         
-        {/* Paginación */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '24px' }}>
-          <div style={{ display: 'flex' }}>
-            <button type="button" style={{ display: 'inline-flex', alignItems: 'center', padding: '8px', border: '1px solid #D1D5DB', backgroundColor: 'white', borderRadius: '4px 0 0 4px', color: '#6B7280' }}>&lt;</button>
-            <button type="button" style={{ display: 'inline-flex', alignItems: 'center', padding: '8px 16px', border: '1px solid #D1D5DB', backgroundColor: 'white', color: '#2563EB', fontWeight: '500', borderLeft: 'none' }}>1</button>
-            <button type="button" style={{ display: 'inline-flex', alignItems: 'center', padding: '8px', border: '1px solid #D1D5DB', backgroundColor: 'white', borderRadius: '0 4px 4px 0', color: '#6B7280', borderLeft: 'none' }}>&gt;</button>
+        {/* Información de conexión */}
+        <div style={{ 
+          marginTop: '16px', 
+          padding: '12px', 
+          backgroundColor: '#F0F9FF', 
+          borderRadius: '8px',
+          fontSize: '14px',
+          color: '#1E40AF',
+          border: '1px solid #E0F2FE'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '16px' }}>📡</span>
+            <span>
+              <strong>Datos cargados desde WordPress API</strong> • 
+              {puntosData.length} puntos disponibles en {[...new Set(puntosData.map(p => p.municipio))].length} municipios • 
+              {recaudadoresDisponibles.length - 1} recaudadores activos
+            </span>
           </div>
         </div>
       </div>

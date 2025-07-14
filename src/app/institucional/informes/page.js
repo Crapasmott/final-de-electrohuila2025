@@ -32,155 +32,291 @@ export default function InformesPage() {
             {
                 id: 'empalme',
                 title: 'Informe de Empalme',
-                description: 'Documentos relacionados con el proceso de empalme administrativo.',
+                description: '',
                 documents: [
-                    { name: 'Informe de Empalme 2023-2024', url: '/documentos/informes/empalme/informe-empalme-2023-2024.pdf', size: '4.2 MB', updated: '15/01/2024' },
-                    { name: 'Anexos Informe de Empalme', url: '/documentos/informes/empalme/anexos-empalme-2023.pdf', size: '2.8 MB', updated: '20/12/2023' }
+                    { name: 'Informe de Empalme 2022', url: '/documentos/informes/INFORME-DE-GESTION-2021-2022.pdf', size: '4.2 MB', updated: '15/01/2024' }
                 ]
             },
             {
                 id: 'integrado-2024',
                 title: 'Reporte Integrado 2024',
-                description: 'Reporte de gestión integrado correspondiente al año 2024.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2024', url: '/documentos/informes/integrado/reporte-integrado-2024.pdf', size: '5.7 MB', updated: '15/03/2024' },
-                    { name: 'Estados Financieros 2024', url: '/documentos/informes/integrado/estados-financieros-2024.pdf', size: '3.2 MB', updated: '10/03/2024' },
-                    { name: 'Informe de Sostenibilidad 2024', url: '/documentos/informes/integrado/sostenibilidad-2024.pdf', size: '4.1 MB', updated: '20/03/2024' }
+                    { name: 'Reporte Integrado 2023', url: '/documentos/informes/Reporte-integrado-EH-2023.pdf', size: '5.7 MB', updated: '15/03/2024' }
                 ]
             },
             {
                 id: 'integrado-2023',
                 title: 'Reporte Integrado 2023',
-                description: 'Reporte de gestión integrado correspondiente al año 2023.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2023', url: '/documentos/informes/integrado/reporte-integrado-2023.pdf', size: '5.5 MB', updated: '20/03/2023' },
-                    { name: 'Estados Financieros 2023', url: '/documentos/informes/integrado/estados-financieros-2023.pdf', size: '3.0 MB', updated: '15/03/2023' },
-                    { name: 'Informe de Sostenibilidad 2023', url: '/documentos/informes/integrado/sostenibilidad-2023.pdf', size: '4.0 MB', updated: '25/03/2023' }
+                    { name: 'Reporte Integrado 2023', url: '/documentos/informes/Reporte-integrado-EH-2023.pdf', size: '5.5 MB', updated: '20/03/2023' }
                 ]
             },
             {
                 id: 'integrado-2022',
                 title: 'Reporte Integrado 2022',
-                description: 'Reporte de gestión integrado correspondiente al año 2022.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2022', url: '/documentos/informes/integrado/reporte-integrado-2022.pdf', size: '5.3 MB', updated: '18/03/2022' },
-                    { name: 'Estados Financieros 2022', url: '/documentos/informes/integrado/estados-financieros-2022.pdf', size: '2.9 MB', updated: '12/03/2022' },
-                    { name: 'Informe de Sostenibilidad 2022', url: '/documentos/informes/integrado/sostenibilidad-2022.pdf', size: '3.8 MB', updated: '22/03/2022' }
+                    { name: 'Reporte Integrado 2022', url: '/documentos/informes/Reporte-Integrado-EH-2022.pdf', size: '5.3 MB', updated: '18/03/2022' }
                 ]
             },
             {
                 id: 'integrado-2021',
                 title: 'Reporte Integrado 2021',
-                description: 'Reporte de gestión integrado correspondiente al año 2021.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2021', url: '/documentos/informes/integrado/reporte-integrado-2021.pdf', size: '5.0 MB', updated: '19/03/2021' },
-                    { name: 'Estados Financieros 2021', url: '/documentos/informes/integrado/estados-financieros-2021.pdf', size: '2.8 MB', updated: '14/03/2021' },
-                    { name: 'Informe de Sostenibilidad 2021', url: '/documentos/informes/integrado/sostenibilidad-2021.pdf', size: '3.7 MB', updated: '24/03/2021' }
+                    { name: 'Reporte Integrado 2021', url: '/documentos/informes/REPORTE-INTEGRADO-2021-EH.pdf', size: '5.0 MB', updated: '19/03/2021' }
                 ]
             },
             {
                 id: 'integrado-2020',
                 title: 'Reporte Integrado 2020',
-                description: 'Reporte de gestión integrado correspondiente al año 2020.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2020', url: '/documentos/informes/integrado/reporte-integrado-2020.pdf', size: '4.8 MB', updated: '17/03/2020' },
-                    { name: 'Estados Financieros 2020', url: '/documentos/informes/integrado/estados-financieros-2020.pdf', size: '2.7 MB', updated: '12/03/2020' },
-                    { name: 'Informe de Sostenibilidad 2020', url: '/documentos/informes/integrado/sostenibilidad-2020.pdf', size: '3.5 MB', updated: '22/03/2020' }
-                ]
+                    { name: 'Reporte Integrado 2020', url: '/documentos/informes/ElectroHuila-Reporte-Integrado-2020.pdf', size: '4.8 MB', updated: '17/03/2020' }
+               ]
             },
             {
                 id: 'integrado-2019',
                 title: 'Reporte Integrado 2019',
-                description: 'Reporte de gestión integrado correspondiente al año 2019.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2019', url: '/documentos/informes/integrado/reporte-integrado-2019.pdf', size: '4.6 MB', updated: '16/03/2019' },
-                    { name: 'Estados Financieros 2019', url: '/documentos/informes/integrado/estados-financieros-2019.pdf', size: '2.6 MB', updated: '11/03/2019' },
-                    { name: 'Informe de Sostenibilidad 2019', url: '/documentos/informes/integrado/sostenibilidad-2019.pdf', size: '3.4 MB', updated: '21/03/2019' }
-                ]
+                    { name: 'Reporte Integrado 2019', url: '/documentos/informes/Electrohuila-Reporte-integrado-2019_compressed.pdf', size: '4.6 MB', updated: '16/03/2019' }
+                  ]
             },
             {
                 id: 'integrado-2018',
                 title: 'Reporte Integrado 2018',
-                description: 'Reporte de gestión integrado correspondiente al año 2018.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2018', url: '/documentos/informes/integrado/reporte-integrado-2018.pdf', size: '4.4 MB', updated: '15/03/2018' },
-                    { name: 'Estados Financieros 2018', url: '/documentos/informes/integrado/estados-financieros-2018.pdf', size: '2.5 MB', updated: '10/03/2018' },
-                    { name: 'Informe de Sostenibilidad 2018', url: '/documentos/informes/integrado/sostenibilidad-2018.pdf', size: '3.3 MB', updated: '20/03/2018' }
+                    { name: 'Reporte Integrado 2018', url: '/documentos/informes/D-REPORTE-INTEGRADO-2018.pdf', size: '4.4 MB', updated: '15/03/2018' }
                 ]
             },
             {
                 id: 'integrado-2017',
                 title: 'Reporte Integrado 2017',
-                description: 'Reporte de gestión integrado correspondiente al año 2017.',
+                description: '',
                 documents: [
-                    { name: 'Reporte Integrado de Gestión 2017', url: '/documentos/informes/integrado/reporte-integrado-2017.pdf', size: '4.2 MB', updated: '14/03/2017' },
-                    { name: 'Estados Financieros 2017', url: '/documentos/informes/integrado/estados-financieros-2017.pdf', size: '2.4 MB', updated: '09/03/2017' },
-                    { name: 'Informe de Sostenibilidad 2017', url: '/documentos/informes/integrado/sostenibilidad-2017.pdf', size: '3.2 MB', updated: '19/03/2017' }
+                    { name: 'Reporte Integrado 2017', url: '/documentos/informes/E-INFORME-DE-GESTION-2017.pdf', size: '4.2 MB', updated: '14/03/2017' }
                 ]
             }
         ],
         plan: [
             {
                 id: 'plan-inversion-2024',
-                title: 'Plan de Inversión 2024',
-                description: 'Documentos relacionados con el plan de inversiones para el año 2024.',
+                title: 'Informe de Ejecución Plan de Inversiones 2024',
+                description: '',
                 documents: [
-                    { name: 'Plan de Inversión 2024', url: '/documentos/informes/plan-inversion/plan-inversion-2024.pdf', size: '3.5 MB', updated: '10/01/2024' },
-                    { name: 'Anexos Plan de Inversión 2024', url: '/documentos/informes/plan-inversion/anexos-plan-inversion-2024.pdf', size: '2.2 MB', updated: '12/01/2024' }
+                    { name: 'Documento Soporte Plan de Inversiones 2024', url: '/documentos/informes/BOLETIN-PLAN-DE-INVERSIONES-2024.pdf', size: '3.5 MB', updated: '10/01/2024' },
+                    { name: 'Informe de Ejecución Plan de Inversiones 2024', url: '/documentos/informes/INFORME-EJECUCION-PLAN-DE-INVERSIONES-2024.pdf', size: '2.2 MB', updated: '12/01/2024' }
                 ]
             },
             {
                 id: 'plan-inversion-2023',
-                title: 'Plan de Inversión 2023',
-                description: 'Documentos relacionados con el plan de inversiones para el año 2023.',
+                title: 'Informe de Ejecución Plan de Inversiones 2023',
+                description: '',
                 documents: [
-                    { name: 'Plan de Inversión 2023', url: '/documentos/informes/plan-inversion/plan-inversion-2023.pdf', size: '3.4 MB', updated: '12/01/2023' },
-                    { name: 'Anexos Plan de Inversión 2023', url: '/documentos/informes/plan-inversion/anexos-plan-inversion-2023.pdf', size: '2.1 MB', updated: '15/01/2023' },
-                    { name: 'Seguimiento Plan de Inversión 2023', url: '/documentos/informes/plan-inversion/seguimiento-plan-inversion-2023.pdf', size: '1.8 MB', updated: '10/12/2023' }
-                ]
+                    { name: 'Informe de ejecución plan de inversiones 2023', url: '/documentos/informes/Informe-de-Ejecucion-Plan-de-Inversiones-2023.pdf', size: '3.4 MB', updated: '12/01/2023' },
+                    { name: 'Documento soporte plan de inversiones 2023', url: '/documentos/informes/Documento-Soporte-Ejecucion-Plan-de-Inversiones-2023.pdf', size: '2.1 MB', updated: '15/01/2023' }
+                 ]
             },
             {
                 id: 'plan-inversion-2022',
-                title: 'Plan de Inversión 2022',
-                description: 'Documentos relacionados con el plan de inversiones para el año 2022.',
+                title: 'Informe de Ejecución Plan de Inversiones 2022',
+                description: '',
                 documents: [
-                    { name: 'Plan de Inversión 2022', url: '/documentos/informes/plan-inversion/plan-inversion-2022.pdf', size: '3.3 MB', updated: '14/01/2022' },
-                    { name: 'Anexos Plan de Inversión 2022', url: '/documentos/informes/plan-inversion/anexos-plan-inversion-2022.pdf', size: '2.0 MB', updated: '16/01/2022' },
-                    { name: 'Seguimiento Plan de Inversión 2022', url: '/documentos/informes/plan-inversion/seguimiento-plan-inversion-2022.pdf', size: '1.7 MB', updated: '12/12/2022' }
+                    { name: 'Informe de ejecución plan de inversiones 2022', url: '/documentos/informes/PLAN-DE-INVERSIONES-2022.pdf', size: '3.3 MB', updated: '14/01/2022' },
+                    { name: 'Documento soporte plan de inversiones 2022', url: '/documentos/informes/INFORME-EJECUCION-PLAN-DE-INVERSIONES-2021-DE-ELECTROHUILA.pdf', size: '2.0 MB', updated: '16/01/2022' }
+                ]
+            },
+             {
+                id: 'plan-inversion-2021',
+                title: 'Informe Ejecución Plan de Inversiones 2021',
+                description: '',
+                documents: [
+                    { name: 'Informe de ejecución plan de inversiones 2021', url: '/documentos/informes/Informe-de-ejecucion-PI-2021-Electrohuila-S.A.-E.S.P.pdf', size: '3.5 MB', updated: '10/01/2024' },
+                    { name: 'Documento soporte plan de inversiones 2021', url: '/documentos/informes/INFORME-EJECUCION-PLAN-DE-INVERSIONES-2021-DE-ELECTROHUILA.pdf', size: '2.2 MB', updated: '12/01/2024' }
+                ]
+            },
+            {
+                id: 'plan-inversion-2020',
+                title: 'Informe de Ejecución Plan de Inversiones 2019 - 2020',
+                description: '',
+                documents: [
+                    { name: 'Informe de ejecución plan de inversiones 2019 – 2020', url: '/documentos/informes/PUBLICACION-WEB-INFORME-EJECUCION-PLAN-DE-INVERSIONES-2019-2020.pdf', size: '3.4 MB', updated: '12/01/2023' },
+                    { name: 'Documento soporte plan de inversiones 2019 – 2020', url: '/documentos/informes/DOCUMENTO-SOPORTE-PLAN-DE-INVERSIONES-2019-2020-EH.pdf', size: '2.1 MB', updated: '15/01/2023' }
+                 ]
+            },
+            {
+                id: 'plan-inversion-2019',
+                title: 'Resumen Plan de Inversiones Electrohuila 2019 - 2023',
+                description: '',
+                documents: [
+                    { name: 'Resumen plan de inversiones 2019 – 2023', url: '/documentos/informes/Resumen-del-plan-de-inversiones-Electrohuila-1.pdf', size: '3.3 MB', updated: '14/01/2022' }
                 ]
             }
         ],
         otros: [
             {
                 id: 'informe-gestion',
-                title: 'Informes de Gestión',
-                description: 'Informes periódicos sobre la gestión de la empresa.',
+                title: 'Informe Anual de Operación 2024',
+                description: '',
                 documents: [
-                    { name: 'Informe de Gestión Primer Trimestre 2024', url: '/documentos/informes/gestion/informe-gestion-q1-2024.pdf', size: '2.8 MB', updated: '15/04/2024' },
-                    { name: 'Informe de Gestión Cuarto Trimestre 2023', url: '/documentos/informes/gestion/informe-gestion-q4-2023.pdf', size: '2.7 MB', updated: '15/01/2024' },
-                    { name: 'Informe de Gestión Tercer Trimestre 2023', url: '/documentos/informes/gestion/informe-gestion-q3-2023.pdf', size: '2.6 MB', updated: '15/10/2023' }
-                ]
+                    { name: 'Reporte CGM HLAC 2024', url: '/documentos/informes/Reporte-CGM-2024-HLAC.pdf', size: '2.8 MB', updated: '15/04/2024' },
+                    { name: 'Reporte CGM HLAG 2024', url: '/documentos/informes/Reporte-CGM-2024-HLAG.pdf', size: '2.7 MB', updated: '15/01/2024' }
+               ]
             },
             {
                 id: 'informe-financiero',
-                title: 'Informes Financieros',
-                description: 'Informes detallados sobre el desempeño financiero de la empresa.',
+                title: 'Informe Anual de Operación 2023',
+                description: '',
                 documents: [
-                    { name: 'Estados Financieros Auditados 2023', url: '/documentos/informes/financieros/estados-financieros-auditados-2023.pdf', size: '3.6 MB', updated: '28/02/2024' },
-                    { name: 'Informe de Revisoría Fiscal 2023', url: '/documentos/informes/financieros/informe-revisoria-fiscal-2023.pdf', size: '2.1 MB', updated: '25/02/2024' },
-                    { name: 'Notas a los Estados Financieros 2023', url: '/documentos/informes/financieros/notas-estados-financieros-2023.pdf', size: '2.9 MB', updated: '28/02/2024' }
+                    { name: 'Reporte CGM HLAC 2023', url: '/documentos/informes/reporte-cgm-hlac-2023.pdf', size: '3.6 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAG 2023', url: '/documentos/informes/reporte-cgm-hlag-2023.pdf', size: '2.1 MB', updated: '25/02/2024' }
                 ]
             },
             {
                 id: 'informe-auditoria',
-                title: 'Informes de Auditoría',
-                description: 'Resultados de auditorías internas y externas.',
+                title: 'Informe Anual de Operación 2022',
+                description: '',
                 documents: [
-                    { name: 'Informe Auditoría Interna 2023', url: '/documentos/informes/auditoria/informe-auditoria-interna-2023.pdf', size: '2.4 MB', updated: '10/02/2024' },
-                    { name: 'Informe Auditoría Externa 2023', url: '/documentos/informes/auditoria/informe-auditoria-externa-2023.pdf', size: '3.1 MB', updated: '15/03/2024' },
-                    { name: 'Plan de Mejoramiento Auditoría 2023', url: '/documentos/informes/auditoria/plan-mejoramiento-auditoria-2023.pdf', size: '1.7 MB', updated: '20/03/2024' }
+                    { name: 'Reporte CGM HLAC 2022', url: '/documentos/informes/Reporte-CGM-2022-HLAC.pdf', size: '2.4 MB', updated: '10/02/2024' },
+                    { name: 'Reporte CGM HLAG 2022', url: '/documentos/informes/Reporte-CGM-2022-HLAG.pdf', size: '3.1 MB', updated: '15/03/2024' }
+                ]
+            },
+            {
+                id: 'informe-gestion1',
+                title: 'Informe Anual de Operación 2021',
+                description: '',
+                documents: [
+                    { name: 'Reporte CGM HLAC 2021', url: '/documentos/informes/Reporte-Anual-CGM-HLAC-2021.pdf', size: '2.8 MB', updated: '15/04/2024' },
+                    { name: 'Reporte CGM HLAG 2021', url: 'public/documentos/informes/Reporte-Anual-CGM-HLAG-2021.pdf', size: '2.7 MB', updated: '15/01/2024' }
+                 ]
+            },
+            {
+                id: 'informe-financiero1',
+                title: 'Informe Anual de Operación 2019',
+                description: '',
+                documents: [
+                    { name: 'Reporte CGM HLAC 2019', url: '/documentos/informes/Reporte-CGM-HLAC-2019.pdf', size: '3.6 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAC Anexo 3 2019', url: '/documentos/informes/Reporte-CGM-HLAC-2019-ANEXO-3.pdf', size: '2.1 MB', updated: '25/02/2024' },
+                    { name: 'Reporte CGM HLAC Anexo 2 2019', url: '/documentos/informes/Reporte-CGM-HLAC-2019-ANEXO-2.pdf', size: '2.9 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAC Anexo 1 2019', url: '/documentos/informes/Reporte-CGM-HLAC-2019-ANEXO-1.pdf', size: '3.6 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAG 2019', url: '/documentos/informes/Reporte-CGM-HLAG-2019.pdf', size: '2.1 MB', updated: '25/02/2024' },
+                    { name: 'Reporte CGM HLAG Anexo 3 2019', url: '/documentos/informes/Reporte-CGM-HLAG-2019-ANEXO-3.pdf', size: '2.9 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAG Anexo 2 2019', url: '/documentos/informes/Reporte-CGM-HLAG-2019-ANEXO-2.pdf', size: '3.6 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAG Anexo 1 2019', url: 'public/documentos/informes/Reporte-CGM-HLAG-2019-ANEXO-1.pdf', size: '2.1 MB', updated: '25/02/2024' }
+                                   ]
+            },
+            {
+                id: 'informe-auditoria1',
+                title: 'Informe Anual de Operación 2018',
+                description: '',
+                documents: [
+                    { name: 'Reporte CGM HLAC 2018', url: '/documentos/informes/Reporte-CGM-HLAC-2018.pdf', size: '2.4 MB', updated: '10/02/2024' },
+                    { name: 'Reporte CGM HLAG 2018', url: '/documentos/informes/Reporte-CGM-HLAG-2018.pdf', size: '3.1 MB', updated: '15/03/2024' }
+                ]
+            },
+            {
+                id: 'informe-gestion2',
+                title: 'Informe Anual de Operación 2017',
+                description: 'Informes periódicos sobre la gestión de la empresa.',
+                documents: [
+                    { name: 'Reporte CGM HLAG 2017', url: '/documentos/informes/cgm2017.pdf', size: '2.8 MB', updated: '15/04/2024' }
+                ]
+            },
+            {
+                id: 'informe-financiero2',
+                title: 'Informe Anual de Operación 2016',
+                description: '',
+                documents: [
+                    { name: 'Reporte CGM HLAC 2016', url: '/documentos/informes/HLAC_Informe_2016.pdf', size: '3.6 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAC Anexo 3 2016', url: '/documentos/informes/HLAC_anexo2C.pdf', size: '2.1 MB', updated: '25/02/2024' },
+                    { name: 'Reporte CGM HLAC Anexo 2 2016', url: '/documentos/informes/HLAG_Anexo1G.pdf', size: '2.9 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAC Anexo 1 2016', url: '/documentos/informes/HLAC_anexo1C.pdf', size: '3.6 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAG 2016', url: '/documentos/informes/HLAG_Informe_2016.pdf', size: '2.1 MB', updated: '25/02/2024' },
+                    { name: 'Reporte CGM HLAG Anexo 3 2016', url: '/documentos/informes/HLAC_anexo3C.pdf', size: '2.9 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAG Anexo 2 2016', url: '/documentos/informes/HLAG_Anexo3.pdf', size: '3.6 MB', updated: '28/02/2024' },
+                    { name: 'Reporte CGM HLAG Anexo 1 2016', url: '/documentos/informes/HLAG_Anexo2.pdf', size: '2.1 MB', updated: '25/02/2024' }
+                ]
+            },
+            {
+                id: 'informe-auditoria2',
+                title: 'Informes Línea de Transparencia',
+                description: '',
+                documents: [
+                    { name: 'Informe Final Línea de Transparencia 2023', url: '/documentos/informes/informe-linea-transparencia-2023.pdf', size: '2.4 MB', updated: '10/02/2024' }
+                 ]
+            },
+            {
+                id: 'informe-gestion2',
+                title: 'Peticiones, quejas y reclamos',
+                description: '',
+                documents: [
+                    { name: 'Informe primer trimestre 2025', url: '', size: '2.8 MB', updated: '15/04/2024' },
+                    { name: 'Informe primer trimestre 2024', url: '/documentos/informes/INFORME-PQR_1TRIMESTRE-2024.pdf', size: '2.7 MB', updated: '15/01/2024' },
+                    { name: 'Informe segundo trimestre 2024', url: '', size: '2.6 MB', updated: '15/10/2023' },
+                    { name: 'Informe tercer  trimestre 2024', url: '/documentos/informes/INFORME-TRIMESTRAL-SOBRE-ACCESO-A-INFORMACION-QUEJAS-Y-RECLAMO-julio-agosto-y-septiembre-2024.pdf', size: '2.8 MB', updated: '15/04/2024' },
+                    { name: 'Informe cuarto trimestre 2024', url: '/documentos/informes/INFORME-TRIMESTRAL-SOBRE-ACCESO-A-INFORMACION-QUEJAS-Y-RECLAMO-octubre-noviembre-y-diciembre-2024.pdf', size: '2.7 MB', updated: '15/01/2024' },
+                    { name: 'Informe cuarto trimestre 2023', url: '/documentos/informes/informe-pqr-4-trimestre-2023.pdf', size: '2.6 MB', updated: '15/10/2023' },
+                    { name: 'Informe tercer trimestre 2023', url: '/documentos/informes/informe-pqr-3-trimestre-2023.pdf', size: '2.8 MB', updated: '15/04/2024' },
+                    { name: 'Informe segundo trimestre 2023', url: '/documentos/informes/informe-pqr-2-semestre-2023.pdf', size: '2.7 MB', updated: '15/01/2024' },
+                    { name: 'Informe primer trimestre 2023', url: '/documentos/informes/informe-pqr-1-semestre-2023.pdf', size: '2.6 MB', updated: '15/10/2023' }
+                ]
+            },
+            {
+                id: 'informe-financiero3',
+                title: 'Estudio MUNTS 2017',
+                description: '',
+                documents: [
+                    { name: 'Estudio MUNTS 2017', url: '/documentos/informes/ESTUDIO_MUNTS_ELECTROHUILA.pdf', size: '3.6 MB', updated: '28/02/2024' }
+                 ]
+            },
+            {
+                id: 'informe-auditoria3',
+                title: 'Costos garantías financieras en el MEM',
+                description: '',
+                documents: [
+                    { name: 'Costos garantías financieras en el MEM', url: '/documentos/informes/costogarantiasMEM.pdf', size: '2.4 MB', updated: '10/02/2024' }
+                 ]
+            },
+            {
+                id: 'informe-gestion3',
+                title: 'Cargos Regulados',
+                description: '',
+                documents: [
+                    { name: 'Cargos regulados 2025', url: '/documentos/informes/DG-135-DE-2025.pdf', size: '2.8 MB', updated: '15/04/2024' },
+                    { name: 'Cargos regulados 2024', url: '/documentos/informes/DG-014-DE-2024-firmado.pdf', size: '2.7 MB', updated: '15/01/2024' },
+                    { name: 'Cargos regulados 2023', url: '/documentos/informes/DG-030-DE-2023-1.pdf', size: '2.6 MB', updated: '15/10/2023' },
+                    { name: 'Cargos regulados 2022', url: '/documentos/informes/Cargos_Regulado_20220315_025337477.pdf', size: '2.7 MB', updated: '15/01/2024' },
+                    { name: 'Cargos regulados 2021', url: '/documentos/informes/DG022Cargos-Regulados-2021.pdf', size: '2.6 MB', updated: '15/10/2023' }
+                ]
+            },
+            {
+                id: 'informe-financiero4',
+                title: 'Sistema de Medición',
+                description: '',
+                documents: [
+                    { name: 'Sistema de medición', url: '/documentos/informes/PROCEDIMIENTO-PARA-MANTENIMIENTO-SISTEMA-DE-MEDICON.pdf', size: '3.6 MB', updated: '28/02/2024' }
+                 ]
+            },
+            {
+                id: 'informe-auditoria4',
+                title: 'Manual de Opercaión EH',
+                description: '',
+                documents: [
+                    { name: 'Manual de Operación EH', url: '/documentos/informes/Manual-de-operacion-SEH.pdf', size: '2.4 MB', updated: '10/02/2024' }
+                  ]
+            },{
+                id: 'informe-gestion4',
+                title: 'Carta de trato digno al usuario',
+                description: '',
+                documents: [
+                    { name: 'Carta de trato digno al usuario', url: '/documentos/informes/CARTA-DE-TRATO-DIGNO-AL-USUARIO-DE-ELECTROHUILA.pdf', size: '2.8 MB', updated: '15/04/2024' }
                 ]
             }
+            
         ]
     };
 
@@ -282,6 +418,7 @@ export default function InformesPage() {
                     </div>
                 ))}
             </div>
+             <div style={{ height: '80px' }}></div>
         </div>
     );
 }

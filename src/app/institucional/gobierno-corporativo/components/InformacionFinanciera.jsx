@@ -1,179 +1,293 @@
-'use client';
-
-import { useState } from 'react';
-import styles from './InformacionFinanciera.module.css';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronRight, FileText, Download, Eye, Loader2, CheckCircle, Calendar } from 'lucide-react';
 
 const InformacionFinanciera = () => {
-    // Estado para controlar la pestaña activa
-    const [activeTab, setActiveTab] = useState('presupuesto');
+  const [activeTab, setActiveTab] = useState('presupuesto');
+  const [expandedYears, setExpandedYears] = useState({});
+  const [years, setYears] = useState([]);
+  const [files, setFiles] = useState({});
+  const [loading, setLoading] = useState({});
+  const [connected, setConnected] = useState(false);
 
-    // Estado para controlar el año expandido
-    const [expandedItem, setExpandedItem] = useState(null);
+  // Configuración de pestañas
+  const tabs = [
+    { 
+      id: 'presupuesto', 
+      label: 'Presupuesto',
+      color: 'border-blue-500 text-blue-600'
+    },
+    { 
+      id: 'estados-financieros', 
+      label: 'Estados Financieros',
+      color: 'border-green-500 text-green-600'
+    },
+    { 
+      id: 'control-interno', 
+      label: 'Informe Control Interno Contable',
+      color: 'border-purple-500 text-purple-600'
+    }
+  ];
 
-    // Función para cambiar de pestaña
-    const handleTabChange = (tab) => {
-        setActiveTab(tab);
-        setExpandedItem(null); // Cerrar todos los items al cambiar de pestaña
-    };
-
-    // Función para manejar la expansión de un año
-    const toggleExpand = (itemId) => {
-        if (expandedItem === itemId) {
-            setExpandedItem(null);
-        } else {
-            setExpandedItem(itemId);
+  // Cargar años disponibles
+  useEffect(() => {
+    const fetchYears = async () => {
+      try {
+        const response = await fetch('https://www.electrohuila.com.co/wp-json/electrohuila/v2/informacion-financiera/anos');
+        const data = await response.json();
+        if (data.success) {
+          setYears(data.years);
+          setConnected(true);
         }
+      } catch (error) {
+        console.error('Error cargando años:', error);
+        setYears(['2025', '2024', '2023', '2022', '2021']);
+      }
     };
+    fetchYears();
+  }, []);
 
-    // Datos de documentos por año y tipo
-    const documentsData = {
-        // Presupuesto
-        'presupuesto-2025': [
-            { name: 'Presupuesto 2025', url: '/documentos/financiera/presupuesto-2025.pdf', size: '1.8 MB', updated: '15/12/2024' },
-            { name: 'Presupuesto Detallado 2025', url: '/documentos/financiera/presupuesto-detallado-2025.pdf', size: '3.2 MB', updated: '18/12/2024' }
-        ],
-        'presupuesto-2024': [
-            { name: 'Presupuesto 2024', url: '/documentos/financiera/presupuesto-2024.pdf', size: '1.7 MB', updated: '10/12/2023' },
-            { name: 'Presupuesto Detallado 2024', url: '/documentos/financiera/presupuesto-detallado-2024.pdf', size: '3.0 MB', updated: '15/12/2023' },
-            { name: 'Ejecución Presupuestal Q1-2024', url: '/documentos/financiera/ejecucion-q1-2024.pdf', size: '1.4 MB', updated: '10/04/2024' }
-        ],
-        'presupuesto-2023': [
-            { name: 'Presupuesto 2023', url: '/documentos/financiera/presupuesto-2023.pdf', size: '1.6 MB', updated: '12/12/2022' },
-            { name: 'Ejecución Presupuestal Anual 2023', url: '/documentos/financiera/ejecucion-anual-2023.pdf', size: '2.3 MB', updated: '20/01/2024' }
-        ],
-        
-        // Estados Financieros
-        'estados-2025': [
-            { name: 'Estados Financieros Q1-2025', url: '/documentos/financiera/estados-q1-2025.pdf', size: '2.8 MB', updated: '25/04/2025' }
-        ],
-        'estados-2024': [
-            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
-            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' }
-        ],
-        
-        // Informes
-        'informe-2024': [
-            { name: 'Informe Control Interno Contable Q1-2024', url: '/documentos/financiera/control-interno-q1-2024.pdf', size: '1.8 MB', updated: '28/04/2024' }
-        ],
-        'informe-2023': [
-            { name: 'Informe Control Interno Contable Anual 2023', url: '/documentos/financiera/control-interno-anual-2023.pdf', size: '3.2 MB', updated: '28/02/2024' }
-        ]
-    };
+  // Cargar archivos por pestaña y año
+  const loadFiles = async (tipo, year) => {
+    const cacheKey = `${tipo}-${year}`;
+    
+    if (files[cacheKey]) {
+      return files[cacheKey];
+    }
 
-    // Datos para las pestañas y sus respectivos contenidos
-    const tabsData = {
-        presupuesto: [
-            { id: 'presupuesto-2025', title: '2025' },
-            { id: 'presupuesto-2024', title: '2024' },
-            { id: 'presupuesto-2023', title: '2023' },
-            { id: 'presupuesto-2022', title: '2022' },
-            { id: 'presupuesto-2021', title: '2021' }
-        ],
-        estados: [
-            { id: 'estados-2025', title: '2025' },
-            { id: 'estados-2024', title: '2024' },
-            { id: 'estados-2023', title: '2023' },
-            { id: 'estados-2022', title: '2022' },
-            { id: 'estados-2021', title: '2021' }
-        ],
-        informe: [
-            { id: 'informe-2025', title: '2025' },
-            { id: 'informe-2024', title: '2024' },
-            { id: 'informe-2023', title: '2023' },
-            { id: 'informe-2022', title: '2022' },
-            { id: 'informe-2021', title: '2021' }
-        ]
-    };
+    setLoading(prev => ({ ...prev, [cacheKey]: true }));
+    
+    try {
+      const response = await fetch(`https://www.electrohuila.com.co/wp-json/electrohuila/v2/informacion-financiera/${tipo}/${year}`);
+      const data = await response.json();
+      
+      if (data.success) {
+        setFiles(prev => ({ ...prev, [cacheKey]: data.files }));
+        setLoading(prev => ({ ...prev, [cacheKey]: false }));
+        return data.files;
+      }
+    } catch (error) {
+      console.error('Error cargando archivos:', error);
+    }
+    
+    setLoading(prev => ({ ...prev, [cacheKey]: false }));
+    return [];
+  };
 
-    // Obtener los elementos según la pestaña activa
-    const activeItems = tabsData[activeTab] || [];
+  // Toggle expandir año
+  const toggleYear = async (year) => {
+    const key = `${activeTab}-${year}`;
+    
+    if (!expandedYears[key]) {
+      await loadFiles(activeTab, year);
+    }
+    
+    setExpandedYears(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
 
-    return (
-        <div className={styles.container}>
-            {/* Pestañas */}
-            <div className={styles.tabsContainer}>
-                <button
-                    className={`${styles.tabButton} ${activeTab === 'presupuesto' ? styles.active : ''}`}
-                    onClick={() => handleTabChange('presupuesto')}
-                >
-                    <span className={styles.tabIcon}>✓</span> Presupuesto
-                    {activeTab === 'presupuesto' && <div className={styles.tabTriangle}></div>}
-                </button>
-                <button
-                    className={`${styles.tabButton} ${activeTab === 'estados' ? styles.active : ''}`}
-                    onClick={() => handleTabChange('estados')}
-                >
-                    <span className={styles.tabIcon}>✓</span> Estados Financieros
-                    {activeTab === 'estados' && <div className={styles.tabTriangle}></div>}
-                </button>
-                <button
-                    className={`${styles.tabButton} ${activeTab === 'informe' ? styles.active : ''}`}
-                    onClick={() => handleTabChange('informe')}
-                >
-                    <span className={styles.tabIcon}>✓</span> Informe Control Interno Contable
-                    {activeTab === 'informe' && <div className={styles.tabTriangle}></div>}
-                </button>
-            </div>
+  // Formatear fecha
+  const formatDate = (dateString) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('es-CO', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch {
+      return 'Fecha no disponible';
+    }
+  };
 
-            {/* Lista de años */}
-            <div className={styles.itemsList}>
-                {activeItems.map((item) => (
-                    <div key={item.id} className={styles.itemRow}>
-                        <div 
-                            className={styles.itemHeader}
-                            onClick={() => toggleExpand(item.id)}
-                        >
-                            <span className={styles.expandIcon}>{expandedItem === item.id ? '−' : '+'}</span>
-                            <span className={styles.itemTitle}>{item.title}</span>
-                            <span className={styles.arrowIcon}>›</span>
-                        </div>
+  // Función para ver PDF en nueva pestaña
+  const handleViewPDF = (file) => {
+    if (file.url && file.url.trim() !== '') {
+      window.open(file.url, '_blank');
+    } else {
+      // Para archivos sin URL (como los de presupuesto), simular la URL
+      const simulatedUrl = `https://www.electrohuila.com.co/wp-content/uploads/documentos/${file.filename}`;
+      
+      // Intentar abrir la URL simulada
+      const newWindow = window.open(simulatedUrl, '_blank');
+      
+      // Si falla, mostrar mensaje alternativo
+      setTimeout(() => {
+        if (newWindow && newWindow.closed) {
+          alert(`El archivo ${file.title} se está procesando desde WordPress.\n\nSi el archivo no se abre, contacte al administrador para verificar que esté disponible en el sistema.`);
+        }
+      }, 1000);
+    }
+  };
 
-                        {/* Contenido expandido con documentos */}
-                        {expandedItem === item.id && documentsData[item.id] && (
-                            <div className={styles.itemContent}>
-                                {documentsData[item.id].map((doc, index) => (
-                                    <div key={index} className={styles.documentCard}>
-                                        <div className={styles.documentInfo}>
-                                            <div className={styles.documentIcon}>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#E74C3C" />
-                                                    <path d="M14 2V8H20L14 2Z" fill="#C0392B" />
-                                                </svg>
-                                            </div>
-                                            <div className={styles.documentDetails}>
-                                                <h3 className={styles.documentTitle}>{doc.name}</h3>
-                                                <div className={styles.documentMeta}>
-                                                    <span className={styles.documentSize}>Tamaño: {doc.size}</span>
-                                                    <span className={styles.documentUpdated}>Actualizado: {doc.updated}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className={styles.documentActions}>
-                                            <a href={doc.url} target="_blank" rel="noopener noreferrer" className={styles.viewButton}>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="#0099da" />
-                                                </svg>
-                                                Ver
-                                            </a>
-                                            <a href={doc.url} download className={styles.downloadButton}>
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M5 20H19V18H5V20ZM19 9H15V3H9V9H5L12 16L19 9Z" fill="#0099da" />
-                                                </svg>
-                                                Descargar
-                                            </a>
-                                        </div>
-                                    </div>
-                                ))}
-                                {!documentsData[item.id] && (
-                                    <p className={styles.noDocuments}>No hay documentos disponibles para este año.</p>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
+  // Función para descargar PDF
+  const handleDownloadPDF = (file) => {
+    if (file.url && file.url.trim() !== '') {
+      // Crear enlace temporal para descarga
+      const link = document.createElement('a');
+      link.href = file.url;
+      link.download = file.filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      // Para archivos sin URL, intentar descarga simulada
+      const simulatedUrl = `https://www.electrohuila.com.co/wp-content/uploads/documentos/${file.filename}`;
+      
+      const link = document.createElement('a');
+      link.href = simulatedUrl;
+      link.download = file.filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Mostrar mensaje informativo
+      setTimeout(() => {
+        alert(`Descargando: ${file.filename}\n\nSi la descarga no inicia automáticamente, contacte al administrador para verificar que el archivo esté disponible en WordPress.`);
+      }, 500);
+    }
+  };
+
+  // Obtener archivos del cache
+  const getFilesForYear = (year) => {
+    const cacheKey = `${activeTab}-${year}`;
+    return files[cacheKey] || [];
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto p-6 bg-white">
+      {/* Pestañas */}
+      <div className="mb-6">
+        <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex-1 px-4 py-3 text-sm font-medium rounded-md transition-all duration-200 ${
+                activeTab === tab.id
+                  ? 'bg-white text-gray-900 shadow-sm border-l-4 border-blue-500'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              <div className="flex items-center justify-center">
+                <span>{tab.label}</span>
+              </div>
+            </button>
+          ))}
         </div>
-    );
+      </div>
+
+      {/* Contenido */}
+      <div className="space-y-4">
+        {years.map((year) => {
+          const yearKey = `${activeTab}-${year}`;
+          const isExpanded = expandedYears[yearKey];
+          const yearFiles = getFilesForYear(year);
+          const isLoadingYear = loading[yearKey];
+
+          return (
+            <div key={year} className="border border-gray-200 rounded-lg overflow-hidden">
+              {/* Header del año */}
+              <div
+                className="bg-gray-50 border-b border-gray-200 p-4 cursor-pointer hover:bg-gray-100 transition-colors"
+                onClick={() => toggleYear(year)}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
+                      {isExpanded ? (
+                        <ChevronDown className="w-5 h-5 text-blue-600" />
+                      ) : (
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
+                      )}
+                      <Calendar className="w-5 h-5 text-gray-600" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Año {year}
+                    </h3>
+                  </div>
+                  
+                  <div className="flex items-center gap-4">
+                    {yearFiles.length > 0 && (
+                      <span className="text-sm text-gray-600 bg-gray-200 px-2 py-1 rounded">
+                        {yearFiles.length} archivo{yearFiles.length !== 1 ? 's' : ''}
+                      </span>
+                    )}
+                    
+                    {isLoadingYear && (
+                      <Loader2 className="w-5 h-5 animate-spin text-blue-600" />
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Contenido expandido */}
+              {isExpanded && (
+                <div className="p-4 bg-white">
+                  {isLoadingYear ? (
+                    <div className="flex items-center justify-center py-8">
+                      <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                      <span className="ml-2 text-gray-600">Cargando archivos...</span>
+                    </div>
+                  ) : yearFiles.length > 0 ? (
+                    <div className="space-y-3">
+                      {yearFiles.map((file) => (
+                        <div
+                          key={file.id}
+                          className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors"
+                        >
+                          <div className="flex items-center gap-3">
+                            <FileText className="w-8 h-8 text-red-500" />
+                            <div>
+                              <h4 className="font-medium text-gray-900">{file.title}</h4>
+                              <div className="text-sm text-gray-600 flex items-center gap-4">
+                                <span>{file.size}</span>
+                                <span>{formatDate(file.date)}</span>
+                                {file.source === 'wordpress' && (
+                                  <span className="flex items-center gap-1 text-green-600">
+                                    <CheckCircle className="w-4 h-4" />
+                                    WordPress
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center gap-2">
+                            <button
+                              className="flex items-center gap-2 px-3 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                              onClick={() => handleViewPDF(file)}
+                            >
+                              <Eye className="w-4 h-4" />
+                              Ver
+                            </button>
+                            
+                            <button
+                              className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors"
+                              onClick={() => handleDownloadPDF(file)}
+                            >
+                              <Download className="w-4 h-4" />
+                              Descargar
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8 text-gray-500">
+                      <FileText className="w-12 h-12 mx-auto mb-2 text-gray-400" />
+                      <p>No hay archivos disponibles para este año</p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default InformacionFinanciera;

@@ -336,7 +336,7 @@ export default function TarifasPage() {
   );
 }
 
-// Componente para cada año (igual que antes)
+// Componente para cada año SIN EL BOTÓN NARANJA
 function TarifaCard({ año, destacado }) {
   return (
     <div
@@ -425,12 +425,12 @@ function TarifaCard({ año, destacado }) {
         </div>
       </div>
 
-      {/* Botones */}
-      <div style={{ display: 'flex', gap: '10px' }}>
+      {/* SOLO EL BOTÓN VERDE - SIN BOTÓN NARANJA */}
+      <div>
         <a
           href={`/tarifas/${año.año}`}
           style={{
-            flex: 1,
+            display: 'block',
             background: destacado ? '#27ae60' : '#3498db',
             color: 'white',
             padding: '12px',
@@ -443,23 +443,6 @@ function TarifaCard({ año, destacado }) {
         >
           📄 Ver Tarifas
         </a>
-        <button
-          style={{
-            background: '#f39c12',
-            color: 'white',
-            border: 'none',
-            padding: '12px 15px',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
-          onClick={() => {
-            // Abrir la API de WordPress directamente para el año
-            window.open(`https://electrohuila.com.co/wp-json/electrohuila/v1/tarifas?year=${año.año}`, '_blank');
-          }}
-        >
-          📦
-        </button>
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ export default function PoliticasPage() {
                 description: 'Políticas relacionadas con la gestión del talento humano en nuestra empresa.',
                 documents: [
                     { name: 'Politica de Prevención del Acoso Laboral y Acoso Sexual; y de Promoción de la Desconexión Laboral', url: '/documentos/politicas/Politica-de-Prevencion-del-Acoso-Laboral-y-Acoso-Sexual-y-de-Promocion-de-la-Desconexion-Laboral-1.pdf' },
-                   
+
                 ]
             },
             {
@@ -45,7 +45,7 @@ export default function PoliticasPage() {
                 documents: [
                     { name: 'Política de Calidad', url: '/documentos/politicas/POLITICA-DE-CALIDAD.pdf', size: '4.2 MB', updated: '05/01/2024' },
                     { name: 'Política de prevención del consumo de alcohol, tabaco y sustancias psicoactivas.', url: '/documentos/politicas/Politica-de-prevencion-de-consumo-de-alcohol-tabaco-y-sustancias-psicoactivas.pdf', size: '1.8 MB', updated: '12/03/2024' },
-                     { name:'Política de seguridad vial', url: '/documentos/politicas/Política Seguridad Vial.pdf', size: '4.2 MB', updated: '05/01/2024' },
+                    { name: 'Política de seguridad vial', url: '/documentos/politicas/Política Seguridad Vial.pdf', size: '4.2 MB', updated: '05/01/2024' },
                     { name: 'Política de seguridad y salud en el trabajo.', url: '/documentos/politicas/Pilitica-de-seguridad-y-salud-en-el-trabajo.pdf', size: '1.8 MB', updated: '12/03/2024' }
                 ]
             },
@@ -60,7 +60,7 @@ export default function PoliticasPage() {
                     { name: 'Política de Control y Gestión del Riesgo LA_FT_FPADM_S_C', url: '/documentos/politicas/5.-Politica-de-Control-y-Gestion-del-Riesgo-LA_FT_FPADM_S_C.pdf', size: '2.7 MB', updated: '18/09/2023' },
                     { name: 'Política de Hospitalidades, Obsequios y Beneficios', url: '/documentos/politicas/4.-Politica-de-HospitalidadesObsequios-y-Beneficios.pdf', size: '1.5 MB', updated: '20/07/2023' },
                     { name: 'Política de la línea de Transparencia y Comité de Ética', url: '/documentos/politicas/3.-Politica-de-la-Linea-de-Transparencia-y-Comite-de-Etica.pdf', size: '3.2 MB', updated: '10/01/2024' },
-                    { name: 'Política de programa de Transparencia y Ética Pública – PTEP', url: '/documentos/politicas/Acuerdo-09-del-28-de-febrero-de-2025-Programa-de-Transparencia-y-Etica-Publica-PTEP.pdf', size: '2.7 MB', updated: '18/09/2023' },
+                    { name: 'Política de programa de Transparencia y Ética Pública – PTEP', url: '/documentos/politicas/Acuerdo-09-del-28-de-febrero-de-2025-Programa-de-Transparencia-y-Etica-Publica-PTEP.pdf' },
                     { name: 'Política de Privacidad Tratamiento y Protección de Datos Personales de ElectroHuila S.A. E.S.P.', url: '/documentos/politicas/POLITICA_DE_PRI_20230515_114541167.pdf', size: '1.5 MB', updated: '20/07/2023' },
                     { name: 'Código de Buen Gobierno Corporativo', url: '/documentos/politicas/Acuerdo-07-del-28-de-febrero-de-2025-Codigo-de-Buen-Gobierno-Corporativo.pdf', size: '3.2 MB', updated: '10/01/2024' }
                 ]
@@ -71,7 +71,7 @@ export default function PoliticasPage() {
                 description: 'Documentos sobre la estructura organizacional y sistemas de la empresa.',
                 documents: [
                     { name: 'Políticas de seguridad de la información', url: '/documentos/politicas/Politica-de-Seguridad-de-la-Informacion.pdf', size: '1.1 MB', updated: '15/02/2024' }
-                    
+
                 ]
             },
             {
@@ -90,7 +90,7 @@ export default function PoliticasPage() {
                 description: 'Sistema Integrado de Gestión y Autocontrol.',
                 documents: [
                     { name: 'Política SIGAC', url: '/documentos/politicas/POLITICA-SIGAC.pdf', size: '3.7 MB', updated: '10/01/2024' }
-                    
+
                 ]
             },
             {
@@ -99,7 +99,7 @@ export default function PoliticasPage() {
                 description: 'Protocolos y medidas de bioseguridad adoptados por la empresa.',
                 documents: [
                     { name: 'Protocolo de Bioseguridad', url: '/documentos/politicas/protocolo-bioseguridad-electrohuila.pdf', size: '2.4 MB', updated: '15/01/2024' }
-                   
+
                 ]
             }
         ],
@@ -110,7 +110,7 @@ export default function PoliticasPage() {
                 description: '',
                 documents: [
                     { name: 'Política de financiación', url: '/documentos/politicas/POLITICA-DE-FINANCIACION.pdf', size: '2.3 MB', updated: '20/02/2024' }
-                    
+
                 ]
             },
             {
@@ -119,42 +119,31 @@ export default function PoliticasPage() {
                 description: 'Información sobre tarifas, facturación y procesos comerciales.',
                 documents: [
                     { name: 'Política de Transparencia y acceso a información pública', url: '/documentos/politicas/Politica-de-Transparencia-y-acceso-a-informacion-publica-1.pdf', size: '1.7 MB', updated: '01/01/2024' }
-                   
+
                 ]
             },
-            
+
         ],
         administrativas: [
             {
                 id: 'financiera',
-                title: 'Política Financiera',
+                title: 'Gestión Financiera',
                 description: 'Políticas y lineamientos financieros de la organización.',
                 documents: [
-                    { name: 'Política Financiera 2024', url: '/documentos/politicas/financiera/politica-financiera-2024.pdf', size: '2.6 MB', updated: '10/01/2024' },
-                    { name: 'Manual de Inversiones', url: '/documentos/politicas/financiera/manual-inversiones-2023.pdf', size: '1.9 MB', updated: '15/11/2023' },
-                    { name: 'Política de Gastos', url: '/documentos/politicas/financiera/politica-gastos-2024.pdf', size: '1.7 MB', updated: '05/01/2024' }
+                    { name: 'Política divulgación información Financiera', url: '/documentos/politicas/Politica-divulgacion-informacion-financiera.pdf', size: '2.6 MB', updated: '10/01/2024' },
+                    { name: 'Manual de de Políticas Contables', url: '/documentos/politicas/Documento-de-Gerencia-271-Actualizacion-de-Politicas-Contables.pdf', size: '1.9 MB', updated: '15/11/2023' }
                 ]
             },
             {
                 id: 'contratacion',
-                title: 'Contratación y Adquisiciones',
+                title: 'Gestión documental',
                 description: 'Políticas y procedimientos para contratación y adquisición de bienes y servicios.',
                 documents: [
-                    { name: 'Manual de Contratación 2024', url: '/documentos/politicas/contratacion/manual-contratacion-2024.pdf', size: '3.8 MB', updated: '20/01/2024' },
-                    { name: 'Procedimiento de Compras', url: '/documentos/politicas/contratacion/procedimiento-compras-2023.pdf', size: '2.1 MB', updated: '10/12/2023' },
-                    { name: 'Formatos de Contratación', url: '/documentos/politicas/contratacion/formatos-contratacion-2024.pdf', size: '1.5 MB', updated: '15/01/2024' }
-                ]
-            },
-            {
-                id: 'transparencia',
-                title: 'Transparencia y Anticorrupción',
-                description: 'Políticas de transparencia y medidas anticorrupción.',
-                documents: [
-                    { name: 'Política de Transparencia', url: '/documentos/politicas/transparencia/politica-transparencia-2024.pdf', size: '2.2 MB', updated: '15/01/2024' },
-                    { name: 'Plan Anticorrupción 2024', url: '/documentos/politicas/transparencia/plan-anticorrupcion-2024.pdf', size: '3.5 MB', updated: '10/01/2024' },
-                    { name: 'Código de Buen Gobierno', url: '/documentos/politicas/transparencia/codigo-buen-gobierno-2023.pdf', size: '2.7 MB', updated: '20/09/2023' }
+                    { name: 'Programa de gestión documental – PDGD', url: '', size: '3.8 MB', updated: '20/01/2024' },
+                    { name: 'Tablas de retención documental', url: '', size: '2.1 MB', updated: '10/12/2023' }
                 ]
             }
+
         ]
     };
 
@@ -255,6 +244,7 @@ export default function PoliticasPage() {
                     </div>
                 ))}
             </div>
+            <div style={{ height: '80px' }}></div>
         </div>
     );
 }
