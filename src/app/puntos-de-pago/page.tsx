@@ -359,27 +359,8 @@ export default function PuntosPago() {
             </tbody>
           </table>
         </div>
-        
-        {/* Información de conexión */}
-        <div style={{ 
-          marginTop: '16px', 
-          padding: '12px', 
-          backgroundColor: '#F0F9FF', 
-          borderRadius: '8px',
-          fontSize: '14px',
-          color: '#1E40AF',
-          border: '1px solid #E0F2FE'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '16px' }}>📡</span>
-            <span>
-              <strong>Datos cargados desde WordPress API</strong> • 
-              {puntosData.length} puntos disponibles en {[...new Set(puntosData.map(p => p.municipio))].length} municipios • 
-              {recaudadoresDisponibles.length - 1} recaudadores activos
-            </span>
-          </div>
-        </div>
       </div>
+        <div style={{ height: '80px' }}></div>
     </div>
   );
 }

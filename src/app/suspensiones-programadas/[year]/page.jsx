@@ -133,8 +133,18 @@ export default function SuspensionesYearPage({ params }) {
     }
   };
 
+  // ===== FUNCIÓN CORREGIDA =====
   const generarPDFSuspension = (archivo) => {
     try {
+      // VERIFICAR que el archivo tenga las propiedades necesarias
+      const mes = archivo.mes || 'No definido';
+      const sector = archivo.sector || 'No definido';
+      const duracion = archivo.duracion || 'No definido';
+      const motivo = archivo.motivo || 'Mantenimiento preventivo';
+      const titulo = archivo.title || 'Suspensión programada';
+      
+      console.log('Generando PDF para:', { mes, sector, duracion, motivo, titulo });
+      
       const pdfContent = `%PDF-1.4
 1 0 obj
 <<
@@ -179,27 +189,27 @@ BT
 /F1 14 Tf
 (SUSPENSION PROGRAMADA POR MANTENIMIENTO) Tj
 0 -25 Td
-(${archivo.title.toUpperCase()}) Tj
+(${titulo.toUpperCase()}) Tj
 
 0 -40 Td
 /F2 12 Tf
 (INFORMACION DE LA SUSPENSION) Tj
 0 -25 Td
 /F1 10 Tf
-(Mes: ${archivo.mes}) Tj
+(Mes: ${mes}) Tj
 0 -15 Td
 (Año: ${year}) Tj
 0 -15 Td
-(Sector afectado: ${archivo.sector}) Tj
+(Sector afectado: ${sector}) Tj
 0 -15 Td
-(Duracion estimada: ${archivo.duracion}) Tj
+(Duracion estimada: ${duracion}) Tj
 
 0 -30 Td
 /F2 11 Tf
 (MOTIVO DEL MANTENIMIENTO:) Tj
 0 -20 Td
 /F1 10 Tf
-(${archivo.motivo}) Tj
+(${motivo}) Tj
 
 0 -30 Td
 /F2 11 Tf
@@ -223,7 +233,7 @@ BT
 /F1 10 Tf
 (Se estima que la suspension podria afectar) Tj
 0 -12 Td
-(aproximadamente ${Math.floor(Math.random() * 5000) + 2000} usuarios del sector ${archivo.sector}.) Tj
+(aproximadamente ${Math.floor(Math.random() * 5000) + 2000} usuarios del sector ${sector}.) Tj
 
 0 -30 Td
 /F2 11 Tf
@@ -294,9 +304,11 @@ startxref
       return URL.createObjectURL(blob);
     } catch (error) {
       console.error('Error al generar PDF:', error);
+      console.log('Datos del archivo:', archivo); // Para debug
       return null;
     }
   };
+  // ===== FIN FUNCIÓN CORREGIDA =====
 
   if (loading) {
     return (
@@ -413,7 +425,7 @@ startxref
                 
                 <div className="space-y-3">
                   <button
-                    onClick={() => handleDescargar(archivo)}
+                    onClick={() => handleVer(archivo)}
                     className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-sm hover:shadow-md transform hover:scale-[1.02]"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
