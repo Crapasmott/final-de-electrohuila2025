@@ -108,8 +108,22 @@ export default function Comunicados() {
         </div>
       )}
 
-      {/* Indicador discreto de datos reales - REMOVIDO */}
-      {/* La barra verde era solo para debugging/desarrollo */}
+      {/* Indicador discreto de datos reales */}
+      {comunicados.length > 0 && !loading && (
+        <div style={{
+          backgroundColor: '#d4edda',
+          border: '1px solid #c3e6cb',
+          borderRadius: '8px',
+          padding: '10px',
+          marginBottom: '20px',
+          textAlign: 'center',
+          fontSize: '14px'
+        }}>
+          <p style={{ color: '#155724', margin: 0 }}>
+            ✅ Mostrando {comunicados.length} comunicados desde WordPress
+          </p>
+        </div>
+      )}
       
       {/* Grid de comunicados - DISEÑO ORIGINAL MANTENIDO */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>

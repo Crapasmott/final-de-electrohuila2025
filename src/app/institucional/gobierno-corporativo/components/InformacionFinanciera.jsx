@@ -1,503 +1,336 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronRight, FileText, Download, Eye, Loader2, CheckCircle, Calendar } from 'lucide-react';
+import { useState } from 'react';
+import styles from './InformacionFinanciera.module.css';
 
 const InformacionFinanciera = () => {
-  const [activeTab, setActiveTab] = useState('presupuesto');
-  const [expandedYears, setExpandedYears] = useState({});
-  const [documentos, setDocumentos] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [viewingDocument, setViewingDocument] = useState(null);
+    // Estado para controlar la pestaña activa
+    const [activeTab, setActiveTab] = useState('presupuesto');
 
-  // Datos de estructura completa
-  const tabsData = {
-    presupuesto: {
-      title: 'Presupuesto',
-      years: ['2025', '2024', '2023', '2022', '2021'],
-      documents: {
-        '2025': [
-          'Acuerdo 17 de 2024'
-        ],
-        '2024': [
-          'Presupuesto 2024'
-        ],
-        '2023': [
-          'Presupuesto 2023'
-        ],
-        '2022': [],
-        '2021': [
-          'Ejecución ingresos 2021',
-          'Ejecución gastos 2021',
-          'Acuerdo 02 - Modificación',
-          'Acuerdo 01 - Modificación',
-          'Descripción de los ingresos',
-          'Ejecución presupuestal 2021',
-          'Presupuesto 2021'
-        ]
-      }
-    },
-    estados: {
-      title: 'Estados Financieros',
-      years: ['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018'],
-      documents: {
-        '2025': [
-          'Estado de resultados enero 2025',
-          'Estado de Situación Financiera enero 2025',
-          'Estado de resultados marzo 2025',
-          'Estado de Situación Financiera marzo 2025',
-          'Estado de resultados febrero 2025',
-          'Estado de Situación Financiera febrero 2025',
-          'Estado de resultados abril 2025',
-          'Estado de Situación Financiera abril 2025'
-        ],
-        '2024': [
-          'Estados Financieros Certificados, Dictaminados y Notas 2024',
-          'Estado de resultados noviembre',
-          'Estado de situación Financiera noviembre',
-          'Estado de resultados octubre',
-          'Estado de situación Financiera octubre',
-          'Estado de situación Financiera agosto',
-          'Estado de resultados agosto',
-          'Estado de situación Financiera septiembre',
-          'Estado de resultados septiembre',
-          'Estado de situación Financiera julio',
-          'Estado de resultados julio',
-          'Estado de situación Financiera junio',
-          'Estado de resultados junio',
-          'Estado de situación Financiera mayo',
-          'Estado de resultados mayo',
-          'Estado de situación Financiera abril',
-          'Estado de resultados abril',
-          'Estado de situación Financiera enero-marzo',
-          'Estado de resultados enero-marzo',
-          'Estado de situación Financiera febrero',
-          'Estado de resultados febrero',
-          'Estado de situación Financiera enero',
-          'Estado de resultados enero'
-        ],
-        '2023': [
-          'Estados financieros, dictamen y notas año 2023',
-          'Estado de situación Financiera noviembre',
-          'Estado de resultados noviembre',
-          'Estado de situación Financiera octubre',
-          'Estado de resultados octubre',
-          'Estado de situación Financiera septiembre',
-          'Estado de resultados septiembre',
-          'Estado de situación Financiera agosto',
-          'Estado de resultados agosto',
-          'Estado de situación Financiera julio',
-          'Estado de resultados julio',
-          'Estado de situación Financiera junio',
-          'Estado de resultados junio',
-          'Estado de situación Financiera mayo',
-          'Estado de resultados mayo',
-          'Estado de situación Financiera abril',
-          'Estado de resultados abril',
-          'Estado de situación Financiera marzo',
-          'Estado de resultados marzo',
-          'Estado de situación Financiera febrero',
-          'Estado de resultados febrero',
-          'Estado de situación Financiera enero',
-          'Estado de resultados enero'
-        ],
-        '2022': [
-          'Estado de situación Financiera y de Resultados diciembre',
-          'Estado de situación Financiera noviembre',
-          'Estado de resultados noviembre',
-          'Estado de situación Financiera octubre',
-          'Estado de resultados octubre',
-          'Estado de situación Financiera septiembre',
-          'Estado de resultados septiembre',
-          'Estado de situación Financiera agosto',
-          'Estado de resultados agosto',
-          'Estado de situación Financiera julio',
-          'Estado de resultados julio',
-          'Estado de situación Financiera junio',
-          'Estado de resultados junio',
-          'Estado de situación Financiera mayo',
-          'Estado de resultados mayo',
-          'Estado de situación Financiera abril',
-          'Estado de resultados abril',
-          'Estado de situación Financiera marzo',
-          'Estado de resultados marzo',
-          'Estado de situación Financiera febrero',
-          'Estado de resultados febrero',
-          'Estado de situación Financiera enero',
-          'Estado de resultados enero'
-        ],
-        '2021': [
-          'Estado de situación Financiera diciembre',
-          'Estado de resultados diciembre',
-          'Estado de situación Financiera noviembre',
-          'Estado de resultados noviembre',
-          'Estado de situación Financiera octubre',
-          'Estado de resultados octubre',
-          'Estado de situación Financiera septiembre',
-          'Estado de resultados septiembre',
-          'Estado de situación Financiera agosto',
-          'Estado de resultados agosto',
-          'Estado de situación Financiera julio',
-          'Estado de resultados julio',
-          'Estado de situación Financiera junio',
-          'Estado de resultados junio',
-          'Estado de situación Financiera mayo',
-          'Estado de resultados mayo',
-          'Estado de situación Financiera abril',
-          'Estado de resultados abril',
-          'Estado de situación Financiera marzo',
-          'Estado de resultados marzo',
-          'Estado de situación Financiera febrero',
-          'Estado de resultados febrero',
-          'Estado de situación Financiera enero',
-          'Estado de resultados enero'
-        ],
-        '2020': [
-          'Estado de situación Financiera diciembre',
-          'Estado de resultados diciembre',
-          'Estado de situación Financiera noviembre',
-          'Estado de resultados noviembre',
-          'Estado de situación Financiera octubre',
-          'Estado de resultados octubre',
-          'Estado de situación Financiera septiembre',
-          'Estado de resultados septiembre',
-          'Estado de situación Financiera agosto',
-          'Estado de resultados agosto',
-          'Estado de situación Financiera julio',
-          'Estado de resultados julio',
-          'Estado de situación Financiera junio',
-          'Estado de resultados junio',
-          'Estado de situación Financiera mayo',
-          'Estado de resultados mayo',
-          'Estado de situación Financiera abril',
-          'Estado de resultados abril',
-          'Estado de situación Financiera marzo',
-          'Estado de resultados marzo',
-          'Estado de situación Financiera febrero',
-          'Estado de resultados febrero',
-          'Estado de situación Financiera enero',
-          'Estado de resultados enero'
-        ],
-        '2019': [
-          'Estado de situación Financiera diciembre',
-          'Estado de situación Financiera noviembre',
-          'Estado de situación Financiera octubre',
-          'Estado de situación Financiera septiembre',
-          'Estado de situación Financiera agosto',
-          'Estado de situación Financiera julio',
-          'Estado de situación Financiera junio',
-          'Estado de situación Financiera mayo',
-          'Estado de situación Financiera abril',
-          'Estado de situación Financiera marzo',
-          'Estado de situación Financiera febrero',
-          'Estado de situación Financiera enero'
-        ],
-        '2018': [
-          'Estado de situación Financiera 2018 - 2017'
-        ]
-      }
-    },
-    control: {
-      title: 'Informe Control Interno Contable',
-      years: ['2024', '2023', '2022'],
-      documents: {
-        '2024': [
-          'Informe de la Evaluación del Control Interno Contable de la vigencia 2024'
-        ],
-        '2023': [
-          'Informe de la Evaluación del Control Interno Contable de la vigencia 2023'
-        ],
-        '2022': [
-          'Informe de la Evaluación del Control Interno Contable de la Vigencia 2022'
-        ]
-      }
-    }
-  };
+    // Estado para controlar el año expandido
+    const [expandedItem, setExpandedItem] = useState(null);
 
-  useEffect(() => {
-    // Simular carga de datos
-    const loadData = async () => {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setDocumentos(tabsData);
-      setLoading(false);
+    // Función para cambiar de pestaña
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+        setExpandedItem(null); // Cerrar todos los items al cambiar de pestaña
     };
-    loadData();
-  }, []);
 
-  const toggleYear = (year) => {
-    setExpandedYears(prev => ({
-      ...prev,
-      [`${activeTab}-${year}`]: !prev[`${activeTab}-${year}`]
-    }));
-  };
-
-  const handleViewDocument = (doc, year) => {
-    const documentData = {
-      titulo: doc,
-      año: year,
-      categoria: tabsData[activeTab].title,
-      fecha_generacion: new Date().toLocaleDateString('es-ES'),
-      descripcion: generateDocumentDescription(doc, year),
-      url: `#documento-${doc.replace(/\s+/g, '-').toLowerCase()}`
+    // Función para manejar la expansión de un año
+    const toggleExpand = (itemId) => {
+        if (expandedItem === itemId) {
+            setExpandedItem(null);
+        } else {
+            setExpandedItem(itemId);
+        }
     };
-    setViewingDocument(documentData);
-  };
 
-  const handleDownloadDocument = (doc, year) => {
-    try {
-      const content = generateDocumentContent(doc, year);
-      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${doc.replace(/\s+/g, '_').toLowerCase()}_${year}.txt`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error al descargar documento:', error);
-    }
-  };
+    // Datos de documentos por año y tipo
+    const documentsData = {
+        // Presupuesto
+        'presupuesto-2025': [
+            { name: 'Acuerdo 17 de 2024', url: '/documentos/financiera/Acuerdo-17-de-2024.pdf', size: '1.8 MB', updated: '15/12/2024' }
+        ],
+        'presupuesto-2024': [
+            { name: 'Presupuesto 2024', url: '/documentos/financiera/ACUERDO-21-DE-2023.pdf', size: '1.7 MB', updated: '10/12/2023' }
+        ],
+        'presupuesto-2023': [
+            { name: 'Presupuesto 2023', url: '/documentos/financiera/ACUERDO-16-DE-2022.pdf', size: '1.6 MB', updated: '12/12/2022' }
+        ],
+        'presupuesto-2022': [
+            { name: 'Descripción de los ingresos', url: '/documentos/financiera/Descripcion-de-los-ingresos-1.pdf', size: '1.7 MB', updated: '10/12/2023' },
+            { name: 'Presupuesto 2022', url: '/documentos/financiera/Acuerdo-15-Presupuesto-2022.pdf', size: '1.7 MB', updated: '10/12/2023' }
+        ],
+        'presupuesto-2021': [
+            { name: 'Ejecución ingresos 2021', url: '/documentos/financiera/Ejecucion-ingresos-2021.pdf/documentos/financiera/ACUERDO-16-DE-2022.pdf', size: '1.6 MB', updated: '12/12/2022' },
+            { name: 'Ejecución gastos 2021', url: '/documentos/financiera/Ejecucion-gastos-2021.pdf', size: '1.6 MB', updated: '12/12/2022' },
+            { name: 'Acuerdo 02 – Modificación', url: '/documentos/financiera/Acuerdo-02-Modificacion.pdf', size: '1.6 MB', updated: '12/12/2022' },
+            { name: 'Acuerdo 01 – Modificación', url: '/documentos/financiera/Acuerdo-01-Modificacion.pdf', size: '1.6 MB', updated: '12/12/2022' },
+            { name: 'Descripción de los ingresos', url: '/documentos/financiera/Descripcion-de-los-ingresos.pdf', size: '1.6 MB', updated: '12/12/2022' },
+            { name: 'Ejecución presupuestal 2021', url: '/documentos/financiera/Ejecucion-presupuestal-2021.pdf', size: '1.6 MB', updated: '12/12/2022' },
+            { name: 'Presupuesto 2021', url: '/documentos/financiera/Acuerdo-No.-15-Presupuesto-2021.pdf', size: '1.6 MB', updated: '12/12/2022' }
+        ],
+        // Estados Financieros
+        'estados-2025': [
+            { name: 'Estado de resultados enero 2025', url: '/documentos/financiera/ESTADO-RESULTADOS-a-31-ENERO.pdf', size: '2.8 MB', updated: '25/04/2025' },
+            { name: 'Estado de Situación Financiera enero 2025', url: '/documentos/financiera/ESTADO-SITUACION-FINANCIERA-enero.pdf', size: '2.8 MB', updated: '25/04/2025' },
+            { name: 'Estado de resultados marzo 2025', url: '/documentos/financiera/ESTADO-DE-RESULTADOS-DEL-1-ENERO-AL-31-DE-MARZO-.pdf', size: '2.8 MB', updated: '25/04/2025' },
+            { name: 'Estado de Situación Financiera marzo 2025', url: '/documentos/financiera/ESTADO-DE-SITUACION-FINANCIERA-A-MARZO-.pdf', size: '2.8 MB', updated: '25/04/2025' },
+            { name: 'Estado de resultados febrero 2025', url: '/documentos/financiera/ER-1-ENE-AL-28-FEB.pdf', size: '2.8 MB', updated: '25/04/2025' },
+            { name: 'Estado de Situación Financiera febrero 2025', url: '/documentos/financiera/ESF-A-FEBRERO.pdf', size: '2.8 MB', updated: '25/04/2025' },
+            { name: 'Estado de resultados abril 2025', url: '/documentos/financiera/ER-1-ENE-AL-30-ABR.pdf', size: '2.8 MB', updated: '25/04/2025' },
+            { name: 'Estado de Situación Financiera abril 2025', url: '/documentos/financiera/ER-1-ENE-AL-30-ABR.pdf', size: '2.8 MB', updated: '25/04/2025' }
+         ],
+        'estados-2024': [
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' }
+         ],
+        'estados-2023': [
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' }
+        ],
+        'estados-2022': [
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' }
+        ],
+        'estados-2021': [
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estados Financieros Q2-2024', url: '/documentos/financiera/estados-q2-2024.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estados Financieros Q1-2024', url: '/documentos/financiera/estados-q1-2024.pdf', size: '2.7 MB', updated: '20/04/2024' }
+        ],
+        'estados-2020': [
+            { name: 'Estado de situación Financiera diciembre', url: '/documentos/financiera/estadofiancieroDIC-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de resultados diciembre ', url: '/documentos/financiera/Estados-Financieros-a-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera noviembre', url: '', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de resultados noviembre ', url: '/documentos/financiera/ER-nov-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera octubre', url: '/documentos/financiera/ESF-oct-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de resultados octubre ', url: '/documentos/financiera/ER-oct-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera septiembre', url: '/documentos/financiera/ESF-sept-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de resultados septiembre ', url: '/documentos/financiera/ER-sept-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera agosto', url: '/documentos/financiera/ESF-agosto-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de resultados agosto ', url: '/documentos/financiera/ER-agosto-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera julio', url: '/documentos/financiera/ESF-julio-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de resultados julio ', url: '/documentos/financiera/ER-julio-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera junio ', url: '/documentos/financiera/ESF-JUNIO-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera mayo', url: '/documentos/financiera/ER-JUNIO-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de resultados mayo ', url: '/documentos/financiera/ER-MAYO-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera abril', url: '/documentos/financiera/ESF-abril-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de resultados abril', url: '/documentos/financiera/ER-abril-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera marzo', url: '/documentos/financiera/ESF-marzo-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de resultados marzo', url: '/documentos/financiera/ER-marzo-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera febrero', url: '/documentos/financiera/ESF-febrero-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de resultados febrero', url: '/documentos/financiera/ER-febrero-2020.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera enero', url: '/documentos/financiera/ESF-enero-2020.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de resultados enero', url: '/documentos/financiera/ER-enero-2020.pdf', size: '2.7 MB', updated: '20/04/2024' }
+        ],
+        'estados-2019': [
+            { name: 'Estado de situación Financiera diciembre', url: '/documentos/financiera/ESTADOS-FINANCIEROS-a-dic-2019-2018.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera noviembre', url: '/documentos/financiera/ESF-noviembre2019.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera octubre', url: '/documentos/financiera/ESF-octubre-19.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera septiembre', url: '/documentos/financiera/ESF-septiembre_2019.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera agosto', url: '/documentos/financiera/ESF_AGOSTO-2019.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera julio', url: '/documentos/financiera/ESF-JUL-2019.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera junio', url: '/documentos/financiera/Estado-Situacion-Financiera-junio-19.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera mayo', url: '/documentos/financiera/Estado-Situacion-Financiera-mayo-19.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera abril', url: '/documentos/financiera/Estado-Situacion-Financiera-abr-2019.pdf´', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera marzo', url: '/documentos/financiera/Estado-Situacion-Financiera-marzo2019.pdf', size: '2.7 MB', updated: '25/07/2024' },
+            { name: 'Estado de situación Financiera febrero', url: '/documentos/financiera/ESF-febrero-2019.pdf', size: '2.7 MB', updated: '20/04/2024' },
+            { name: 'Estado de situación Financiera enero', url: '/documentos/financiera/ESF-enero-2019.pdf', size: '2.7 MB', updated: '25/07/2024' }
+            
+        ],
+        'estados-2018': [
+            { name: 'Estado de situación Financiera 2018 – 2017', url: '/documentos/financiera/Estados-financieros-2018-2017-y-Dictamen-Revisoria-Fiscal.pdf', size: '2.7 MB', updated: '20/04/2024' }
+           ],
+    
+        // Informes
+        'informe-2024': [
+            { name: 'Informe Control Interno Contable Q1-2024', url: '/documentos/financiera/control-interno-q1-2024.pdf', size: '1.8 MB', updated: '28/04/2024' }
+        ],
+        'informe-2023': [
+            { name: 'Informe Control Interno Contable Anual 2023', url: '/documentos/financiera/control-interno-anual-2023.pdf', size: '3.2 MB', updated: '28/02/2024' }
+        ]
+    };
 
-  const generateDocumentDescription = (doc, year) => {
-    if (activeTab === 'presupuesto') {
-      return `Documento presupuestal correspondiente al año ${year}. Incluye información detallada sobre la planificación y ejecución de recursos financieros de Electrohuila S.A. E.S.P.`;
-    } else if (activeTab === 'estados') {
-      return `Estado financiero que refleja la situación económica y resultados operacionales de la empresa durante el período especificado. Cumple con las normas contables vigentes.`;
-    } else {
-      return `Informe de evaluación del sistema de control interno contable, elaborado conforme a las normas de auditoría y control fiscal aplicables para empresas de servicios públicos.`;
-    }
-  };
+    // Datos para las pestañas y sus respectivos contenidos
+    const tabsData = {
+        presupuesto: [
+            { id: 'presupuesto-2025', title: '2025' },
+            { id: 'presupuesto-2024', title: '2024' },
+            { id: 'presupuesto-2023', title: '2023' },
+            { id: 'presupuesto-2022', title: '2022' },
+            { id: 'presupuesto-2021', title: '2021' }
+        ],
+        estados: [
+            { id: 'estados-2025', title: '2025' },
+            { id: 'estados-2024', title: '2024' },
+            { id: 'estados-2023', title: '2023' },
+            { id: 'estados-2022', title: '2022' },
+            { id: 'estados-2021', title: '2021' },
+            { id: 'estados-2020', title: '2020' },
+            { id: 'estados-2019', title: '2019' },
+            { id: 'estados-2018', title: '2018' }
+        ],
+        informe: [
+            { id: 'informe-2025', title: '2025' },
+            { id: 'informe-2024', title: '2024' },
+            { id: 'informe-2023', title: '2023' },
+            { id: 'informe-2022', title: '2022' },
+            { id: 'informe-2021', title: '2021' }
+        ]
+    };
 
-  const generateDocumentContent = (doc, year) => {
-    return `ELECTROHUILA S.A. E.S.P.
-${tabsData[activeTab].title.toUpperCase()}
+    // Obtener los elementos según la pestaña activa
+    const activeItems = tabsData[activeTab] || [];
 
-Documento: ${doc}
-Año: ${year}
-Fecha de generación: ${new Date().toLocaleDateString('es-ES')}
-
-INFORMACIÓN DEL DOCUMENTO:
-${generateDocumentDescription(doc, year)}
-
-DATOS INSTITUCIONALES:
-- Empresa: Electrificadora del Huila S.A. E.S.P.
-- NIT: 891.180.084-2
-- Dirección: Neiva, Huila, Colombia
-- Teléfono: 018000-115115
-- Web: www.electrohuila.com.co
-
-NOTA: Este es un documento generado automáticamente.
-Para obtener la información oficial completa, contacte directamente con Electrohuila S.A. E.S.P.
-
-© ${new Date().getFullYear()} Electrohuila S.A. E.S.P. - Todos los derechos reservados.`;
-  };
-
-  if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-500 mx-auto mb-4" />
-          <p className="text-gray-600">Cargando información financiera...</p>
-        </div>
-      </div>
-    );
-  }
-
-  const currentTabData = documentos[activeTab];
-
-  return (
-    <div className="w-full max-w-6xl mx-auto p-6">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">
-          Información Financiera
-        </h1>
-        <p className="text-gray-600">
-          Accede a los documentos financieros y presupuestales de Electrohuila S.A. E.S.P.
-        </p>
-      </div>
-
-      {/* Tabs */}
-      <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
-        {Object.entries(tabsData).map(([key, data]) => (
-          <button
-            key={key}
-            onClick={() => setActiveTab(key)}
-            className={`flex items-center px-4 py-2 rounded-md transition-all duration-200 font-medium ${
-              activeTab === key
-                ? 'bg-blue-500 text-white shadow-md'
-                : 'text-gray-600 hover:text-gray-800 hover:bg-gray-200'
-            }`}
-          >
-            <CheckCircle className="w-4 h-4 mr-2" />
-            {data.title}
-          </button>
-        ))}
-      </div>
-
-      {/* Content */}
-      <div className="bg-gray-50 rounded-lg p-6">
-        <div className="bg-blue-500 text-white p-4 rounded-t-lg">
-          <h2 className="text-xl font-semibold flex items-center">
-            <CheckCircle className="w-5 h-5 mr-2" />
-            {currentTabData.title}
-          </h2>
-        </div>
-
-        <div className="bg-white rounded-b-lg">
-          {currentTabData.years.map((year) => {
-            const isExpanded = expandedYears[`${activeTab}-${year}`];
-            const yearDocuments = currentTabData.documents[year] || [];
-            
-            return (
-              <div key={year} className="border-b border-gray-200 last:border-b-0">
+        <div className={styles.container}>
+            {/* Pestañas */}
+            <div className={styles.tabsContainer}>
                 <button
-                  onClick={() => toggleYear(year)}
-                  className="w-full p-4 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                    className={`${styles.tabButton} ${activeTab === 'presupuesto' ? styles.active : ''}`}
+                    onClick={() => handleTabChange('presupuesto')}
                 >
-                  <div className="flex items-center">
-                    {isExpanded ? (
-                      <ChevronDown className="w-5 h-5 text-blue-500 mr-3" />
-                    ) : (
-                      <ChevronRight className="w-5 h-5 text-blue-500 mr-3" />
-                    )}
-                    <span className="text-lg font-medium text-blue-600">
-                      {year}
-                    </span>
-                  </div>
-                  <span className="text-sm text-gray-500">
-                    {yearDocuments.length} documento{yearDocuments.length !== 1 ? 's' : ''}
-                  </span>
+                    <span className={styles.tabIcon}>✓</span> Presupuesto
+                    {activeTab === 'presupuesto' && <div className={styles.tabTriangle}></div>}
                 </button>
+                <button
+                    className={`${styles.tabButton} ${activeTab === 'estados' ? styles.active : ''}`}
+                    onClick={() => handleTabChange('estados')}
+                >
+                    <span className={styles.tabIcon}>✓</span> Estados Financieros
+                    {activeTab === 'estados' && <div className={styles.tabTriangle}></div>}
+                </button>
+                <button
+                    className={`${styles.tabButton} ${activeTab === 'informe' ? styles.active : ''}`}
+                    onClick={() => handleTabChange('informe')}
+                >
+                    <span className={styles.tabIcon}>✓</span> Informe Control Interno Contable
+                    {activeTab === 'informe' && <div className={styles.tabTriangle}></div>}
+                </button>
+            </div>
 
-                {isExpanded && (
-                  <div className="px-4 pb-4">
-                    {yearDocuments.length === 0 ? (
-                      <div className="text-center py-8 text-gray-500">
-                        <FileText className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-                        <p>No hay documentos disponibles para este año</p>
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        {yearDocuments.map((doc, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                          >
-                            <div className="flex items-center">
-                              <CheckCircle className="w-4 h-4 text-orange-500 mr-3" />
-                              <span className="text-gray-800">{doc}</span>
+            {/* Lista de años */}
+            <div className={styles.itemsList}>
+                {activeItems.map((item) => (
+                    <div key={item.id} className={styles.itemRow}>
+                        <div 
+                            className={styles.itemHeader}
+                            onClick={() => toggleExpand(item.id)}
+                        >
+                            <span className={styles.expandIcon}>{expandedItem === item.id ? '−' : '+'}</span>
+                            <span className={styles.itemTitle}>{item.title}</span>
+                            <span className={styles.arrowIcon}>›</span>
+                        </div>
+
+                        {/* Contenido expandido con documentos */}
+                        {expandedItem === item.id && documentsData[item.id] && (
+                            <div className={styles.itemContent}>
+                                {documentsData[item.id].map((doc, index) => (
+                                    <div key={index} className={styles.documentCard}>
+                                        <div className={styles.documentInfo}>
+                                            <div className={styles.documentIcon}>
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" fill="#E74C3C" />
+                                                    <path d="M14 2V8H20L14 2Z" fill="#C0392B" />
+                                                </svg>
+                                            </div>
+                                            <div className={styles.documentDetails}>
+                                                <h3 className={styles.documentTitle}>{doc.name}</h3>
+                                                <div className={styles.documentMeta}>
+                                                    <span className={styles.documentSize}>Tamaño: {doc.size}</span>
+                                                    <span className={styles.documentUpdated}>Actualizado: {doc.updated}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className={styles.documentActions}>
+                                            <a href={doc.url} target="_blank" rel="noopener noreferrer" className={styles.viewButton}>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="#0099da" />
+                                                </svg>
+                                                Ver
+                                            </a>
+                                            <a href={doc.url} download className={styles.downloadButton}>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 20H19V18H5V20ZM19 9H15V3H9V9H5L12 16L19 9Z" fill="#0099da" />
+                                                </svg>
+                                                Descargar
+                                            </a>
+                                        </div>
+                                    </div>
+                                ))}
+                                {!documentsData[item.id] && (
+                                    <p className={styles.noDocuments}>No hay documentos disponibles para este año.</p>
+                                )}
                             </div>
-                            <div className="flex space-x-2">
-                              <button
-                                onClick={() => handleViewDocument(doc, year)}
-                                className="p-2 text-blue-600 hover:bg-blue-100 rounded-md transition-colors"
-                                title="Vista previa"
-                              >
-                                <Eye className="w-4 h-4" />
-                              </button>
-                              <button
-                                onClick={() => handleDownloadDocument(doc, year)}
-                                className="p-2 text-green-600 hover:bg-green-100 rounded-md transition-colors"
-                                title="Descargar"
-                              >
-                                <Download className="w-4 h-4" />
-                              </button>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                        )}
+                    </div>
+                ))}
+            </div>
         </div>
-      </div>
-
-      {/* Modal de vista previa */}
-      {viewingDocument && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="flex items-center justify-between p-6 border-b">
-              <h3 className="text-xl font-semibold text-gray-800">
-                Vista previa del documento
-              </h3>
-              <button
-                onClick={() => setViewingDocument(null)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            
-            <div className="p-6 overflow-y-auto max-h-[70vh]">
-              <div className="space-y-6">
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-2">
-                    {viewingDocument.titulo}
-                  </h4>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="font-medium text-gray-700">Año:</span>
-                      <span className="ml-2 text-gray-600">{viewingDocument.año}</span>
-                    </div>
-                    <div>
-                      <span className="font-medium text-gray-700">Categoría:</span>
-                      <span className="ml-2 text-gray-600">{viewingDocument.categoria}</span>
-                    </div>
-                    <div>
-                      <span className="font-medium text-gray-700">Fecha:</span>
-                      <span className="ml-2 text-gray-600">{viewingDocument.fecha_generacion}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h5 className="font-medium text-gray-800 mb-2">Descripción del documento:</h5>
-                  <p className="text-gray-700 leading-relaxed">
-                    {viewingDocument.descripcion}
-                  </p>
-                </div>
-
-                <div className="bg-orange-50 p-4 rounded-lg">
-                  <h5 className="font-medium text-gray-800 mb-2">Información adicional:</h5>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Documento oficial de Electrohuila S.A. E.S.P.</li>
-                    <li>• Cumple con normativas contables vigentes</li>
-                    <li>• Información verificada y auditada</li>
-                    <li>• Disponible para descarga en formato de texto</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-end space-x-3 p-6 border-t bg-gray-50">
-              <button
-                onClick={() => handleDownloadDocument(viewingDocument.titulo, viewingDocument.año)}
-                className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Descargar Documento
-              </button>
-              <button
-                onClick={() => setViewingDocument(null)}
-                className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors"
-              >
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default InformacionFinanciera;
