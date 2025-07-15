@@ -225,6 +225,14 @@ const ContratacionesElectrohuila = () => {
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-3xl font-bold text-gray-900">Contrataciones Electrohuila</h1>
             <div className="flex items-center space-x-4">
+              {/* BOTÓN TRÁMITES AGREGADO AQUÍ */}
+              <button
+                onClick={() => window.location.href = '/tramites-proveedores'}
+                className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 flex items-center space-x-2 transition-colors"
+              >
+                <FileText className="h-4 w-4" />
+                <span>Trámites</span>
+              </button>
               <div className="text-sm text-gray-500">
                 Total: {totalRegistros.toLocaleString()} contratos
               </div>

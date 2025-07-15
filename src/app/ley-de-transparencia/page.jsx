@@ -107,14 +107,14 @@ export default function TransparenciaPage() {
                 { id: 'contact-7', title: 'Servicio al público, normas, formularios y protocolos de atención', url: '/institucional/tramites-usuarios' },
                 { id: 'contact-8', title: 'Mecanismo de presentación directa de solicitudes, quejas y reclamos a disposición del público en relación con acciones u omisiones del sujeto obligado', url: 'https://enlinea.electrohuila.com.co/home/' },
                 { id: 'contact-9', title: 'Información sobre decisiones que pueden afectar al público', url: '/suspensiones-programadas' },
-                { id: 'contact-9', title: 'Entes y autoridades que lo vigilan', url: '' }
+                { id: 'contact-9', title: 'Entes y autoridades que lo vigilan', url: '/enlaces-interes' }
             ]
         },
         {
             id: 'normatividad',
             title: 'Normatividad',
             items: [
-                { id: 'norm-1', title: 'Normativa de la entidad o autoridad', url: '' },
+                { id: 'norm-1', title: 'Normativa de la entidad o autoridad', url: '/enlaces-interes' },
                 { id: 'norm-2', title: 'Búsqueda de normas', url: 'https://www.suin-juriscol.gov.co/index.html' }
             ]
         },
@@ -122,10 +122,10 @@ export default function TransparenciaPage() {
             id: 'Contratación',
             title: 'Contratación',
             items: [
-                { id: 'struct-1', title: 'Plan Anual de Adquisiciones', url: '' },
+                { id: 'struct-1', title: 'Plan Anual de Adquisiciones', url: '/tramites-proveedores' },
                 { id: 'struct-2', title: 'Publicación de la información contractual', url: '/proveedores-contratistas' },
                 { id: 'struct-3', title: 'Publicación de la ejecución de los contratos', url: '/proveedores-contratistas' },
-                { id: 'struct-4', title: 'Manual de contratación, adquisición y/o compras', url: '' }
+                { id: 'struct-4', title: 'Manual de contratación, adquisición y/o compras', url: '/tramites-proveedores' }
             ]
         },
         {
@@ -173,7 +173,7 @@ export default function TransparenciaPage() {
             title: 'Información específica para grupos de interés',
             items: [
                 { id: 'contr-1', title: 'Información para niños, niñas y adolescentes', url: 'https://kids.electrohuila.com.co/' },
-                { id: 'contr-2', title: 'Información para Mujeres', url: '' },
+                { id: 'contr-2', title: 'Información para Mujeres', url: '/sostenibilidad/actividades-sociales' },
                 { id: 'contr-3', title: 'Otros de grupos de interés.', url: '/institucional/gestion-y-programas-de-sostenibilidad' }
             ]
         },

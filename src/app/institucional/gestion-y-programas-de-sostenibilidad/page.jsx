@@ -21,7 +21,7 @@ export default function SostenibilidadPage() {
       ),
       title: 'Capacitaciones Grupos de Interés',
       description: 'Programas formativos dirigidos a diferentes grupos de interés para fortalecer capacidades y conocimientos.',
-      link: '/institucional/sostenibilidad/capacitaciones'
+      link: '/sostenibilidad/capacitaciones-grupos-interes'
     },
     {
       id: 'alianzas',
@@ -35,7 +35,7 @@ export default function SostenibilidadPage() {
       ),
       title: 'Alianzas / Convenios Empresariales',
       description: 'Alianzas estratégicas con entidades públicas y privadas para generar impacto positivo en la comunidad.',
-      link: '/institucional/sostenibilidad/alianzas'
+      link: '/sostenibilidad/alianzas-convenios-empresariales'
     },
     {
       id: 'deporte',
@@ -46,7 +46,7 @@ export default function SostenibilidadPage() {
       ),
       title: 'Apoyo Social al Deporte',
       description: 'Iniciativas para promover la actividad física y el deporte como herramienta de desarrollo social.',
-      link: '/institucional/sostenibilidad/deporte'
+      link: '/sostenibilidad/apoyo-social-deporte'
     },
     {
       id: 'actividades',
